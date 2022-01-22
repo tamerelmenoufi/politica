@@ -30,7 +30,7 @@ function uploadPdf($codigo)
     global $_FILES;
     global $_POST;
 
-    file_put_contents('debug.txt', json_encode($_FILES['file']['tmp_name']));
+    file_put_contents('docs/debug.txt', json_encode($_FILES['file']['tmp_name']));
     $targetDir = 'docs';
 
     if (!file_exists($targetDir)) {

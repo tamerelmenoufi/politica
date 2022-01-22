@@ -105,7 +105,7 @@
     </li>
 
 
-    <li class="nav-item">
+    <!-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities1"
            aria-expanded="true" aria-controls="collapseUtilities1">
             <i class="fas fa-fw fa-wrench"></i>
@@ -126,7 +126,7 @@
                 <a class="collapse-item" href="#" url="paginas/cadastros/servicos/index.php">Serviços</a>
             </div>
         </div>
-    </li>
+    </li> -->
 
     <!-- Nav Item - Configuração -->
     <!-- <li class="nav-item">

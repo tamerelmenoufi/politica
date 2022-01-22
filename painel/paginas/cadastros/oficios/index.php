@@ -5,7 +5,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir') {
     $codigo = $_POST['codigo'];
     $query = "DELETE FROM oficios WHERE codigo = '{$codigo}'";
 
+    $file = "docs/{$codigo}.pdf";
+
     if (mysql_query($query)) {
+        if (is_file($file)) { @unlink($file); }
         echo json_encode(["status" => true, "msg" => "Registro excluído com sucesso"]);
     } else {
         echo json_encode(["status" => false, "msg" => "Error ao tentar excluír"]);

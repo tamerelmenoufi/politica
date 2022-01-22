@@ -2,7 +2,7 @@
 header('Content-Type: application/json'); // set json response headers
 $file = "docs/{$_POST['key']}.pdf";
 echo delete($file);
-exit();
+//exit();
 
 function delete($file)
 {
