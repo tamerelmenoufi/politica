@@ -73,6 +73,20 @@ $d = mysql_fetch_object($result);
             <div class="col-md-4 font-weight-bold">Situação</div>
             <div class="col-md-8"><?= getSituacaoOptions($d->situacao); ?></div>
         </div>
+        <div class="row">
+            <div class="col-md-4 font-weight-bold">Anexo</div>
+            <div class="col-md-8">
+                <?php
+                if (is_file("docs/{$d->codigo}.pdf")) {
+                    echo '<button type="button" class="btn btn-info btn-sm visualizar_anexo" data-url="docs/' . $d->codigo . '.pdf">'
+                        . '<i class="fa-solid fa-file"></i> Visualizar'
+                        . '</button>';
+                } else {
+                    echo 'Nenhum arquivo anexado';
+                }
+                ?>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -121,5 +135,19 @@ $d = mysql_fetch_object($result);
                 }
             }
         })
+    });
+
+    $('.visualizar_anexo').click(function () {
+        var url = `<?= $urlOficios; ?>/${$(this).data('url')}`
+
+        var iframe = `<iframe style="width: 100%; min-height: 500px" src="${url}"></iframe>`;
+
+        $.dialog({
+            title: false,
+            content: iframe,
+            columnClass: 'xlarge'
+        });
+
+
     });
 </script>

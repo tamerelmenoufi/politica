@@ -67,7 +67,7 @@ $d = mysql_fetch_object($result);
         </div>
         <div class="row">
             <div class="col-md-4 font-weight-bold">Status</div>
-            <div class="col-md-8"><?= $d->status; ?></div>
+            <div class="col-md-8"><?= getSituacaoOptions($d->status); ?></div>
         </div>
     </div>
 </div>

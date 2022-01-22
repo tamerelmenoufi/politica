@@ -7,9 +7,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $codigo = $data['codigo'] ?: null;
 
-    unset($data['codigo']);
+    unset($data['codigo'], $data['senha_2']);
 
     if (!$codigo) $data['data_cadastro'] = 'NOW()';
+
+    if ($codigo and empty($data['senha'])) unset($data['senha']);
 
     foreach ($data as $name => $value) {
         $attr[] = "{$name} = '" . mysql_real_escape_string($value) . "'";
@@ -97,6 +99,36 @@ if ($codigo) {
                 >
             </div>
 
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="senha">Senha <i class="text-danger">*</i></label>
+                        <input
+                                type="password"
+                                class="form-control"
+                                id="senha"
+                                name="senha"
+                                value="<?= !$codigo ? $d->senha : ''; ?>"
+                            <?= !$codigo ? 'required' : ''; ?>
+                        >
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="senha_2">Confirmar senha <i class="text-danger">*</i></label>
+                        <input
+                                type="password"
+                                class="form-control"
+                                id="senha_2"
+                                name="senha_2"
+                            <?= !$codigo ? 'required' : ''; ?>
+                        >
+                    </div>
+                </div>
+            </div>
+
+
             <input type="hidden" id="codigo" value="<?= $codigo; ?>">
 
             <button type="submit" class="btn btn-success">Salvar</button>
@@ -106,6 +138,28 @@ if ($codigo) {
 
 <script>
     $(function () {
+
+        $('#form-usuarios').validate({
+            rules: {
+                senha: {
+                    minlength: 4
+                },
+                senha_2: {
+                    minlength: 4,
+                    equalTo: '[name="senha"]'
+                }
+            },
+            messages: {
+                senha: {
+                    minlength: 'Digite minímo 4 caracteres'
+                },
+                senha_2: {
+                    minlength: 'Digite minímo 4 caracteres',
+                    equalTo: 'As senhas não conferem'
+                }
+            }
+        });
+
         $("#cpf").mask("999.999.999-99");
 
         $("#telefone").mask("(99) 9999-9999");
