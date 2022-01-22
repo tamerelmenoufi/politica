@@ -24,6 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (mysql_query($query)) {
         $codigo = $codigo ?: mysql_insert_id();
 
+        uploadPdf($codigo);
+
         echo json_encode([
             'status' => true,
             'msg' => 'Dados salvo com sucesso',
@@ -40,6 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     exit;
 }
+
 
 $codigo = $_GET['codigo'];
 
@@ -70,7 +73,7 @@ if ($codigo) {
         </h6>
     </div>
     <div class="card-body">
-        <form id="form-oficios">
+        <form id="form-oficios" enctype="multipart/form-data">
 
             <div class="form-group">
                 <label for="assessor">
@@ -161,6 +164,29 @@ if ($codigo) {
                 </div>
             </div>
 
+            <div class="form-group">
+                <label for="descricao">Descrição</label>
+                <textarea
+                        id="descricao"
+                        name="descricao"
+                        class="form-control"
+                        rows="5"
+                ><?= $d->descricao; ?></textarea>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <input
+                            id="input-id"
+                            type="file"
+                            name="file"
+                            class="file"
+                            data-preview-file-type="text"
+                    >
+                </div>
+            </div>
+
+
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
@@ -196,6 +222,36 @@ if ($codigo) {
 
 <script>
     $(function () {
+        $("#input-id").fileinput({
+            <?php if($codigo and is_file("docs/{$codigo}.pdf")):?>
+            initialPreview: [
+                '<?= $urlOficios; ?>/docs/<?= $codigo;?>.pdf'
+            ],
+            <?php endif; ?>
+            maxFileCount: 0,
+            showCaption: true,
+            uploadExtraData: {
+                'codigo': '',
+            },
+            showCancel: true,
+            enableResumableUpload: true,
+            initialPreviewAsData: true,
+            overwriteInitial: false,
+            fileType: "pdf",
+            allowedFileExtensions: ['pdf'],
+            initialCaption: "Selecione uma arquivo no formato pdf",
+            language: 'pt-BR',
+            theme: 'fas',
+            showUpload: false,
+            fileActionSettings: {
+                showUpload: false
+            },
+            deleteUrl: "<?= $urlOficios; ?>/file-delete.php",
+            initialPreviewConfig: [
+                {caption: '<?= $codigo;?>.pdf', type: "pdf", size: "100%", width: "100%", key: 1},
+            ],
+        });
+
         $("#assessor").selectpicker();
 
         $(".secretaria").selectpicker();
@@ -208,16 +264,20 @@ if ($codigo) {
             if (!$(this).valid()) return false;
 
             var codigo = $('#codigo').val();
-            var dados = $(this).serializeArray();
+
+            var formData = new FormData(this);
 
             if (codigo) {
-                dados.push({name: 'codigo', value: codigo})
+                formData.append('codigo', codigo);
             }
 
             $.ajax({
                 url: '<?= $urlOficios; ?>/form.php',
                 method: 'POST',
-                data: dados,
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
                 success: function (response) {
                     let retorno = JSON.parse(response);
 
@@ -245,11 +305,9 @@ if ($codigo) {
                 url: '<?= $urlOficios; ?>/select_secretarias.php',
                 data: {esfera: valor},
                 success: function (response) {
-                    console.log(response);
                     $('#container-secretaria').html(response);
                 }
             })
-
         });
     });
 </script>

@@ -29,6 +29,7 @@ if (!isset($_SESSION['usuario'])) {
     <link rel="stylesheet" href="<?= $caminho_vendor ?>/datatables/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="<?= $caminho_vendor ?>/jquery-confirm/css/jquery-confirm.min.css">
     <link rel="stylesheet" href="<?= $caminho_vendor ?>/bootstrap-select/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="<?= $caminho_vendor ?>/bootstrap-fileinput/css/fileinput.min.css">
 </head>
 
 <body id="page-top">
@@ -117,8 +118,10 @@ if (!isset($_SESSION['usuario'])) {
 <script src="<?= "{$caminho_vendor}/tata/tata.js"; ?>"></script>
 <script src="<?= "{$caminho_vendor}/datatables/datatables.min.js"; ?>"></script>
 <script src="<?= "{$caminho_vendor}/datatables/dataTables.bootstrap4.min.js"; ?>"></script>
-
 <script src="<?= "{$caminho_vendor}/tata/index.js"; ?>"></script>
+<script src="<?= "{$caminho_vendor}/bootstrap-fileinput/js/fileinput.min.js"; ?>"></script>
+<script src="<?= "{$caminho_vendor}/bootstrap-fileinput/js/locales/pt-BR.js"; ?>"></script>
+<script src="<?= "{$caminho_vendor}/bootstrap-fileinput/theme/theme.min.js"; ?>"></script>
 
 <script>
     $(document).ready(function () {

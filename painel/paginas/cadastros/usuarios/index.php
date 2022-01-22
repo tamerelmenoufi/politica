@@ -44,14 +44,22 @@ $result = mysql_query($query);
                 <tr>
                     <th>Nome</th>
                     <th>Usuário</th>
+                    <th>Status</th>
                     <th class="mw-20">Ações</th>
                 </tr>
                 </thead>
                 <tbody>
-                <?php while ($d = mysql_fetch_object($result)): ?>
+                <?php while ($d = mysql_fetch_object($result)):
+                    $status = $d->status == '1' ? 'success' : 'danger';
+                    ?>
                     <tr id="linha-<?= $d->codigo; ?>">
                         <td><?= $d->nome ?></td>
                         <td><?= $d->usuario; ?></td>
+                        <td>
+                        <span class="badge badge-<?= $status; ?>">
+                            <?= getSituacaoOptions($d->status); ?>
+                        </span>
+                        </td>
                         <td>
                             <button
                                     class="btn btn-sm btn-link"
