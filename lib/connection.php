@@ -5,7 +5,7 @@ if ($_SERVER['HTTP_HOST'] === 'localhost' || $_SERVER['HTTP_HOST'] === '10.0.0.1
     define('DB_PASSWORD', '');
     define('DB_DATABASE', 'politica');
 } else {
-    define('DB_HOST', 'db.mohatron.com');
+    define('DB_HOST', '3.93.20.163');
     define('DB_USERNAME', 'politica');
     define('DB_PASSWORD', 'P0l!t!c@');
     define('DB_DATABASE', 'politica');

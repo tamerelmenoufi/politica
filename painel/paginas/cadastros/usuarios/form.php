@@ -9,12 +9,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     unset($data['codigo'], $data['senha_2']);
 
-    if (!$codigo) $data['data_cadastro'] = 'NOW()';
+    if (!$codigo) $data['data_cadastro'] = date("Y-m-d H:i:s");
 
     if ($codigo and empty($data['senha'])) unset($data['senha']);
 
     foreach ($data as $name => $value) {
-        $attr[] = "{$name} = '" . mysql_real_escape_string($value) . "'";
+        if($name == 'senha'){
+            $attr[] = "{$name} = '" . md5($value) . "'";
+        }else{
+            $attr[] = "{$name} = '" . mysql_real_escape_string($value) . "'";
+        }
     }
 
     $attr = implode(', ', $attr);
@@ -24,6 +28,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $query = "INSERT INTO usuarios SET {$attr}";
     }
+
+    file_put_contents("query.txt",$query);
 
     if (mysql_query($query)) {
         $codigo = $codigo ?: mysql_insert_id();

@@ -63,7 +63,7 @@ $d = mysql_fetch_object($result);
         </div>
         <div class="row">
             <div class="col-md-4 font-weight-bold">Criado em</div>
-            <div class="col-md-8"><?= formata_datahora($d->criado_em, DATA_HM); ?></div>
+            <div class="col-md-8"><?= formata_datahora($d->data_cadastro, DATA_HM); ?></div>
         </div>
         <div class="row">
             <div class="col-md-4 font-weight-bold">Status</div>
