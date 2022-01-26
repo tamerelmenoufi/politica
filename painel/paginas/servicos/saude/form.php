@@ -239,6 +239,33 @@ if ($codigo) {
                 </div>
             </div>
 
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="situacao">
+                            Situação <i class="text-danger">*</i>
+                        </label>
+                        <select
+                                class="form-control"
+                                id="situacao"
+                                name="situacao"
+                                required
+                        >
+                            <option value=""></option>
+                            <?php
+                            foreach (getSituacao() as $key => $value): ?>
+                                <option
+                                    <?= ($codigo and $d->situacao == $key) ? 'selected' : ''; ?>
+                                        value="<?= $key; ?>">
+                                    <?= $value; ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
             <input type="hidden" id="codigo" value="<?= $codigo; ?>">
 
             <button type="submit" class="btn btn-success">Salvar</button>
