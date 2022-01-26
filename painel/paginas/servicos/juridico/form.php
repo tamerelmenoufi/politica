@@ -220,9 +220,6 @@ if ($codigo) {
                     <?php endwhile; ?>
                 </select>
 
-            </div>
-
-            <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="data_agenda">Data de Agenda <i class="text-danger">*</i></label>
