@@ -236,7 +236,9 @@ if ($codigo) {
                         >
 
                     </div>
+                </div>
 
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="situacao">
                             Situação <i class="text-danger">*</i>
