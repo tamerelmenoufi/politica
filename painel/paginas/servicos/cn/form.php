@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $query = "INSERT INTO servicos SET {$attr}";
     }
-
+    file_put_contents('query.txt',$query);
     if (mysql_query($query)) {
         $codigo = $codigo ?: mysql_insert_id();
 
