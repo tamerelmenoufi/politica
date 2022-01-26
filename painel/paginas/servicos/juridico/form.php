@@ -219,7 +219,10 @@ if ($codigo) {
                         </option>
                     <?php endwhile; ?>
                 </select>
-                </div>
+
+            </div>
+
+            <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="data_agenda">Data de Agenda <i class="text-danger">*</i></label>
@@ -234,11 +237,10 @@ if ($codigo) {
 
                     </div>
                 </div>
-
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="situacao">
-                            Situação X <i class="text-danger">*</i>
+                            Situação <i class="text-danger">*</i>
                         </label>
                         <select
                                 class="form-control"
@@ -258,10 +260,7 @@ if ($codigo) {
                         </select>
                     </div>
                 </div>
-
             </div>
-
-
 
             <input type="hidden" id="codigo" value="<?= $codigo; ?>">
 
