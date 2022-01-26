@@ -259,6 +259,7 @@ if ($codigo) {
         $('#form-oficios').validate();
 
         $('#form-oficios').submit(function (e) {
+
             e.preventDefault();
 
             if (!$(this).valid()) return false;
@@ -291,6 +292,7 @@ if ($codigo) {
                                 $('#palco').html(response);
                             }
                         })
+
                     } else {
                         tata.error('Error', retorno.msg);
                     }
