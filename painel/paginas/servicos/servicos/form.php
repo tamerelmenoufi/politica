@@ -241,7 +241,6 @@ if ($codigo) {
                                 name="situacao"
                                 required
                         >
-                            <option value=""></option>
                             <?php
                             foreach (getSituacao() as $key => $value): ?>
                                 <option
