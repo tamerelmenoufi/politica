@@ -35,7 +35,7 @@ $result = mysql_query($query);
             Serviços
         </h6>
         <?php
-        if(in_array('CR - Cadastrar', $ConfPermissoes)){
+        if(in_array('Registro Geral - Cadastrar', $ConfPermissoes)){
         ?>
         <button type="button" class="btn btn-success btn-sm" url="<?= $urlServicos; ?>/form.php">
             <i class="fa-solid fa-plus"></i> Novo
@@ -72,7 +72,7 @@ $result = mysql_query($query);
                                 <i class="fa-regular fa-eye text-info"></i>
                             </button>
                             <?php
-                            if(in_array('CR - Editar', $ConfPermissoes)){
+                            if(in_array('Registro Geral - Editar', $ConfPermissoes)){
                             ?>
                             <button
                                     class="btn btn-sm btn-link"
@@ -82,7 +82,7 @@ $result = mysql_query($query);
                             </button>
                             <?php
                             }
-                            if(in_array('CR - Excluir', $ConfPermissoes)){
+                            if(in_array('Registro Geral - Excluir', $ConfPermissoes)){
                             ?>
                             <button class="btn btn-sm btn-link btn-excluir" data-codigo="<?= $d->codigo ?>">
                                 <i class="fa-regular fa-trash-can text-danger"></i>

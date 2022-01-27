@@ -33,7 +33,7 @@ $d = mysql_fetch_object($result);
         </h6>
         <div class="d-block">
             <?php
-            if(in_array('CR - Cadastrar', $ConfPermissoes)){
+            if(in_array('Registro Geral - Cadastrar', $ConfPermissoes)){
             ?>
             <button
                     type="button"
@@ -45,7 +45,7 @@ $d = mysql_fetch_object($result);
             </button>
             <?php
             }
-            if(in_array('CR - Editar', $ConfPermissoes)){
+            if(in_array('Registro Geral - Editar', $ConfPermissoes)){
             ?>
             <button
                     type="button"
@@ -57,7 +57,7 @@ $d = mysql_fetch_object($result);
             </button>
             <?php
             }
-            if(in_array('CR - Excluir', $ConfPermissoes)){
+            if(in_array('Registro Geral - Excluir', $ConfPermissoes)){
             ?>
             <button
                     type="button"
