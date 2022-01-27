@@ -1,1 +1,0 @@
-INSERT INTO usuarios SET nome = 'Tamer', usuario = 'tamer', senha = '123456', data_cadastro = '\'2022-01-24 18:09:48\''
