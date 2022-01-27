@@ -25,7 +25,7 @@ $result = mysql_query($query);
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb shadow bg-gray-custom">
         <li class="breadcrumb-item"><a href="#" url="content.php">Início</a></li>
-        <li class="breadcrumb-item active" aria-current="page">CN</li>
+        <li class="breadcrumb-item active" aria-current="page">Certidão de Nascimento</li>
     </ol>
 </nav>
 
@@ -35,7 +35,7 @@ $result = mysql_query($query);
             Serviços
         </h6>
         <?php
-        if(in_array('CN - Cadastrar', $ConfPermissoes)){
+        if(in_array('Certidão de Nascimento - Cadastrar', $ConfPermissoes)){
         ?>
         <button type="button" class="btn btn-success btn-sm" url="<?= $urlServicos; ?>/form.php">
             <i class="fa-solid fa-plus"></i> Novo
@@ -72,7 +72,7 @@ $result = mysql_query($query);
                                 <i class="fa-regular fa-eye text-info"></i>
                             </button>
                             <?php
-                            if(in_array('CN - Editar', $ConfPermissoes)){
+                            if(in_array('Certidão de Nascimento - Editar', $ConfPermissoes)){
                             ?>
                             <button
                                     class="btn btn-sm btn-link"
@@ -82,7 +82,7 @@ $result = mysql_query($query);
                             </button>
                             <?php
                             }
-                            if(in_array('CN - Excluir', $ConfPermissoes)){
+                            if(in_array('Certidão de Nascimento - Excluir', $ConfPermissoes)){
                             ?>
                             <button class="btn btn-sm btn-link btn-excluir" data-codigo="<?= $d->codigo ?>">
                                 <i class="fa-regular fa-trash-can text-danger"></i>

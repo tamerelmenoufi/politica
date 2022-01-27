@@ -33,7 +33,7 @@ $d = mysql_fetch_object($result);
         </h6>
         <div class="d-block">
             <?php
-            if(in_array('CN - Cadastrar', $ConfPermissoes)){
+            if(in_array('Certidão de Nascimento - Cadastrar', $ConfPermissoes)){
             ?>
             <button
                     type="button"
@@ -45,7 +45,7 @@ $d = mysql_fetch_object($result);
             </button>
             <?php
             }
-            if(in_array('CN - Editar', $ConfPermissoes)){
+            if(in_array('Certidão de Nascimento - Editar', $ConfPermissoes)){
             ?>
             <button
                     type="button"
@@ -57,7 +57,7 @@ $d = mysql_fetch_object($result);
             </button>
             <?php
             }
-            if(in_array('CN - Excluir', $ConfPermissoes)){
+            if(in_array('Certidão de Nascimento - Excluir', $ConfPermissoes)){
             ?>
             <button
                     type="button"
