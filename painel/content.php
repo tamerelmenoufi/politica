@@ -151,19 +151,6 @@ $dadosCount = mysql_fetch_object(mysql_query($queryCount));
     </div>
 
     <?php
-
-if($_SESSION['usuario']){
-    $ConfP =  $_SESSION['usuario'];
-    print_r($ConfP);
-    echo "<hr>";
-    echo $ConfP = $ConfP['permissoes'];
-    $ConfP = explode(",",$ConfP);
-    for($i=0;$i<count($ConfP);$i++){
-        $ConfPermissoes[$ConfP[$i]] = $ConfP[$i];
-    }
-}
-
-
         print_r($ConfPermissoes);
     ?>
 

@@ -24,9 +24,9 @@ $caminho_vendor = getUrl() . "lib/vendor";
 
 if($_SESSION['usuario']){
     $ConfP =  $_SESSION['usuario'];
-    $ConfP = $ConfP->permissoes;
+    $ConfP = $ConfP['permissoes'];
     $ConfP = explode(",",$ConfP);
     for($i=0;$i<count($ConfP);$i++){
-        $ConfPermissoes[$ConfP[$i]] = $ConfP[$i];
+        $ConfPermissoes[trim($ConfP[$i])] = trim($ConfP[$i]);
     }
 }
