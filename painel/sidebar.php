@@ -179,11 +179,11 @@
                 <a class="collapse-item" href="#" url="paginas/cadastros/usuarios/index.php">Usuários</a>
                 <?php
                 //}
-                if(in_array('Permissoes - Visualizar', $ConfPermissoes)){
+                //if(in_array('Permissoes - Visualizar', $ConfPermissoes)){
                 ?>
                 <a class="collapse-item" href="#" url="paginas/cadastros/permissoes/index.php">Permissoes</a>
                 <?php
-                }
+                //}
                 ?>
             </div>
         </div>
