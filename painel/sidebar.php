@@ -100,6 +100,7 @@
                 <a class="collapse-item" href="#" url="paginas/cadastros/tipo_servico/index.php">Tipo de Serviço</a>
                 <a class="collapse-item" href="#" url="paginas/cadastros/especialidades/index.php">Especialidades</a>
                 <a class="collapse-item" href="#" url="paginas/cadastros/usuarios/index.php">Usuários</a>
+                <a class="collapse-item" href="#" url="paginas/cadastros/permissoes/index.php">Permissoes</a>
             </div>
         </div>
     </li>

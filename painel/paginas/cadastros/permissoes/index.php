@@ -1,38 +1,46 @@
 <?php
-include "config_usuarios.php";
+include_once "config_permissoes.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir') {
     $codigo = $_POST['codigo'];
-    $query = "DELETE FROM usuarios WHERE codigo = '{$codigo}'";
+
+    $existeRegistro = mysql_num_rows(mysql_query("SELECT * FROM permissoes WHERE vinculo = '{$codigo}'"));
+
+    if ($existeRegistro) {
+        echo json_encode(['status' => false, 'msg' => 'Não é possivel excluir, pois existe registro vinculados']);
+        exit();
+    }
+
+    $query = "DELETE FROM permissoes WHERE codigo = '{$codigo}'";
 
     if (mysql_query($query)) {
         echo json_encode(["status" => true, "msg" => "Registro excluído com sucesso"]);
     } else {
-        echo json_encode(["status" => false, "msg" => "Error ao tentar excluír"]);
+        echo json_encode(["status" => false, "msg" => "Error ao tentar excluir"]);
     }
     exit;
 }
 
-$query = "SELECT * FROM usuarios";
+$query = "SELECT * FROM permissoes WHERE vinculo = ''";
 $result = mysql_query($query);
 
 ?>
 
-<!--<h1 class="h3 mb-2 text-gray-800">Usuários</h1>-->
+<!--<h1 class="h3 mb-2 text-gray-800">Secretarias</h1>-->
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb shadow bg-gray-custom">
         <li class="breadcrumb-item"><a href="#" url="content.php">Início</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Usuários</li>
+        <li class="breadcrumb-item active" aria-current="page">Permissões</li>
     </ol>
 </nav>
 
 <div class="card shadow mb-4">
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
         <h6 class="m-0 font-weight-bold text-primary">
-            Usuários
+            Permissões
         </h6>
 
-        <button type="button" class="btn btn-success btn-sm" url="paginas/cadastros/usuarios/form.php">
+        <button type="button" class="btn btn-success btn-sm" url="<?= $urlPermissoes; ?>/form.php">
             <i class="fa-solid fa-plus"></i> Novo
         </button>
     </div>
@@ -42,47 +50,28 @@ $result = mysql_query($query);
             <table id="datatable" class="table" width="100%" cellspacing="0">
                 <thead>
                 <tr>
-                    <th>Nome</th>
-                    <th>Usuário</th>
-                    <th>Status</th>
+                    <th>Descrição</th>
                     <th class="mw-20">Ações</th>
                 </tr>
                 </thead>
                 <tbody>
-                <?php while ($d = mysql_fetch_object($result)):
-                    $status = $d->status == '1' ? 'success' : 'danger';
-                    ?>
+                <?php while ($d = mysql_fetch_object($result)): ?>
                     <tr id="linha-<?= $d->codigo; ?>">
-                        <td><?= $d->nome ?></td>
-                        <td><?= $d->usuario; ?></td>
-                        <td>
-                        <span class="badge badge-<?= $status; ?>">
-                            <?= getSituacaoOptions($d->status); ?>
-                        </span>
-                        </td>
+                        <td><?= $d->descricao; ?></td>
                         <td>
                             <button
                                     class="btn btn-sm btn-link"
-                                    url="<?= $urlUsuarios ?>/permissao.php?codigo=<?= $d->codigo ?>"
-                            >
-                                <i class="fa-solid fa-user-lock text-dark"></i>
-                            </button>
-                            <button
-                                    class="btn btn-sm btn-link"
-                                    url="<?= $urlUsuarios ?>/visualizar.php?codigo=<?= $d->codigo ?>"
+                                    url="<?= $urlPermissoes ?>/visualizar.php?codigo=<?= $d->codigo ?>"
                             >
                                 <i class="fa-regular fa-eye text-info"></i>
                             </button>
                             <button
                                     class="btn btn-sm btn-link"
-                                    url="<?= $urlUsuarios ?>/form.php?codigo=<?= $d->codigo; ?>"
+                                    url="<?= $urlPermissoes ?>/form.php?codigo=<?= $d->codigo; ?>"
                             >
                                 <i class="fa-solid fa-pencil text-warning"></i>
                             </button>
-                            <button
-                                    class="btn btn-sm btn-link btn-excluir"
-                                    data-codigo="<?= $d->codigo ?>"
-                            >
+                            <button class="btn btn-sm btn-link btn-excluir" data-codigo="<?= $d->codigo ?>">
                                 <i class="fa-regular fa-trash-can text-danger"></i>
                             </button>
                         </td>
@@ -113,7 +102,7 @@ $result = mysql_query($query);
                         btnClass: 'btn-red',
                         action: function () {
                             $.ajax({
-                                url: '<?= $urlUsuarios;?>/index.php',
+                                url: '<?= $urlPermissoes;?>/index.php',
                                 method: 'POST',
                                 data: {
                                     acao: 'excluir',
@@ -124,11 +113,11 @@ $result = mysql_query($query);
 
                                     if (retorno.status) {
                                         tata.success('Sucesso', retorno.msg);
+                                        $(`#linha-${codigo}`).remove();
                                     } else {
                                         tata.error('Error', retorno.msg);
                                     }
 
-                                    $(`#linha-${codigo}`).remove();
                                 }
                             })
                         }

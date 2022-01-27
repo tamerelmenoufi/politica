@@ -20,3 +20,14 @@ function getUrl()
 }
 
 $caminho_vendor = getUrl() . "lib/vendor";
+
+
+if($_SESSION['usuario']){
+    $ConfP =  $_SESSION['usuario'];
+    $ConfP = $ConfP->permissoes;
+    $ConfP = explode(",",$ConfP);
+    for($i=0;$i<count($ConfP);$i++){
+        list($Ind, $Val) = explode(" - ",$ConfP[$i]);
+        $ConfPermissoes[trim($Ind)] = trim($Val);
+    }
+}
