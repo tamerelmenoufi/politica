@@ -24,6 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (mysql_query($query)) {
         $codigo = $codigo ?: mysql_insert_id();
 
+        sis_logs($codigo, $query, 'servicos');
+
         echo json_encode([
             'status' => true,
             'msg' => 'Dados salvo com sucesso',
@@ -75,38 +77,38 @@ if ($codigo) {
             <input type="hidden" id="tipo" name="tipo" value="4"/>
 
             <?php
-                $query = "SELECT * FROM especialidades where servico_tipo = '4' ORDER BY descricao";
-                $result = mysql_query($query);
-                if(mysql_num_rows($result)){
-            ?>
+            $query = "SELECT * FROM especialidades where servico_tipo = '4' ORDER BY descricao";
+            $result = mysql_query($query);
+            if (mysql_num_rows($result)) {
+                ?>
 
-            <div class="form-group">
-                <label for="especialidade">
-                    Especialidade <i class="text-danger">*</i>
-                </label>
-                <select
-                        class="form-control"
-                        id="especialidade"
-                        name="especialidade"
-                        data-live-search="true"
-                        data-none-selected-text="Selecione"
-                        required
-                >
-                    <option value=""></option>
-                    <?php
+                <div class="form-group">
+                    <label for="especialidade">
+                        Especialidade <i class="text-danger">*</i>
+                    </label>
+                    <select
+                            class="form-control"
+                            id="especialidade"
+                            name="especialidade"
+                            data-live-search="true"
+                            data-none-selected-text="Selecione"
+                            required
+                    >
+                        <option value=""></option>
+                        <?php
 
-                    while ($b = mysql_fetch_object($result)): ?>
-                        <option
-                            <?= ($codigo and $d->especialidade == $b->codigo) ? 'selected' : ''; ?>
-                                value="<?= $b->codigo ?>">
-                            <?= $b->descricao; ?>
-                        </option>
-                    <?php endwhile; ?>
-                </select>
+                        while ($b = mysql_fetch_object($result)): ?>
+                            <option
+                                <?= ($codigo and $d->especialidade == $b->codigo) ? 'selected' : ''; ?>
+                                    value="<?= $b->codigo ?>">
+                                <?= $b->descricao; ?>
+                            </option>
+                        <?php endwhile; ?>
+                    </select>
 
-            </div>
-            <?php
-                }
+                </div>
+                <?php
+            }
             ?>
 
             <div class="form-group">

@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (mysql_query($query)) {
         $codigo = $codigo ?: mysql_insert_id();
 
-        sis_logs($codigo, $query, 'local_fontes', 'local/fonte');
+        sis_logs($codigo, $query, 'local_fontes');
 
         echo json_encode([
             'status' => true,

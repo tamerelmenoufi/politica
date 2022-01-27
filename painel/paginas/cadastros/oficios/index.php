@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir') {
             @unlink($file);
         }
 
-        sis_logs($codigo, $query, 'oficios', 'ofício');
+        sis_logs($codigo, $query, 'oficios');
 
         echo json_encode(["status" => true, "msg" => "Registro excluído com sucesso"]);
     } else {
