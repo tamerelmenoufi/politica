@@ -51,6 +51,9 @@ $d = mysql_fetch_object($result);
                 Visualizar
             </h6>
             <div class="d-block">
+                <?php
+                if(in_array('Permissões - Cadastrar', $ConfPermissoes)){
+                ?>
                 <button
                         type="button"
                         class="btn btn-success btn-sm float-left"
@@ -59,6 +62,10 @@ $d = mysql_fetch_object($result);
                 >
                     <i class="fa-solid fa-plus"></i> Novo
                 </button>
+                <?php
+                }
+                if(in_array('Permissões - Editar', $ConfPermissoes)){
+                ?>
                 <button
                         type="button"
                         class="btn btn-warning btn-sm float-left"
@@ -67,6 +74,10 @@ $d = mysql_fetch_object($result);
                 >
                     <i class="fa-solid fa-pencil"></i> Editar
                 </button>
+                <?php
+                }
+                if(in_array('Permissões - Excluir', $ConfPermissoes)){
+                ?>
                 <button
                         type="button"
                         class="btn btn-danger btn-excluir btn-sm float-left"
@@ -74,6 +85,9 @@ $d = mysql_fetch_object($result);
                 >
                     <i class="fa-regular fa-trash-can"></i> Excluir
                 </button>
+                <?php
+                }
+                ?>
             </div>
         </div>
         <div class="card-body">
@@ -89,13 +103,18 @@ $d = mysql_fetch_object($result);
             <h6 class="m-0 font-weight-bold text-primary">
                 Itens
             </h6>
-
+            <?php
+            if(in_array('Ofícios - Cadastrar', $ConfPermissoes)){
+            ?>
             <button
                     type="button"
                     class="btn btn-sm btn-success adicionar-item"
             >
                 <i class="fa-solid fa-plus"></i> Adicionar
             </button>
+            <?php
+            }
+            ?>
         </div>
 
         <div class="card-body card-body-itens">

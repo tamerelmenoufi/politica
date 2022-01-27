@@ -28,6 +28,9 @@ $d = mysql_fetch_object($result);
             Visualizar
         </h6>
         <div class="d-md-flex justify-content-xl-center">
+            <?php
+            if(in_array('Assessores - Cadastrar', $ConfPermissoes)){
+            ?>
             <button
                     type="button"
                     class="btn btn-success btn-sm float-left"
@@ -36,6 +39,10 @@ $d = mysql_fetch_object($result);
             >
                 <i class="fa-solid fa-plus"></i> Novo
             </button>
+            <?php
+            }
+            if(in_array('Assessores - Editar', $ConfPermissoes)){
+            ?>
             <button
                     type="button"
                     class="btn btn-warning btn-sm float-left"
@@ -44,6 +51,10 @@ $d = mysql_fetch_object($result);
             >
                 <i class="fa-solid fa-pencil"></i> Editar
             </button>
+            <?php
+            }
+            if(in_array('Assessores - Excluir', $ConfPermissoes)){
+            ?>
             <button
                     type="button"
                     class="btn btn-danger btn-excluir btn-sm float-left"
@@ -51,6 +62,9 @@ $d = mysql_fetch_object($result);
             >
                 <i class="fa-regular fa-trash-can"></i> Excluir
             </button>
+            <?php
+            }
+            ?>
         </div>
     </div>
     <div class="card-body">

@@ -159,9 +159,9 @@
                 <a class="collapse-item" href="#" url="paginas/cadastros/municipios/index.php">Municípios</a>
                 <?php
                 }
-                if(in_array('Secretárias - Visualizar', $ConfPermissoes)){
+                if(in_array('Secretarias - Visualizar', $ConfPermissoes)){
                 ?>
-                <a class="collapse-item" href="#" url="paginas/cadastros/secretarias/index.php">Secretárias</a>
+                <a class="collapse-item" href="#" url="paginas/cadastros/secretarias/index.php">Secretarias</a>
                 <?php
                 }
                 if(in_array('Tipo de Serviço - Visualizar', $ConfPermissoes)){

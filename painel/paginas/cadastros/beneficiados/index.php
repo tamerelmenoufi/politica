@@ -32,10 +32,15 @@ $result = mysql_query($query);
         <h6 class="m-0 font-weight-bold text-primary">
             Beneficiados
         </h6>
-
+        <?php
+        if(in_array('Beneficiados - Cadastrar', $ConfPermissoes)){
+        ?>
         <button type="button" class="btn btn-success btn-sm" url="paginas/cadastros/beneficiados/form.php">
             <i class="fa-solid fa-plus"></i> Novo
         </button>
+        <?php
+        }
+        ?>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -62,18 +67,28 @@ $result = mysql_query($query);
                             >
                                 <i class="fa-regular fa-eye text-info"></i>
                             </button>
+                            <?php
+                            if(in_array('Beneficiados - Editar', $ConfPermissoes)){
+                            ?>
                             <button
                                     class="btn btn-sm btn-link"
                                     url="<?= $urlBeneficiados ?>/form.php?codigo=<?= $d->codigo; ?>"
                             >
                                 <i class="fa-solid fa-pencil text-warning"></i>
                             </button>
+                            <?php
+                            }
+                            if(in_array('Beneficiados - Excluir', $ConfPermissoes)){
+                            ?>
                             <button
                                     class="btn btn-sm btn-link btn-excluir"
                                     data-codigo="<?= $d->codigo ?>"
                             >
                                 <i class="fa-regular fa-trash-can text-danger"></i>
                             </button>
+                            <?php
+                            }
+                            ?>
                         </td>
                     </tr>
                 <?php endwhile; ?>
