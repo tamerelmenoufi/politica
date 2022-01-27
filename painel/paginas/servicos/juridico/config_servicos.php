@@ -1,7 +1,7 @@
 <?php
 include "../../../../lib/includes.php";
 
-$urlServicos = 'paginas/servicos/jurifico';
+$urlServicos = 'paginas/servicos/juridico';
 
 function getEsfera()
 {
