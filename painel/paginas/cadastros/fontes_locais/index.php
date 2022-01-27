@@ -3,11 +3,8 @@ include_once "config_fontes_locais.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir') {
     $codigo = $_POST['codigo'];
-    $query = "DELETE FROM local_fontes WHERE codigo = '{$codigo}'";
 
-    if (mysql_query($query)) {
-        sis_logs($codigo, $query, 'local_fontes');
-
+    if (exclusao('local_fontes', $codigo)) {
         echo json_encode(["status" => true, "msg" => "Registro excluído com sucesso"]);
     } else {
         echo json_encode(["status" => false, "msg" => "Error ao tentar excluír"]);
@@ -17,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir') {
 
 $query = "SELECT lf.*, st.tipo AS tipo FROM local_fontes lf "
     . "LEFT JOIN servico_tipo st ON st.codigo = lf.servico_tipo "
+    . "WHERE deletado = '0' "
     . "ORDER BY lf.codigo DESC";
 $result = mysql_query($query);
 
@@ -36,12 +34,12 @@ $result = mysql_query($query);
             Fontes locais
         </h6>
         <?php
-        if(in_array('Fontes Locais - Cadastrar', $ConfPermissoes)){
-        ?>
-        <button type="button" class="btn btn-success btn-sm" url="<?= $fontesLocais; ?>/form.php">
-            <i class="fa-solid fa-plus"></i> Novo
-        </button>
-        <?php
+        if (in_array('Fontes Locais - Cadastrar', $ConfPermissoes)) {
+            ?>
+            <button type="button" class="btn btn-success btn-sm" url="<?= $fontesLocais; ?>/form.php">
+                <i class="fa-solid fa-plus"></i> Novo
+            </button>
+            <?php
         }
         ?>
     </div>
@@ -69,22 +67,22 @@ $result = mysql_query($query);
                                 <i class="fa-regular fa-eye text-info"></i>
                             </button>
                             <?php
-                            if(in_array('Fontes Locais - Editar', $ConfPermissoes)){
-                            ?>
-                            <button
-                                    class="btn btn-sm btn-link"
-                                    url="<?= $fontesLocais ?>/form.php?codigo=<?= $d->codigo; ?>"
-                            >
-                                <i class="fa-solid fa-pencil text-warning"></i>
-                            </button>
-                            <?php
+                            if (in_array('Fontes Locais - Editar', $ConfPermissoes)) {
+                                ?>
+                                <button
+                                        class="btn btn-sm btn-link"
+                                        url="<?= $fontesLocais ?>/form.php?codigo=<?= $d->codigo; ?>"
+                                >
+                                    <i class="fa-solid fa-pencil text-warning"></i>
+                                </button>
+                                <?php
                             }
-                            if(in_array('Fontes Locais - Excluir', $ConfPermissoes)){
-                            ?>
-                            <button class="btn btn-sm btn-link btn-excluir" data-codigo="<?= $d->codigo ?>">
-                                <i class="fa-regular fa-trash-can text-danger"></i>
-                            </button>
-                            <?php
+                            if (in_array('Fontes Locais - Excluir', $ConfPermissoes)) {
+                                ?>
+                                <button class="btn btn-sm btn-link btn-excluir" data-codigo="<?= $d->codigo ?>">
+                                    <i class="fa-regular fa-trash-can text-danger"></i>
+                                </button>
+                                <?php
                             }
                             ?>
                         </td>

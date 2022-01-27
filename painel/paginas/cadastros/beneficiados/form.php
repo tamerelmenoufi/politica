@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (mysql_query($query)) {
         $codigo = $codigo ?: mysql_insert_id();
 
-        sis_logs($codigo, $query, 'beneficiados');
+        sis_logs('beneficiados', $codigo, $query);
 
         echo json_encode([
             'status' => true,

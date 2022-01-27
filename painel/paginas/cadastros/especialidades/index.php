@@ -3,11 +3,8 @@ include_once "config_fontes_locais.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir') {
     $codigo = $_POST['codigo'];
-    $query = "DELETE FROM especialidades WHERE codigo = '{$codigo}'";
 
-    if (mysql_query($query)) {
-        sis_logs($codigo, $query, 'especialidades');
-
+    if (exclusao('especialidades', $codigo)) {
         echo json_encode(["status" => true, "msg" => "Registro excluído com sucesso"]);
     } else {
         echo json_encode(["status" => false, "msg" => "Error ao tentar excluír"]);
@@ -17,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir') {
 
 $query = "SELECT lf.*, st.tipo AS tipo FROM especialidades lf "
     . "LEFT JOIN servico_tipo st ON st.codigo = lf.servico_tipo "
+    . "WHERE deletado = '0' "
     . "ORDER BY lf.codigo DESC";
 $result = mysql_query($query);
 

@@ -3,11 +3,8 @@ include_once "config_servicos.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir') {
     $codigo = $_POST['codigo'];
-    $query = "DELETE FROM servicos WHERE codigo = '{$codigo}'";
 
-    if (mysql_query($query)) {
-        sis_logs($codigo, $query, 'servicos');
-
+    if (exclusao('servicos', $codigo)) {
         echo json_encode(["status" => true, "msg" => "Registro excluído com sucesso"]);
     } else {
         echo json_encode(["status" => false, "msg" => "Error ao tentar excluír"]);
@@ -18,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir') {
 $query = "SELECT s.*, a.nome AS assessor, b.nome AS beneficiado FROM servicos s "
     . "LEFT JOIN assessores a ON a.codigo = s.assessor "
     . "LEFT JOIN beneficiados b ON b.codigo = s.beneficiado "
+    . "WHERE s.deletado = '0' "
     . "ORDER BY s.codigo DESC";
 $result = mysql_query($query);
 

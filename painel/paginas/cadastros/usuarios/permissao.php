@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $query = "UPDATE usuarios SET permissoes = '{$permissoes}' WHERE codigo = '{$codigo}'";
 
     if (mysql_query($query)) {
-        sis_logs($codigo, $query, 'usuarios');
+        sis_logs('usuarios', $codigo, $query);
 
         echo json_encode(['status' => true, 'msg' => 'Permissões salvas com sucesso']);
     } else {

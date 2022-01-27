@@ -3,11 +3,8 @@ include_once "config_servicos.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir') {
     $codigo = $_POST['codigo'];
-    $query = "DELETE FROM servicos WHERE codigo = '{$codigo}'";
 
-    if (mysql_query($query)) {
-        sis_logs($codigo, $query, 'servicos');
-
+    if (exclusao('servicos', $codigo)) {
         echo json_encode(["status" => true, "msg" => "Registro excluído com sucesso"]);
     } else {
         echo json_encode(["status" => false, "msg" => "Error ao tentar excluír"]);
@@ -18,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir') {
 $query = "SELECT s.*, a.nome AS assessor, b.nome AS beneficiado FROM servicos s "
     . "LEFT JOIN assessores a ON a.codigo = s.assessor "
     . "LEFT JOIN beneficiados b ON b.codigo = s.beneficiado "
-    . "WHERE s.tipo = '5' "
+    . "WHERE s.tipo = '5' AND s.deletado = '0' "
     . "ORDER BY s.codigo DESC";
 $result = mysql_query($query);
 
@@ -34,15 +31,15 @@ $result = mysql_query($query);
 <div class="card shadow mb-4">
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
         <h6 class="m-0 font-weight-bold text-primary">
-            Serviços
+            Serviços - Psicologia
         </h6>
         <?php
-        if(in_array('Psicologia - Cadastrar', $ConfPermissoes)){
-        ?>
-        <button type="button" class="btn btn-success btn-sm" url="<?= $urlServicos; ?>/form.php">
-            <i class="fa-solid fa-plus"></i> Novo
-        </button>
-        <?php
+        if (in_array('Psicologia - Cadastrar', $ConfPermissoes)) {
+            ?>
+            <button type="button" class="btn btn-success btn-sm" url="<?= $urlServicos; ?>/form.php">
+                <i class="fa-solid fa-plus"></i> Novo
+            </button>
+            <?php
         }
         ?>
     </div>
@@ -74,22 +71,22 @@ $result = mysql_query($query);
                                 <i class="fa-regular fa-eye text-info"></i>
                             </button>
                             <?php
-                            if(in_array('Psicologia - Editar', $ConfPermissoes)){
-                            ?>
-                            <button
-                                    class="btn btn-sm btn-link"
-                                    url="<?= $urlServicos ?>/form.php?codigo=<?= $d->codigo; ?>"
-                            >
-                                <i class="fa-solid fa-pencil text-warning"></i>
-                            </button>
-                            <?php
+                            if (in_array('Psicologia - Editar', $ConfPermissoes)) {
+                                ?>
+                                <button
+                                        class="btn btn-sm btn-link"
+                                        url="<?= $urlServicos ?>/form.php?codigo=<?= $d->codigo; ?>"
+                                >
+                                    <i class="fa-solid fa-pencil text-warning"></i>
+                                </button>
+                                <?php
                             }
-                            if(in_array('Psicologia - Excluir', $ConfPermissoes)){
-                            ?>
-                            <button class="btn btn-sm btn-link btn-excluir" data-codigo="<?= $d->codigo ?>">
-                                <i class="fa-regular fa-trash-can text-danger"></i>
-                            </button>
-                            <?php
+                            if (in_array('Psicologia - Excluir', $ConfPermissoes)) {
+                                ?>
+                                <button class="btn btn-sm btn-link btn-excluir" data-codigo="<?= $d->codigo ?>">
+                                    <i class="fa-regular fa-trash-can text-danger"></i>
+                                </button>
+                                <?php
                             }
                             ?>
                         </td>

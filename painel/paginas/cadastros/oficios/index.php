@@ -3,17 +3,13 @@ include_once "config_oficios.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir') {
     $codigo = $_POST['codigo'];
-    $query = "DELETE FROM oficios WHERE codigo = '{$codigo}'";
 
     $file = "docs/{$codigo}.pdf";
 
-    if (mysql_query($query)) {
+    if (exclusao('oficios', $codigo)) {
         if (is_file($file)) {
             @unlink($file);
         }
-
-        sis_logs($codigo, $query, 'oficios');
-
         echo json_encode(["status" => true, "msg" => "Registro excluído com sucesso"]);
     } else {
         echo json_encode(["status" => false, "msg" => "Error ao tentar excluir"]);
@@ -24,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir') {
 $query = "SELECT o.*, a.nome AS assessor, s.descricao AS secretaria FROM oficios o "
     . "LEFT JOIN assessores a ON a.codigo = o.assessor "
     . "LEFT JOIN secretarias s ON s.codigo = o.secretaria "
+    . "WHERE deletado = '0' "
     . "ORDER BY o.codigo DESC";
 $result = mysql_query($query);
 

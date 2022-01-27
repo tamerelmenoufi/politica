@@ -3,11 +3,8 @@ include_once "config_acao_social.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir') {
     $codigo = $_POST['codigo'];
-    $query = "DELETE FROM acao_social WHERE codigo = '{$codigo}'";
 
-    if (mysql_query($query)) {
-        sis_logs($codigo, $query, 'acao_social');
-
+    if (exclusao('acao_social', $codigo)) {
         echo json_encode(["status" => true, "msg" => "Registro excluído com sucesso"]);
     } else {
         echo json_encode(["status" => false, "msg" => "Error ao tentar excluír"]);
@@ -17,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir') {
 
 $query = "SELECT ac.*, a.nome AS assessor FROM acao_social ac "
     . "LEFT JOIN assessores a ON a.codigo = ac.assessor "
+    . "WHERE deletado = '0' "
     . "ORDER BY codigo DESC";
 $result = mysql_query($query);
 
@@ -36,12 +34,12 @@ $result = mysql_query($query);
             Ação Social
         </h6>
         <?php
-        if(in_array('Ação Social - Cadastrar', $ConfPermissoes)){
-        ?>
-        <button type="button" class="btn btn-success btn-sm" url="<?= $acaoSocial; ?>/form.php">
-            <i class="fa-solid fa-plus"></i> Novo
-        </button>
-        <?php
+        if (in_array('Ação Social - Cadastrar', $ConfPermissoes)) {
+            ?>
+            <button type="button" class="btn btn-success btn-sm" url="<?= $acaoSocial; ?>/form.php">
+                <i class="fa-solid fa-plus"></i> Novo
+            </button>
+            <?php
         }
         ?>
     </div>
@@ -71,22 +69,22 @@ $result = mysql_query($query);
                                 <i class="fa-regular fa-eye text-info"></i>
                             </button>
                             <?php
-                            if(in_array('Ação Social - Editar', $ConfPermissoes)){
-                            ?>
-                            <button
-                                    class="btn btn-sm btn-link"
-                                    url="<?= $acaoSocial ?>/form.php?codigo=<?= $d->codigo; ?>"
-                            >
-                                <i class="fa-solid fa-pencil text-warning"></i>
-                            </button>
-                            <?php
+                            if (in_array('Ação Social - Editar', $ConfPermissoes)) {
+                                ?>
+                                <button
+                                        class="btn btn-sm btn-link"
+                                        url="<?= $acaoSocial ?>/form.php?codigo=<?= $d->codigo; ?>"
+                                >
+                                    <i class="fa-solid fa-pencil text-warning"></i>
+                                </button>
+                                <?php
                             }
-                            if(in_array('Ação Social - Excluir', $ConfPermissoes)){
-                            ?>
-                            <button class="btn btn-sm btn-link btn-excluir" data-codigo="<?= $d->codigo ?>">
-                                <i class="fa-regular fa-trash-can text-danger"></i>
-                            </button>
-                            <?php
+                            if (in_array('Ação Social - Excluir', $ConfPermissoes)) {
+                                ?>
+                                <button class="btn btn-sm btn-link btn-excluir" data-codigo="<?= $d->codigo ?>">
+                                    <i class="fa-regular fa-trash-can text-danger"></i>
+                                </button>
+                                <?php
                             }
                             ?>
                         </td>

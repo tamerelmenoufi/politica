@@ -11,11 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir') {
         exit();
     }
 
-    $query = "DELETE FROM permissoes WHERE codigo = '{$codigo}'";
-
-    if (mysql_query($query)) {
-        sis_logs($codigo, $query, 'permissoes');
-
+    if (exclusao('permissoes', $codigo)) {
         echo json_encode(["status" => true, "msg" => "Registro excluído com sucesso"]);
     } else {
         echo json_encode(["status" => false, "msg" => "Error ao tentar excluir"]);
@@ -23,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir') {
     exit;
 }
 
-$query = "SELECT * FROM permissoes WHERE vinculo = ''";
+$query = "SELECT * FROM permissoes WHERE vinculo = '' AND deletado = '0'";
 $result = mysql_query($query);
 
 ?>
@@ -42,12 +38,12 @@ $result = mysql_query($query);
             Permissões
         </h6>
         <?php
-        if(in_array('Permissões - Cadastrar', $ConfPermissoes)){
-        ?>
-        <button type="button" class="btn btn-success btn-sm" url="<?= $urlPermissoes; ?>/form.php">
-            <i class="fa-solid fa-plus"></i> Novo
-        </button>
-        <?php
+        if (in_array('Permissões - Cadastrar', $ConfPermissoes)) {
+            ?>
+            <button type="button" class="btn btn-success btn-sm" url="<?= $urlPermissoes; ?>/form.php">
+                <i class="fa-solid fa-plus"></i> Novo
+            </button>
+            <?php
         }
         ?>
     </div>
@@ -73,22 +69,22 @@ $result = mysql_query($query);
                                 <i class="fa-regular fa-eye text-info"></i>
                             </button>
                             <?php
-                            if(in_array('Permissões - Editar', $ConfPermissoes)){
-                            ?>
-                            <button
-                                    class="btn btn-sm btn-link"
-                                    url="<?= $urlPermissoes ?>/form.php?codigo=<?= $d->codigo; ?>"
-                            >
-                                <i class="fa-solid fa-pencil text-warning"></i>
-                            </button>
-                            <?php
+                            if (in_array('Permissões - Editar', $ConfPermissoes)) {
+                                ?>
+                                <button
+                                        class="btn btn-sm btn-link"
+                                        url="<?= $urlPermissoes ?>/form.php?codigo=<?= $d->codigo; ?>"
+                                >
+                                    <i class="fa-solid fa-pencil text-warning"></i>
+                                </button>
+                                <?php
                             }
-                            if(in_array('Permissões - Excluir', $ConfPermissoes)){
-                            ?>
-                            <button class="btn btn-sm btn-link btn-excluir" data-codigo="<?= $d->codigo ?>">
-                                <i class="fa-regular fa-trash-can text-danger"></i>
-                            </button>
-                            <?php
+                            if (in_array('Permissões - Excluir', $ConfPermissoes)) {
+                                ?>
+                                <button class="btn btn-sm btn-link btn-excluir" data-codigo="<?= $d->codigo ?>">
+                                    <i class="fa-regular fa-trash-can text-danger"></i>
+                                </button>
+                                <?php
                             }
                             ?>
                         </td>

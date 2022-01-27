@@ -3,18 +3,16 @@ include "config_usuarios.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir') {
     $codigo = $_POST['codigo'];
-    $query = "DELETE FROM usuarios WHERE codigo = '{$codigo}'";
 
-    if (mysql_query($query)) {
-        sis_logs($codigo, $query, 'usuarios');
+    if (exclusao('usuarios', $codigo)) {
         echo json_encode(["status" => true, "msg" => "Registro excluído com sucesso"]);
     } else {
         echo json_encode(["status" => false, "msg" => "Error ao tentar excluír"]);
     }
-    exit;
+    exit();
 }
 
-$query = "SELECT * FROM usuarios";
+$query = "SELECT * FROM usuarios WHERE deletado = '0'";
 $result = mysql_query($query);
 
 ?>

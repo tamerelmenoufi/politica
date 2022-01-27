@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (mysql_query($query)) {
         $codigo = $codigo ?: mysql_insert_id();
 
-        sis_logs($codigo, $query, 'acao_social');
+        sis_logs('acao_social', $codigo, $query);
 
         echo json_encode([
             'status' => true,
@@ -147,7 +147,7 @@ if ($codigo) {
 
             <div class="form-group">
                 <label for="descricao">Descrição<i class="text-danger">*</i></label>
-                <textarea id="descricao" name="descricao" class="form-control"><?=$d->descricao?></textarea>
+                <textarea id="descricao" name="descricao" class="form-control"><?= $d->descricao ?></textarea>
             </div>
 
             <div class="row">

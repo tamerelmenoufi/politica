@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         uploadPdf($codigo);
 
-        sis_logs($codigo, $query, 'oficios');
+        sis_logs('oficios', $codigo, $query);
 
         echo json_encode([
             'status' => true,
