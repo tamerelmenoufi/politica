@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir') {
 
 $query = "SELECT ac.*, a.nome AS assessor FROM acao_social ac "
     . "LEFT JOIN assessores a ON a.codigo = ac.assessor "
-    . "WHERE deletado = '0' "
+    . "WHERE ac.deletado = '0'"
     . "ORDER BY codigo DESC";
 $result = mysql_query($query);
 
