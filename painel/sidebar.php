@@ -174,11 +174,11 @@
                 <a class="collapse-item" href="#" url="paginas/cadastros/especialidades/index.php">Especialidades</a>
                 <?php
                 }
-                if(in_array('Usuários - Alterar', $ConfPermissoes)){
+                //if(in_array('Usuários - Alterar', $ConfPermissoes)){
                 ?>
                 <a class="collapse-item" href="#" url="paginas/cadastros/usuarios/index.php">Usuários</a>
                 <?php
-                }
+                //}
                 if(in_array('Permissoes - Alterar', $ConfPermissoes)){
                 ?>
                 <a class="collapse-item" href="#" url="paginas/cadastros/permissoes/index.php">Permissoes</a>
