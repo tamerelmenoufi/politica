@@ -1,4 +1,4 @@
-<ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion menus" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -61,8 +61,8 @@
              data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Tipos</h6>
-                <a class="collapse-item" href="#" url="paginas/cadastros/acao_social/index.php">Ação Social</a>
-                <a class="collapse-item" href="#" url="paginas/cadastros/oficios/index.php">Ofícios</a>
+                <a remove class="collapse-item" href="#" url="paginas/cadastros/acao_social/index.php">Ação Social</a>
+                <a remove class="collapse-item" href="#" url="paginas/cadastros/oficios/index.php">Ofícios</a>
             </div>
         </div>
     </li>
@@ -154,3 +154,9 @@
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
     </div>
 </ul>
+
+<script>
+    $(function(){
+        $(".menu").find("a").attr('remove').remove();
+    })
+</script>

@@ -149,10 +149,4 @@ $dadosCount = mysql_fetch_object(mysql_query($queryCount));
         </div>
 
     </div>
-
-    <?php
-        print_r($ConfPermissoes);
-    ?>
-
-
 </div>
