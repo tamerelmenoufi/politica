@@ -8,10 +8,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir') {
     $file = "docs/{$codigo}.pdf";
 
     if (mysql_query($query)) {
-        if (is_file($file)) { @unlink($file); }
+        if (is_file($file)) {
+            @unlink($file);
+        }
         echo json_encode(["status" => true, "msg" => "Registro excluído com sucesso"]);
     } else {
-        echo json_encode(["status" => false, "msg" => "Error ao tentar excluír"]);
+        echo json_encode(["status" => false, "msg" => "Error ao tentar excluir"]);
     }
     exit;
 }
@@ -116,11 +118,12 @@ $result = mysql_query($query);
 
                                     if (retorno.status) {
                                         tata.success('Sucesso', retorno.msg);
+                                        $(`#linha-${codigo}`).remove();
                                     } else {
                                         tata.error('Error', retorno.msg);
                                     }
 
-                                    $(`#linha-${codigo}`).remove();
+
                                 }
                             })
                         }

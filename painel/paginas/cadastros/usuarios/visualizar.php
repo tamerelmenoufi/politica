@@ -29,6 +29,15 @@ $d = mysql_fetch_object($result);
         <div class="d-md-flex justify-content-xl-center">
             <button
                     type="button"
+                    class="btn btn-info btn-sm float-left"
+                    url="<?= $urlUsuarios ?>/permissao.php?codigo=<?= $d->codigo; ?>"
+                    style="margin-right: 2px"
+            >
+                <i class="fa-solid fa-plus"></i> Permissão
+            </button>
+
+            <button
+                    type="button"
                     class="btn btn-success btn-sm float-left"
                     url="<?= $urlUsuarios ?>/form.php"
                     style="margin-right: 2px"

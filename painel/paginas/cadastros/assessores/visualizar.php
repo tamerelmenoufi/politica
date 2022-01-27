@@ -64,7 +64,7 @@ $d = mysql_fetch_object($result);
         </div>
         <div class="row">
             <div class="col-md-4 font-weight-bold">Data de nascimento</div>
-            <div class="col-md-8"><?= $d->data_nascimento; ?></div>
+            <div class="col-md-8"><?= formata_datahora($d->data_nascimento, DATA) ?></div>
         </div>
         <div class="row">
             <div class="col-md-4 font-weight-bold">Sexo</div>
