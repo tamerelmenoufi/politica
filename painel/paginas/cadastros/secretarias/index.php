@@ -6,6 +6,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir') {
     $query = "DELETE FROM secretarias WHERE codigo = '{$codigo}'";
 
     if (mysql_query($query)) {
+        sis_logs($codigo, $query, 'secretarias');
+
         echo json_encode(["status" => true, "msg" => "Registro excluído com sucesso"]);
     } else {
         echo json_encode(["status" => false, "msg" => "Error ao tentar excluír"]);

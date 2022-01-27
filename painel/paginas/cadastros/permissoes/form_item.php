@@ -8,6 +8,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $query = "INSERT INTO permissoes SET descricao = '{$descricao}', vinculo = '{$vinculo}'";
 
     if (mysql_query($query)) {
+        $codigo = mysql_insert_id();
+
+        sis_logs($codigo, $query, 'permissoes');
+
         echo json_encode(['status' => true, 'msg' => 'Dados salvo com sucesso']);
     } else {
         echo json_encode(['status' => false, 'msg' => 'Error ao salvar item', 'mysqlError' => mysql_error()]);

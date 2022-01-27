@@ -6,6 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir') {
     $query = "DELETE FROM usuarios WHERE codigo = '{$codigo}'";
 
     if (mysql_query($query)) {
+        sis_logs($codigo, $query, 'usuarios');
         echo json_encode(["status" => true, "msg" => "Registro excluído com sucesso"]);
     } else {
         echo json_encode(["status" => false, "msg" => "Error ao tentar excluír"]);
@@ -32,12 +33,12 @@ $result = mysql_query($query);
             Usuários
         </h6>
         <?php
-        if(in_array('Usuários - Cadastrar', $ConfPermissoes)){
-        ?>
-        <button type="button" class="btn btn-success btn-sm" url="paginas/cadastros/usuarios/form.php">
-            <i class="fa-solid fa-plus"></i> Novo
-        </button>
-        <?php
+        if (in_array('Usuários - Cadastrar', $ConfPermissoes)) {
+            ?>
+            <button type="button" class="btn btn-success btn-sm" url="paginas/cadastros/usuarios/form.php">
+                <i class="fa-solid fa-plus"></i> Novo
+            </button>
+            <?php
         }
         ?>
     </div>
@@ -87,25 +88,25 @@ $result = mysql_query($query);
                             </button>
                             <?php
                             //}
-                            if(in_array('Usuários - Editar', $ConfPermissoes)){
-                            ?>
-                            <button
-                                    class="btn btn-sm btn-link"
-                                    url="<?= $urlUsuarios ?>/form.php?codigo=<?= $d->codigo; ?>"
-                            >
-                                <i class="fa-solid fa-pencil text-warning"></i>
-                            </button>
-                            <?php
+                            if (in_array('Usuários - Editar', $ConfPermissoes)) {
+                                ?>
+                                <button
+                                        class="btn btn-sm btn-link"
+                                        url="<?= $urlUsuarios ?>/form.php?codigo=<?= $d->codigo; ?>"
+                                >
+                                    <i class="fa-solid fa-pencil text-warning"></i>
+                                </button>
+                                <?php
                             }
-                            if(in_array('Usuários - Excluir', $ConfPermissoes) and $d->codigo != 1){
-                            ?>
-                            <button
-                                    class="btn btn-sm btn-link btn-excluir"
-                                    data-codigo="<?= $d->codigo ?>"
-                            >
-                                <i class="fa-regular fa-trash-can text-danger"></i>
-                            </button>
-                            <?php
+                            if (in_array('Usuários - Excluir', $ConfPermissoes) and $d->codigo != 1) {
+                                ?>
+                                <button
+                                        class="btn btn-sm btn-link btn-excluir"
+                                        data-codigo="<?= $d->codigo ?>"
+                                >
+                                    <i class="fa-regular fa-trash-can text-danger"></i>
+                                </button>
+                                <?php
                             }
                             ?>
                         </td>

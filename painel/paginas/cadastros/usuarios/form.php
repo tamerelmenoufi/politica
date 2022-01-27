@@ -14,9 +14,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($codigo and empty($data['senha'])) unset($data['senha']);
 
     foreach ($data as $name => $value) {
-        if($name == 'senha'){
+        if ($name == 'senha') {
             $attr[] = "{$name} = '" . md5($value) . "'";
-        }else{
+        } else {
             $attr[] = "{$name} = '" . mysql_real_escape_string($value) . "'";
         }
     }
@@ -29,10 +29,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $query = "INSERT INTO usuarios SET {$attr}";
     }
 
-    file_put_contents("query.txt",$query);
+    #file_put_contents("query.txt",$query);
 
     if (mysql_query($query)) {
         $codigo = $codigo ?: mysql_insert_id();
+
+        sis_logs($codigo, $query, 'usuarios');
 
         echo json_encode([
             'status' => true,
@@ -101,7 +103,7 @@ if ($codigo) {
                         id="usuario"
                         name="usuario"
                         value="<?= $d->usuario; ?>"
-                        <?=(($d->codigo == 1)?'readonly="readonly"':false)?>
+                    <?= (($d->codigo == 1) ? 'readonly="readonly"' : false) ?>
                         required
                 >
             </div>

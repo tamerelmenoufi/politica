@@ -26,6 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         uploadPdf($codigo);
 
+        sis_logs($codigo, $query, 'oficios');
+
         echo json_encode([
             'status' => true,
             'msg' => 'Dados salvo com sucesso',
