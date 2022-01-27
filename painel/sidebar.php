@@ -157,6 +157,6 @@
 
 <script>
     $(function(){
-        $(".menu").find("a").attr('remove').remove();
+        $("a").attr('remove').remove();
     })
 </script>
