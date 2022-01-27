@@ -38,14 +38,48 @@
              data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Serviços</h6>
+                <?php
+                if(in_array('Certidão de Nascimento - Alterar', $ConfPermissoes)){
+                ?>
                 <a class="collapse-item" href="#" url="paginas/servicos/cn/index.php">Certidão de Nascimento</a>
+                <?php
+                }
+                if(in_array('Registro Geral - Alterar', $ConfPermissoes)){
+                ?>
                 <a class="collapse-item" href="#" url="paginas/servicos/rg/index.php">Registro Geral </a>
+                <?php
+                }
+                if(in_array('CRAS - Alterar', $ConfPermissoes)){
+                ?>
                 <a class="collapse-item" href="#" url="paginas/servicos/cras/index.php">CRAS</a>
+                <?php
+                }
+                if(in_array('CR - Alterar', $ConfPermissoes)){
+                ?>
                 <a class="collapse-item" href="#" url="paginas/servicos/cr/index.php">CR</a>
+                <?php
+                }
+                if(in_array('Psicologia - Alterar', $ConfPermissoes)){
+                ?>
                 <a class="collapse-item" href="#" url="paginas/servicos/psicologia/index.php">Psicologia</a>
+                <?php
+                }
+                if(in_array('Odontologia - Alterar', $ConfPermissoes)){
+                ?>
                 <a class="collapse-item" href="#" url="paginas/servicos/odontologia/index.php">Odontologia</a>
+                <?php
+                }
+                if(in_array('Jurídico - Alterar', $ConfPermissoes)){
+                ?>
                 <a class="collapse-item" href="#" url="paginas/servicos/juridico/index.php">Jurídico</a>
+                <?php
+                }
+                if(in_array('Saúde - Alterar', $ConfPermissoes)){
+                ?>
                 <a class="collapse-item" href="#" url="paginas/servicos/saude/index.php">Saúde</a>
+                <?php
+                }
+                ?>
             </div>
         </div>
     </li>
@@ -61,8 +95,18 @@
              data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Tipos</h6>
+                <?php
+                if(in_array('Ação Social - Alterar', $ConfPermissoes)){
+                ?>
                 <a remove class="collapse-item" href="#" url="paginas/cadastros/acao_social/index.php">Ação Social</a>
+                <?php
+                }
+                if(in_array('Ofícios - Alterar', $ConfPermissoes)){
+                ?>
                 <a remove class="collapse-item" href="#" url="paginas/cadastros/oficios/index.php">Ofícios</a>
+                <?php
+                }
+                ?>
             </div>
         </div>
     </li>
@@ -78,8 +122,18 @@
              data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Tipos</h6>
+                <?php
+                if(in_array('Assessores - Alterar', $ConfPermissoes)){
+                ?>
                 <a class="collapse-item" href="#" url="paginas/cadastros/assessores/index.php">Assessores</a>
+                <?php
+                }
+                if(in_array('Beneficiados - Alterar', $ConfPermissoes)){
+                ?>
                 <a class="collapse-item" href="#" url="paginas/cadastros/beneficiados/index.php">Beneficiados</a>
+                <?php
+                }
+                ?>
             </div>
         </div>
     </li>
@@ -94,13 +148,43 @@
              data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Tabelas</h6>
+                <?php
+                if(in_array('Fontes Locais - Alterar', $ConfPermissoes)){
+                ?>
                 <a class="collapse-item" href="#" url="paginas/cadastros/fontes_locais/index.php">Fontes Locais</a>
+                <?php
+                }
+                if(in_array('Municípios - Alterar', $ConfPermissoes)){
+                ?>
                 <a class="collapse-item" href="#" url="paginas/cadastros/municipios/index.php">Municípios</a>
+                <?php
+                }
+                if(in_array('Secretárias - Alterar', $ConfPermissoes)){
+                ?>
                 <a class="collapse-item" href="#" url="paginas/cadastros/secretarias/index.php">Secretárias</a>
+                <?php
+                }
+                if(in_array('Tipo de Serviço - Alterar', $ConfPermissoes)){
+                ?>
                 <a class="collapse-item" href="#" url="paginas/cadastros/tipo_servico/index.php">Tipo de Serviço</a>
+                <?php
+                }
+                if(in_array('Especialidades - Alterar', $ConfPermissoes)){
+                ?>
                 <a class="collapse-item" href="#" url="paginas/cadastros/especialidades/index.php">Especialidades</a>
+                <?php
+                }
+                if(in_array('Usuários - Alterar', $ConfPermissoes)){
+                ?>
                 <a class="collapse-item" href="#" url="paginas/cadastros/usuarios/index.php">Usuários</a>
+                <?php
+                }
+                if(in_array('Permissoes - Alterar', $ConfPermissoes)){
+                ?>
                 <a class="collapse-item" href="#" url="paginas/cadastros/permissoes/index.php">Permissoes</a>
+                <?php
+                }
+                ?>
             </div>
         </div>
     </li>
@@ -154,9 +238,3 @@
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
     </div>
 </ul>
-
-<script>
-    $(function(){
-        $("a[remove]").remove();
-    })
-</script>
