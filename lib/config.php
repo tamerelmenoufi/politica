@@ -21,12 +21,13 @@ function getUrl()
 
 $caminho_vendor = getUrl() . "lib/vendor";
 
+date_default_timezone_set('America/Manaus');
 
-if($_SESSION['usuario']){
-    $ConfP =  $_SESSION['usuario'];
+if ($_SESSION['usuario']) {
+    $ConfP = $_SESSION['usuario'];
     $ConfP = $ConfP['permissoes'];
-    $ConfP = explode(",",$ConfP);
-    for($i=0;$i<count($ConfP);$i++){
+    $ConfP = explode(",", $ConfP);
+    for ($i = 0; $i < count($ConfP); $i++) {
         $ConfPermissoes[trim($ConfP[$i])] = trim($ConfP[$i]);
     }
 }

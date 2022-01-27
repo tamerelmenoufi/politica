@@ -1,16 +1,17 @@
 <?php
 
 
-function sis_logs($codigo, $tabela, $query, $descricao = '')
+function sis_logs($codigo, $query, $tabela, $descricao = '', $operacao = null)
 {
     $usuario = $_SESSION['usuario']['codigo'];
-    $operacao = strtoupper(trim(explode(' ', $query)[0]));
+    $operacao = $operacao ?: strtoupper(trim(explode(' ', $query)[0]));
     $query = mysql_real_escape_string($query);
-    $descricao = "[USUARIO] [{$operacao}] {$descricao}";
+    $data = date("Y-m-d H:i:s");
+    $descricao = $descricao ? "[USUARIO] [{$operacao}] {$descricao}" : '';
 
     $query_log = "INSERT INTO sis_logs "
         . "SET usuario = '{$usuario}', registro = '{$codigo}', operacao = '{$operacao}', query = '{$query}', "
-        . "descricao = '{$descricao}', tabela = '{$tabela}', data = NOW()";
+        . "descricao = '{$descricao}', tabela = '{$tabela}', data = '{$data}'";
 
     mysql_query($query_log);
 }
