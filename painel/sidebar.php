@@ -169,6 +169,11 @@
                 <a class="collapse-item" href="#" url="paginas/cadastros/tipo_servico/index.php">Tipo de Serviço</a>
                 <?php
                 }
+                if(in_array('Categorias de Serviço - Visualizar', $ConfPermissoes)){
+                ?>
+                <a class="collapse-item" href="#" url="paginas/cadastros/categorias/index.php">Categorias de Serviço</a>
+                <?php
+                }
                 if(in_array('Especialidades - Visualizar', $ConfPermissoes)){
                 ?>
                 <a class="collapse-item" href="#" url="paginas/cadastros/especialidades/index.php">Especialidades</a>
