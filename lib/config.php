@@ -27,7 +27,6 @@ if($_SESSION['usuario']){
     $ConfP = $ConfP->permissoes;
     $ConfP = explode(",",$ConfP);
     for($i=0;$i<count($ConfP);$i++){
-        list($Ind, $Val) = explode(" - ",$ConfP[$i]);
-        $ConfPermissoes[trim($Ind)] = trim($Val);
+        $ConfPermissoes[$ConfP[$i]] = $ConfP[$i];
     }
 }
