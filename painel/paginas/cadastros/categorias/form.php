@@ -77,8 +77,8 @@ if ($codigo) {
                 <input
                         type="text"
                         class="form-control"
-                        id="tipo"
-                        name="tipo"
+                        id="descricao"
+                        name="descricao"
                         value="<?= $d->tipo; ?>"
                         required
                 >
