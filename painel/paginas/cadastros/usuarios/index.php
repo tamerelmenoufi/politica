@@ -34,7 +34,6 @@ $result = mysql_query($query);
         <?php
         if(in_array('Usuários - Cadastrar', $ConfPermissoes)){
         ?>
-        ?>
         <button type="button" class="btn btn-success btn-sm" url="paginas/cadastros/usuarios/form.php">
             <i class="fa-solid fa-plus"></i> Novo
         </button>
