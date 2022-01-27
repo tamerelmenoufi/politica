@@ -151,7 +151,7 @@ if ($codigo) {
 
             </div>
 
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="especialista">
                     Especialista <i class="text-danger">*</i>
                 </label>
@@ -164,7 +164,7 @@ if ($codigo) {
                         required
                 >
 
-            </div>
+            </div> -->
 
             <div class="form-group">
                 <label for="assessor">
