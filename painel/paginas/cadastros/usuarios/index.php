@@ -61,6 +61,7 @@ $result = mysql_query($query);
                         </span>
                         </td>
                         <td>
+
                             <button
                                     class="btn btn-sm btn-link"
                                     url="<?= $urlUsuarios ?>/permissao.php?codigo=<?= $d->codigo ?>"
