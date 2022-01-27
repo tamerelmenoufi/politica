@@ -34,10 +34,15 @@ $result = mysql_query($query);
         <h6 class="m-0 font-weight-bold text-primary">
             Serviços
         </h6>
-
+        <?php
+        if(in_array('CN - Cadastrar', $ConfPermissoes)){
+        ?>
         <button type="button" class="btn btn-success btn-sm" url="<?= $urlServicos; ?>/form.php">
             <i class="fa-solid fa-plus"></i> Novo
         </button>
+        <?php
+        }
+        ?>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -66,15 +71,25 @@ $result = mysql_query($query);
                             >
                                 <i class="fa-regular fa-eye text-info"></i>
                             </button>
+                            <?php
+                            if(in_array('CN - Editar', $ConfPermissoes)){
+                            ?>
                             <button
                                     class="btn btn-sm btn-link"
                                     url="<?= $urlServicos ?>/form.php?codigo=<?= $d->codigo; ?>"
                             >
                                 <i class="fa-solid fa-pencil text-warning"></i>
                             </button>
+                            <?php
+                            }
+                            if(in_array('CN - Excluir', $ConfPermissoes)){
+                            ?>
                             <button class="btn btn-sm btn-link btn-excluir" data-codigo="<?= $d->codigo ?>">
                                 <i class="fa-regular fa-trash-can text-danger"></i>
                             </button>
+                            <?php
+                            }
+                            ?>
                         </td>
                     </tr>
                 <?php endwhile; ?>
