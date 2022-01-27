@@ -157,6 +157,6 @@
 
 <script>
     $(function(){
-        $("a").attr('remove').remove();
+        $("a[remove]").remove();
     })
 </script>
