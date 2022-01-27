@@ -153,7 +153,7 @@ $dadosCount = mysql_fetch_object(mysql_query($queryCount));
     <?php
 
 if($_SESSION['usuario']){
-    $ConfP =  $_SESSION['usuario'];
+    echo $ConfP =  $_SESSION['usuario'];
     echo $ConfP = $ConfP->permissoes;
     $ConfP = explode(",",$ConfP);
     for($i=0;$i<count($ConfP);$i++){
