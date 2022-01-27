@@ -79,7 +79,7 @@ $result = mysql_query($query);
                             </button>
                             <?php
                             }
-                            if(in_array('Ação Social - Escluir', $ConfPermissoes)){
+                            if(in_array('Ação Social - Excluir', $ConfPermissoes)){
                             ?>
                             <button class="btn btn-sm btn-link btn-excluir" data-codigo="<?= $d->codigo ?>">
                                 <i class="fa-regular fa-trash-can text-danger"></i>
