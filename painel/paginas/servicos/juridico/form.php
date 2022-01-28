@@ -210,7 +210,7 @@ if ($codigo) {
                 >
                     <option value=""></option>
                     <?php
-                    $query = "SELECT * FROM local_fontes where servico_tipo = '7' ORDER BY descricao";
+                    $query = "SELECT * FROM local_fontes where servico_tipo = '8' ORDER BY descricao";
                     $result = mysql_query($query);
 
                     while ($l = mysql_fetch_object($result)): ?>
