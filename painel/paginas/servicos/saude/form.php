@@ -74,12 +74,12 @@ if ($codigo) {
     <div class="card-body">
         <form id="form-servicos">
 
-            <input type="hidden" id="tipo" name="tipo" value="8" />
+            <input type="hidden" id="tipo" name="tipo" value="7" />
             <input type="hidden" id="categoria" name="categoria" value="<?=$_SESSION['categoria']?>" />
 
 
             <?php
-                $query = "SELECT * FROM especialidades where servico_tipo = '8' ORDER BY descricao";
+                $query = "SELECT * FROM especialidades where servico_tipo = '7' ORDER BY descricao";
                 $result = mysql_query($query);
                 if(mysql_num_rows($result)){
             ?>

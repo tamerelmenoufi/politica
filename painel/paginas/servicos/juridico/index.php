@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir') {
 $query = "SELECT s.*, a.nome AS assessor, b.nome AS beneficiado FROM servicos s "
     . "LEFT JOIN assessores a ON a.codigo = s.assessor "
     . "LEFT JOIN beneficiados b ON b.codigo = s.beneficiado "
-    . "WHERE s.tipo = '7' "
+    . "WHERE s.tipo = '8' "
     . "ORDER BY s.codigo DESC";
 $result = mysql_query($query);
 
