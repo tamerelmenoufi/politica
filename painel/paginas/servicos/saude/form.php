@@ -79,7 +79,7 @@ if ($codigo) {
 
 
             <?php
-                $query = "SELECT * FROM especialidades where servico_tipo = '7' ORDER BY descricao";
+                $query = "SELECT * FROM especialidades where servico_tipo = '7' and deletado = '0' ORDER BY descricao";
                 $result = mysql_query($query);
                 if(mysql_num_rows($result)){
             ?>
@@ -126,7 +126,7 @@ if ($codigo) {
                 >
                     <option value=""></option>
                     <?php
-                    $query = "SELECT * FROM beneficiados ORDER BY nome";
+                    $query = "SELECT * FROM beneficiados where deletado = '0' ORDER BY nome";
                     $result = mysql_query($query);
 
                     while ($b = mysql_fetch_object($result)): ?>
@@ -184,7 +184,7 @@ if ($codigo) {
                 >
                     <option value=""></option>
                     <?php
-                    $query = "SELECT * FROM assessores ORDER BY nome";
+                    $query = "SELECT * FROM assessores where deletado = '0' ORDER BY nome";
                     $result = mysql_query($query);
 
                     while ($a = mysql_fetch_object($result)): ?>
@@ -212,7 +212,7 @@ if ($codigo) {
                 >
                     <option value=""></option>
                     <?php
-                    $query = "SELECT * FROM local_fontes where servico_tipo = '7' ORDER BY descricao";
+                    $query = "SELECT * FROM local_fontes where servico_tipo = '7' and deletado = '0' ORDER BY descricao";
                     $result = mysql_query($query);
 
                     while ($l = mysql_fetch_object($result)): ?>

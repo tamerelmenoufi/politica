@@ -88,7 +88,7 @@ if ($codigo) {
                 >
                     <option value=""></option>
                     <?php
-                    $query = "SELECT * FROM servico_tipo ORDER BY tipo";
+                    $query = "SELECT * FROM servico_tipo where deletado = '0' ORDER BY tipo";
                     $result = mysql_query($query);
 
                     while ($s = mysql_fetch_object($result)): ?>
@@ -115,7 +115,7 @@ if ($codigo) {
                 >
                     <option value=""></option>
                     <?php
-                    $query = "SELECT * FROM categorias ORDER BY descricao";
+                    $query = "SELECT * FROM categorias where deletado = '0' ORDER BY descricao";
                     $result = mysql_query($query);
 
                     while ($s = mysql_fetch_object($result)): ?>
@@ -208,6 +208,3 @@ if ($codigo) {
         });
     });
 </script>
-
-
-
