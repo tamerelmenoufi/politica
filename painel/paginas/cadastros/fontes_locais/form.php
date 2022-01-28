@@ -162,10 +162,10 @@ if ($codigo) {
         $("#servico_tipo").change(function(){
             if($(this).val() == 7){
                 $("#categoria").val('');
-                $("div[OpcCategoria]").css("display","none");
+                $("div[OpcCategoria]").css("display","block");
             }else{
                 $("#categoria").val('');
-                $("div[OpcCategoria]").css("display","block");
+                $("div[OpcCategoria]").css("display","none");
             }
         });
 
