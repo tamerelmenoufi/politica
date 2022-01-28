@@ -12,9 +12,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir') {
     exit;
 }
 
-$categoria = (($_GET['categoria'])?:$_SESSION['categoria']);
-list($cat_desc) = mysql_fetch_row(mysql_query("select descricao from categorias where codigo = '{$categoria}'"));
-
 $query = "SELECT s.*, a.nome AS assessor, b.nome AS beneficiado FROM servicos s "
     . "LEFT JOIN assessores a ON a.codigo = s.assessor "
     . "LEFT JOIN beneficiados b ON b.codigo = s.beneficiado "
