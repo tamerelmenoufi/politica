@@ -12,10 +12,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir') {
     exit;
 }
 
+$categoria = (($_GET['categoria'])?:$_SESSION['categoria']);
+list($cat_desc) = mysql_fetch_row(mysql_query("select descricao from categorias where codigo = '{$categoria}'"));
+
 $query = "SELECT s.*, a.nome AS assessor, b.nome AS beneficiado FROM servicos s "
     . "LEFT JOIN assessores a ON a.codigo = s.assessor "
     . "LEFT JOIN beneficiados b ON b.codigo = s.beneficiado "
-    . "WHERE s.tipo = '8' AND s.deletado = '0' "
+    . "WHERE s.tipo = '8' AND s.deletado = '0' AND categoria = '{$categoria}'"
     . "ORDER BY s.codigo DESC";
 $result = mysql_query($query);
 
@@ -31,7 +34,7 @@ $result = mysql_query($query);
 <div class="card shadow mb-4">
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
         <h6 class="m-0 font-weight-bold text-primary">
-            Serviços - Saúde
+            Serviços - Saúde (<?=$cat_desc?>)
         </h6>
         <?php
         if (in_array('Saúde - Cadastrar', $ConfPermissoes)) {
