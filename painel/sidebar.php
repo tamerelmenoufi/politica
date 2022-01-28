@@ -74,10 +74,17 @@
                 <a class="collapse-item" href="#" url="paginas/servicos/juridico/index.php">Jurídico</a>
                 <?php
                 }
-                if(in_array('Saúde - Visualizar', $ConfPermissoes)){
                 ?>
-                <a class="collapse-item" href="#" url="paginas/servicos/saude/index.php">Saúde</a>
+                <h6 class="collapse-header">Saúde</h6>
                 <?php
+                if(in_array('Saúde - Visualizar', $ConfPermissoes)){
+                $q = "select * from categorias where deletado = '0' order by descricao";
+                $r = mysql_query($q);
+                while($c = mysql_fetch_object($r)){
+                ?>
+                <a class="collapse-item" href="#" url="paginas/servicos/saude/index.php?categoria=<?=$c->codigo?>"><?=$c->descricao?></a>
+                <?php
+                }
                 }
                 ?>
             </div>
