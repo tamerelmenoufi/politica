@@ -12,8 +12,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir') {
     exit;
 }
 
-$query = "SELECT lf.*, st.tipo AS tipo FROM local_fontes lf "
+$query = "SELECT lf.*, st.tipo AS tipo, ct.descricao as categoria FROM local_fontes lf "
     . "LEFT JOIN servico_tipo st ON st.codigo = lf.servico_tipo "
+    . "LEFT JOIN categorias ct ON lf.categoria = ct.codigo "
     . "WHERE lf.deletado = '0' "
     . "ORDER BY lf.codigo DESC";
 $result = mysql_query($query);
@@ -57,7 +58,7 @@ $result = mysql_query($query);
                 <tbody>
                 <?php while ($d = mysql_fetch_object($result)): ?>
                     <tr id="linha-<?= $d->codigo; ?>">
-                        <td><?= $d->tipo; ?></td>
+                        <td><?= $d->tipo. (($d->categoria)?' - '.$d->categoria:false); ?></td>
                         <td><?= $d->descricao; ?></td>
                         <td>
                             <button
