@@ -4,7 +4,7 @@ include_once "config_tipo_servico.php";
 if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir') {
     $codigo = $_POST['codigo'];
 
-    if (exclusao('beneficiados', $codigo)) {
+    if (exclusao('categorias', $codigo)) {
         echo json_encode(["status" => true, "msg" => "Registro excluído com sucesso"]);
     } else {
         echo json_encode(["status" => false, "msg" => "Error ao tentar excluír"]);
