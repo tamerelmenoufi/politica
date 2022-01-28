@@ -96,7 +96,7 @@ if ($codigo) {
                 >
                     <option></option>
                     <?php
-                    $query = "SELECT * FROM permissoes ORDER BY descricao";
+                    $query = "SELECT * FROM permissoes ORDER BY descricao and vinculo = '0'";
                     $resultP = mysql_query($query);
 
                     while ($p = mysql_fetch_object($resultP)): ?>
