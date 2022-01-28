@@ -157,7 +157,7 @@ if ($codigo) {
 
             <div class="form-group">
                 <label for="especialista">
-                    <?=(($cat_desc == 'Exame' or $cat_desc == 'Cirurgia')?'Especialidade':'Especialista')?> <i class="text-danger">*</i>
+                    <?=(($cat_desc == 'Exame' or $cat_desc == 'Cirurgia')?'Especialidade':(($cat_desc == 'Outros')?'Fonte/Responsável':'Especialista'))?> <i class="text-danger">*</i>
                 </label>
                 <input
                         type="text"
@@ -200,7 +200,7 @@ if ($codigo) {
 
             <div class="form-group">
                 <label for="local_fonte">
-                    Fonte Local <i class="text-danger">*</i>
+                <?=(($cat_desc == 'Outros')?'Tipo':'Fonte Local')?> <i class="text-danger">*</i>
                 </label>
                 <select
                         class="form-control"
