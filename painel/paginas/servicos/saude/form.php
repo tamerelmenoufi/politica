@@ -157,7 +157,7 @@ if ($codigo) {
 
             <div class="form-group">
                 <label for="especialista">
-                    Especialista <i class="text-danger">*</i>
+                    <?=(($cat_desc == 'Exame' or $cat_desc == 'Cirurgia')?'Especialidade':'Especialista')?> <i class="text-danger">*</i>
                 </label>
                 <input
                         type="text"

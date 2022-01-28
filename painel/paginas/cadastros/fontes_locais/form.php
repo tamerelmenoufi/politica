@@ -101,6 +101,33 @@ if ($codigo) {
                 </select>
             </div>
 
+            <div OpcCategoria class="form-group">
+                <label for="servico_tipo">
+                    Categoria <i class="text-danger">*</i>
+                </label>
+                <select
+                        class="form-control"
+                        id="categoria"
+                        name="categoria"
+                        data-live-search="true"
+                        data-none-selected-text="Selecione"
+                        required
+                >
+                    <option value=""></option>
+                    <?php
+                    $query = "SELECT * FROM categorias ORDER BY descricao";
+                    $result = mysql_query($query);
+
+                    while ($s = mysql_fetch_object($result)): ?>
+                        <option
+                            <?= ($codigo and $d->categoria == $s->codigo) ? 'selected' : ''; ?>
+                                value="<?= $s->codigo ?>">
+                            <?= $s->descricao; ?>
+                        </option>
+                    <?php endwhile; ?>
+                </select>
+            </div>
+
             <div class="form-group">
                 <label for="descricao">Descrição<i class="text-danger">*</i></label>
                 <input
@@ -125,6 +152,22 @@ if ($codigo) {
     $(function () {
 
         $('#servico_tipo').selectpicker();
+
+        if($("#servico_tipo").val() == 7){
+            $("div[OpcCategoria]").css("display","block");
+        }else{
+            $("div[OpcCategoria]").css("display","none");
+        }
+
+        $("#servico_tipo").change(function(){
+            if($(this).val() == 7){
+                $("#categoria").val('');
+                $("div[OpcCategoria]").css("display","none");
+            }else{
+                $("#categoria").val('');
+                $("div[OpcCategoria]").css("display","block");
+            }
+        });
 
         $('#form-municipio').validate();
 
