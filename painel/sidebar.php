@@ -41,37 +41,37 @@
                 <?php
                 if(in_array('Certidão de Nascimento - Visualizar', $ConfPermissoes)){
                 ?>
-                <a class="collapse-item" href="#" url="paginas/servicos/cn/index.php">Certidão de Nascimento</a>
+                <a class="collapse-item" href="#" url="paginas/servicos/cn/index.php?categoria=l">Certidão de Nascimento</a>
                 <?php
                 }
                 if(in_array('Registro Geral - Visualizar', $ConfPermissoes)){
                 ?>
-                <a class="collapse-item" href="#" url="paginas/servicos/rg/index.php">Registro Geral </a>
+                <a class="collapse-item" href="#" url="paginas/servicos/rg/index.php?categoria=l">Registro Geral </a>
                 <?php
                 }
                 if(in_array('CRAS - Visualizar', $ConfPermissoes)){
                 ?>
-                <a class="collapse-item" href="#" url="paginas/servicos/cras/index.php">CRAS</a>
+                <a class="collapse-item" href="#" url="paginas/servicos/cras/index.php?categoria=l">CRAS</a>
                 <?php
                 }
                 if(in_array('CR - Visualizar', $ConfPermissoes)){
                 ?>
-                <a class="collapse-item" href="#" url="paginas/servicos/cr/index.php">CR</a>
+                <a class="collapse-item" href="#" url="paginas/servicos/cr/index.php?categoria=l">CR</a>
                 <?php
                 }
                 if(in_array('Psicologia - Visualizar', $ConfPermissoes)){
                 ?>
-                <a class="collapse-item" href="#" url="paginas/servicos/psicologia/index.php">Psicologia</a>
+                <a class="collapse-item" href="#" url="paginas/servicos/psicologia/index.php?categoria=l">Psicologia</a>
                 <?php
                 }
                 if(in_array('Odontologia - Visualizar', $ConfPermissoes)){
                 ?>
-                <a class="collapse-item" href="#" url="paginas/servicos/odontologia/index.php">Odontologia</a>
+                <a class="collapse-item" href="#" url="paginas/servicos/odontologia/index.php?categoria=l">Odontologia</a>
                 <?php
                 }
                 if(in_array('Jurídico - Visualizar', $ConfPermissoes)){
                 ?>
-                <a class="collapse-item" href="#" url="paginas/servicos/juridico/index.php">Jurídico</a>
+                <a class="collapse-item" href="#" url="paginas/servicos/juridico/index.php?categoria=l">Jurídico</a>
                 <?php
                 }
                 ?>
