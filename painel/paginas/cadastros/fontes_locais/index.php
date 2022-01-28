@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir') {
 
 $query = "SELECT lf.*, st.tipo AS tipo FROM local_fontes lf "
     . "LEFT JOIN servico_tipo st ON st.codigo = lf.servico_tipo "
-    . "WHERE deletado = '0' "
+    . "WHERE lf.deletado = '0' "
     . "ORDER BY lf.codigo DESC";
 $result = mysql_query($query);
 
