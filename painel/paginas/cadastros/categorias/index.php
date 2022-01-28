@@ -3,9 +3,8 @@ include_once "config_tipo_servico.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir') {
     $codigo = $_POST['codigo'];
-    $query = "DELETE FROM categorias WHERE codigo = '{$codigo}'";
 
-    if (mysql_query($query)) {
+    if (exclusao('beneficiados', $codigo)) {
         echo json_encode(["status" => true, "msg" => "Registro excluído com sucesso"]);
     } else {
         echo json_encode(["status" => false, "msg" => "Error ao tentar excluír"]);
@@ -13,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir') {
     exit;
 }
 
-$query = "SELECT * FROM categorias";
+$query = "SELECT * FROM categorias where deletado = '0'";
 $result = mysql_query($query);
 
 ?>
@@ -54,7 +53,7 @@ $result = mysql_query($query);
                 <tbody>
                 <?php while ($d = mysql_fetch_object($result)): ?>
                     <tr id="linha-<?= $d->codigo; ?>">
-                        <td><?= $d->tipo ?></td>
+                        <td><?= $d->descricao ?></td>
                         <td>
                             <button
                                     class="btn btn-sm btn-link"

@@ -24,6 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (mysql_query($query)) {
         $codigo = $codigo ?: mysql_insert_id();
 
+        sis_logs('categorias', $codigo, $query);
+
         echo json_encode([
             'status' => true,
             'msg' => 'Dados salvo com sucesso',
@@ -79,7 +81,7 @@ if ($codigo) {
                         class="form-control"
                         id="descricao"
                         name="descricao"
-                        value="<?= $d->tipo; ?>"
+                        value="<?= $d->descricao; ?>"
                         required
                 >
 
