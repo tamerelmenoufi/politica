@@ -74,7 +74,7 @@ $d = mysql_fetch_object($result);
     <div class="card-body">
         <div class="row">
             <div class="col-md-4 font-weight-bold">Tipo de Serviço</div>
-            <div class="col-md-8"><?= $d->tipo; ?></div>
+            <div class="col-md-8"><?= $d->tipo." ({$cat_desc})"; ?></div>
         </div>
         <div class="row">
             <div class="col-md-4 font-weight-bold">Assessor</div>
