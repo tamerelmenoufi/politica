@@ -54,7 +54,7 @@ $d = mysql_fetch_object($result);
             </h6>
             <div class="d-block">
                 <?php
-                if(in_array('Permissões - Cadastrar', $ConfPermissoes)){
+                // if(in_array('Permissões - Cadastrar', $ConfPermissoes)){
                 ?>
                 <button
                         type="button"
@@ -65,8 +65,8 @@ $d = mysql_fetch_object($result);
                     <i class="fa-solid fa-plus"></i> Novo
                 </button>
                 <?php
-                }
-                if(in_array('Permissões - Editar', $ConfPermissoes)){
+                // }
+                // if(in_array('Permissões - Editar', $ConfPermissoes)){
                 ?>
                 <button
                         type="button"
@@ -77,8 +77,8 @@ $d = mysql_fetch_object($result);
                     <i class="fa-solid fa-pencil"></i> Editar
                 </button>
                 <?php
-                }
-                if(in_array('Permissões - Excluir', $ConfPermissoes)){
+                // }
+                // if(in_array('Permissões - Excluir', $ConfPermissoes)){
                 ?>
                 <button
                         type="button"
@@ -88,7 +88,7 @@ $d = mysql_fetch_object($result);
                     <i class="fa-regular fa-trash-can"></i> Excluir
                 </button>
                 <?php
-                }
+                // }
                 ?>
             </div>
         </div>
