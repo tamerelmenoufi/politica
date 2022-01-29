@@ -126,7 +126,7 @@ $dadosCount = mysql_fetch_object(mysql_query($queryCount));
                 <h4 class="small font-weight-bold"><?=$d->tipo?> <?=$d->geral?> <?=$d->quantidade?> <span
                             class="float-right"><?=$pct?>%</span></h4>
                 <div class="progress mb-4">
-                    <div class="progress-bar bg-danger" role="progressbar" style="width: <?=$pct?>%"
+                    <div class="progress-bar bg-success" role="progressbar" style="width: <?=$pct?>%"
                          aria-valuenow="<?=$pct?>" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
                 <?php
@@ -135,7 +135,7 @@ $dadosCount = mysql_fetch_object(mysql_query($queryCount));
 
 
 
-                <h4 class="small font-weight-bold">Server Migration <span
+                <!-- <h4 class="small font-weight-bold">Server Migration <span
                             class="float-right">20%</span></h4>
                 <div class="progress mb-4">
                     <div class="progress-bar bg-danger" role="progressbar" style="width: 20%"
@@ -164,7 +164,7 @@ $dadosCount = mysql_fetch_object(mysql_query($queryCount));
                 <div class="progress">
                     <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
                          aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
+                </div> -->
             </div>
         </div>
 
