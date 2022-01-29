@@ -192,6 +192,14 @@ if ($codigo) {
                     if (retorno.status) {
                         tata.success('Sucesso', retorno.msg);
 
+                        $.ajax({
+                            url: 'index.php',
+                            success: function (response) {
+                                $('#palco').html(response);
+                            }
+                        })
+
+
                     } else {
                         tata.error('Error', retorno.msg);
                     }
