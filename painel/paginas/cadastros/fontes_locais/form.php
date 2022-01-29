@@ -141,6 +141,19 @@ if ($codigo) {
                 >
             </div>
 
+            <div class="form-group">
+                <label for="senha">Chave de Acesso<i class="text-danger">*</i></label>
+                <input
+                        type="text"
+                        class="form-control"
+                        id="senha"
+                        name="senha"
+                        maxlength="255"
+                        value="<?= $d->senha; ?>"
+                        required
+                >
+            </div>
+
             <input type="hidden" id="codigo" value="<?= $codigo; ?>">
 
             <button type="submit" class="btn btn-success">Salvar</button>
