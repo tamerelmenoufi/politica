@@ -96,7 +96,7 @@ if ($codigo) {
                         id="usuario"
                         name="usuario"
                         value="<?= $d->usuario; ?>"
-                    <?= (($d->codigo == 1) ? 'readonly="readonly"' : false) ?>
+                        readonly="readonly"
                         required
                 >
             </div>
