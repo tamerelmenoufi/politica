@@ -38,13 +38,13 @@ $result = mysql_query($query);
             Permissões
         </h6>
         <?php
-        // if (in_array('Permissões - Cadastrar', $ConfPermissoes)) {
+         if (in_array('Permissões - Cadastrar', $ConfPermissoes) or $_SESSION['usuario']['codigo'] == 1) {
             ?>
             <button type="button" class="btn btn-success btn-sm" url="<?= $urlPermissoes; ?>/form.php">
                 <i class="fa-solid fa-plus"></i> Novo
             </button>
             <?php
-        // }
+         }
         ?>
     </div>
     <div class="card-body">
@@ -69,7 +69,7 @@ $result = mysql_query($query);
                                 <i class="fa-regular fa-eye text-info"></i>
                             </button>
                             <?php
-                            // if (in_array('Permissões - Editar', $ConfPermissoes)) {
+                             if (in_array('Permissões - Editar', $ConfPermissoes) or $_SESSION['usuario']['codigo'] == 1) {
                                 ?>
                                 <button
                                         class="btn btn-sm btn-link"
@@ -78,14 +78,14 @@ $result = mysql_query($query);
                                     <i class="fa-solid fa-pencil text-warning"></i>
                                 </button>
                                 <?php
-                            // }
-                            // if (in_array('Permissões - Excluir', $ConfPermissoes)) {
+                             }
+                             if (in_array('Permissões - Excluir', $ConfPermissoes) or $_SESSION['usuario']['codigo'] == 1) {
                                 ?>
                                 <button class="btn btn-sm btn-link btn-excluir" data-codigo="<?= $d->codigo ?>">
                                     <i class="fa-regular fa-trash-can text-danger"></i>
                                 </button>
                                 <?php
-                            // }
+                             }
                             ?>
                         </td>
                     </tr>
