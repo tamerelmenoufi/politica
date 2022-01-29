@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir') {
     exit();
 }
 
-$query = "SELECT * FROM usuarios WHERE deletado = '0'";
+$query = "SELECT * FROM usuarios WHERE deletado = '0'".(($_SESSION['usuario']['codigo'] != 1)?" and codigo != 1":false);
 $result = mysql_query($query);
 
 ?>
