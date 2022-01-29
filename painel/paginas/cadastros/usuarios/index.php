@@ -66,7 +66,7 @@ $result = mysql_query($query);
                         </td>
                         <td>
                             <?php
-                            //if(in_array('Usuários - Permissões', $ConfPermissoes) and $d->codigo != 1){
+                            if( (in_array('Usuários - Editar', $ConfPermissoes) and $d->codigo != 1) or $_SESSION['usuario']['codigo'] == 1){
                             ?>
                             <button
                                     class="btn btn-sm btn-link"
@@ -75,7 +75,7 @@ $result = mysql_query($query);
                                 <i class="fa-solid fa-user-lock text-dark"></i>
                             </button>
                             <?php
-                            //}
+                            }
                             //if(in_array('Usuários - Visualizar', $ConfPermissoes)){
                             ?>
                             <button

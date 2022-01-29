@@ -28,7 +28,7 @@ $d = mysql_fetch_object($result);
         </h6>
         <div class="d-md-flex justify-content-xl-center">
             <?php
-            //if(in_array('Usuários - Permissões', $ConfPermissoes) and $d->codigo != 1){
+            if( (in_array('Usuários - Editar', $ConfPermissoes) and $d->codigo != 1) or $_SESSION['usuario']['codigo'] == 1){
             ?>
             <button
                     type="button"
@@ -39,7 +39,7 @@ $d = mysql_fetch_object($result);
                 <i class="fa-solid fa-plus"></i> Permissão
             </button>
             <?php
-            //}
+            }
             if(in_array('Usuários - Cadastrar', $ConfPermissoes)){
             ?>
             <button
