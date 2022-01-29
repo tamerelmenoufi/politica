@@ -173,15 +173,15 @@
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                  aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#" url="paginas/perfil">
+                <a class="dropdown-item" href="#" url="cadastros/ususarios/perfil.php">
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                     Perfil
                 </a>
-                <a class="dropdown-item" href="#">
+                <!-- <a class="dropdown-item" href="#">
                     <i class="fas fa-key fa-sm fa-fw mr-2 text-gray-400"></i>
                     Alterar Senha
                 </a>
-                <!-- <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="#">
                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                     Registro de atividade
                 </a> -->
