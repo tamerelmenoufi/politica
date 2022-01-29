@@ -28,7 +28,7 @@ $d = mysql_fetch_object($result);
         </h6>
         <div class="d-block">
             <?php
-            if(in_array('Especialidade - Cadastrar', $ConfPermissoes)){
+            if(in_array('Especialidades - Cadastrar', $ConfPermissoes)){
             ?>
             <button
                     type="button"
@@ -40,7 +40,7 @@ $d = mysql_fetch_object($result);
             </button>
             <?php
             }
-            if(in_array('Especialidade - Editar', $ConfPermissoes)){
+            if(in_array('Especialidades - Editar', $ConfPermissoes)){
             ?>
             <button
                     type="button"
@@ -52,7 +52,7 @@ $d = mysql_fetch_object($result);
             </button>
             <?php
             }
-            if(in_array('Especialidade - Excluir', $ConfPermissoes)){
+            if(in_array('Especialidades - Excluir', $ConfPermissoes)){
             ?>
             <button
                     type="button"
