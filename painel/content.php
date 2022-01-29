@@ -121,7 +121,7 @@ $dadosCount = mysql_fetch_object(mysql_query($queryCount));
                     $query = "select a.*, (select count(*) from servicos where deletado = '0') as geral,  (select count(*) from servicos where deletado = '0' and tipo = a.codigo) as quantidade from servico_tipo a where a.deletado = '0' order by a.tipo";
                     $result = mysql_query($query);
                     while($d = mysql_fetch_object($result)){
-                        $pct = number_format($d->geral/100*$d->quantidade,0,false,false);
+                        $pct = number_format(($d->quantidade*100)/$d->geral,0,false,false);
                 ?>
                 <h4 class="small font-weight-bold"><?=$d->tipo?> <?=$d->geral?> <?=$d->quantidade?> <span
                             class="float-right"><?=$pct?>%</span></h4>
