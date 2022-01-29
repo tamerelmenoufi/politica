@@ -168,7 +168,7 @@ if (!isset($_SESSION['usuario'])) {
             var url = $(this).attr('url');
 
             $('.loading').fadeIn(200);
-            alert(url);
+
             $.ajax({
                 url,
                 success: function (data) {
