@@ -123,7 +123,7 @@ $dadosCount = mysql_fetch_object(mysql_query($queryCount));
                     while($d = mysql_fetch_object($result)){
                         $pct = number_format($d->geral/100*$d->quantidade,0,false,false);
                 ?>
-                <h4 class="small font-weight-bold"><?=$d->tipo?><span
+                <h4 class="small font-weight-bold"><?=$d->tipo?> <?=$d->geral?> <?=$d->quantidade?> <span
                             class="float-right"><?=$pct?>%</span></h4>
                 <div class="progress mb-4">
                     <div class="progress-bar bg-danger" role="progressbar" style="width: <?=$pct?>%"
