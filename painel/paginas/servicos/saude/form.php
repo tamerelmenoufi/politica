@@ -302,7 +302,7 @@ if ($codigo) {
         $("#local_fonte").selectpicker();
 
         $("#local_fonte").change(function(){
-            if(this.val() == '43'){
+            if($(this).val() == '43'){
                 $("div[detalhes]").css("display","block");
             }else{
                 $("div[detalhes]").css("display","none");
