@@ -226,6 +226,22 @@ if ($codigo) {
 
             </div>
 
+            <div detalhes class="form-group" style="display:<?=(($d->local_fonte == '43')?'block':'none')?>;">
+                <label for="detalhes">
+                    Tipo
+                </label>
+                <input
+                        type="text"
+                        class="form-control"
+                        id="detalhes"
+                        name="detalhes"
+                        value="<?= $d->detalhes; ?>"
+                >
+
+            </div>
+
+
+
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
@@ -284,6 +300,14 @@ if ($codigo) {
         $("#especialidade").selectpicker();
 
         $("#local_fonte").selectpicker();
+
+        $("#local_fonte").change(function(){
+            if(this.val() == '43'){
+                $("div[detalhes]").css("display","block");
+            }else{
+                $("div[detalhes]").css("display","none");
+            }
+        });
 
         $('#form-servicos').validate();
 
