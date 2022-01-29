@@ -186,12 +186,12 @@
                 <a class="collapse-item" href="#" url="paginas/cadastros/especialidades/index.php">Especialidades</a>
                 <?php
                 }
-                if(in_array('Usuários - Visualizar', $ConfPermissoes)){
+                if(in_array('Usuários - Visualizar', $ConfPermissoes) or $_SESSION['usuario']['codigo'] == 1){
                 ?>
                 <a class="collapse-item" href="#" url="paginas/cadastros/usuarios/index.php">Usuários</a>
                 <?php
                 }
-                if(in_array('Permissoes - Visualizar', $ConfPermissoes)){
+                if(in_array('Permissoes - Visualizar', $ConfPermissoes) or $_SESSION['usuario']['codigo'] == 1){
                 ?>
                 <a class="collapse-item" href="#" url="paginas/cadastros/permissoes/index.php">Permissoes</a>
                 <?php
