@@ -113,9 +113,28 @@ $dadosCount = mysql_fetch_object(mysql_query($queryCount));
         <!-- Project Card Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Projects</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Solicitações de Serviços</h6>
             </div>
             <div class="card-body">
+
+                <?php
+                    $query = "select a.*, (select count(*) from servicos where deletado = '0') as geral,  (select count(*) from servicos where deletado = '0' and tipo = a.codigo) as quantidade from servico_tipo a where a.deletado = '0' order by a.tipo";
+                    $result = mysql_query($query);
+                    while($d = mysql_fetch_object($result)){
+                        $pct = number_format($d->geral/100*$d->quantidade,0,false,false);
+                ?>
+                <h4 class="small font-weight-bold"><?=$d->tipo?><span
+                            class="float-right"><?=$pct?>%</span></h4>
+                <div class="progress mb-4">
+                    <div class="progress-bar bg-danger" role="progressbar" style="width: <?=$pct?>%"
+                         aria-valuenow="<?=$pct?>" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <?php
+                    }
+                ?>
+
+
+
                 <h4 class="small font-weight-bold">Server Migration <span
                             class="float-right">20%</span></h4>
                 <div class="progress mb-4">
