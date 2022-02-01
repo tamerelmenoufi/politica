@@ -53,6 +53,24 @@ if ($codigo) {
 
 ?>
 
+<style>
+    div[NovoCadastroBG]{
+        position:fixed;
+        left:0;
+        bottom:0;
+        width:100%;
+        z-index:999;
+        background-color:#333;
+        opacity:0.5;
+        display:none;
+        z-index:998;
+    }
+    div[NovoCadastro]{
+        position:relative:
+        z-index:999;
+    }
+</style>
+
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb shadow bg-gray-custom">
         <li class="breadcrumb-item"><a href="#" url="content.php">Início</a></li>
@@ -125,6 +143,7 @@ if ($codigo) {
                         required
                 >
                     <option value=""></option>
+                    <option value="novo">Novo Cadastro</option>
                     <?php
                     $query = "SELECT * FROM beneficiados ORDER BY nome";
                     $result = mysql_query($query);
@@ -139,6 +158,9 @@ if ($codigo) {
                 </select>
 
             </div>
+
+            <div NovoCadastroBG></div>
+            <div NovoCadastro></div>
 
             <div class="form-group">
                 <label for="contato">
@@ -279,6 +301,24 @@ if ($codigo) {
         $("#assessor").selectpicker();
 
         $("#beneficiado").selectpicker();
+
+        $("#beneficiado").change(function(){
+            valor = $(this).val();
+            if(valor === 'novo'){
+                $.ajax({
+                    url:"paginas/cadastros/beneficiados/novo.php",
+                    success:function(dados){
+                        $("div[NovoCadastro]").html(dados);
+                        $("div[NovoCadastroBG]").css("display","block");
+                    }
+                });
+            }
+        });
+
+        $("div[NovoCadastroBG]").click(function(){
+            $("div[NovoCadastroBG]").css("display","none");
+            $("div[NovoCadastro]").html('');
+        });
 
         $("#especialidade").selectpicker();
 
