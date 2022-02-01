@@ -5,7 +5,7 @@ include "lib/includes.php";
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Politica</title>
+    <title>Politica TESTE</title>
     <meta charset="UTF-8">
     <meta name="description" content="Sistema de Gerenciamento">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
