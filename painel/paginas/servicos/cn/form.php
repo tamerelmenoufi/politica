@@ -310,6 +310,9 @@ if ($codigo) {
                     success:function(dados){
                         $("div[NovoCadastro]").html(dados);
                         $("div[NovoCadastroBG]").css("display","block");
+                    },
+                    error:function(){
+                        alert('Ocorreu um erro!');
                     }
                 });
             }
