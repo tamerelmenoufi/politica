@@ -332,17 +332,17 @@ if ($codigo) {
                 $("div[detalhes]").css("display","block");
             }else{
                 $("div[detalhes]").css("display","none");
-                $("div[detalhes]").val('');
+                $("#detalhes").val('');
             }
 
             if($(this).val() == '48' || $(this).val() == '49' || $(this).val() == '50'){
                 $("div[local_responsavel]").css("display","block");
                 $("div[local_identificacao]").css("display","block");
             }else{
-                $("div[loca_responsavel]").css("display","none");
+                $("div[local_responsavel]").css("display","none");
                 $("div[local_identificacao]").css("display","none");
-                $("div[local_responsavel]").val('');
-                $("div[local_identificacao]").val('');
+                $("#local_responsavel").val('');
+                $("#local_identificacao").val('');
             }            
 
         });
