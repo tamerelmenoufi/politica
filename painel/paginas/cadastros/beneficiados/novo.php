@@ -47,9 +47,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 ?>
-
-
-
         <form id="form-beneficiados">
             <div class="form-group">
                 <label for="nome">Nome <i class="text-danger">*</i></label>
@@ -291,7 +288,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         //         $('#palco').html(response);
                         //     }
                         // })
-                        
+
                     } else {
                         tata.error('Error', retorno.msg);
                     }
