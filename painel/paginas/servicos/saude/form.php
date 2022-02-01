@@ -332,6 +332,7 @@ if ($codigo) {
                 $("div[detalhes]").css("display","block");
             }else{
                 $("div[detalhes]").css("display","none");
+                $("div[detalhes]").val('');
             }
 
             if($(this).val() == '48' || $(this).val() == '49' || $(this).val() == '50'){
@@ -340,6 +341,8 @@ if ($codigo) {
             }else{
                 $("div[loca_responsavel]").css("display","none");
                 $("div[local_identificacao]").css("display","none");
+                $("div[loca_responsavel]").val('');
+                $("div[local_identificacao]").val('');
             }            
 
         });
