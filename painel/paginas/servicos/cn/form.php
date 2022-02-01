@@ -59,6 +59,7 @@ if ($codigo) {
         left:0;
         bottom:0;
         width:100%;
+        height:100%;
         z-index:999;
         background-color:#333;
         opacity:0.5;
