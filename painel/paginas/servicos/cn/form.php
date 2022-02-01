@@ -67,8 +67,13 @@ if ($codigo) {
         z-index:998;
     }
     div[NovoCadastro]{
-        position:relative:
+        position:relative;
         z-index:999;
+        background-color:#fff;
+        padding:20px;
+        padding:20px;
+        border-radius:10px;
+        display:none;
     }
 </style>
 
@@ -311,6 +316,7 @@ if ($codigo) {
                     success:function(dados){
                         $("div[NovoCadastro]").html(dados);
                         $("div[NovoCadastroBG]").css("display","block");
+                        $("div[NovoCadastro]").css("display","block");
                     },
                     error:function(){
                         alert('Ocorreu um erro!');
@@ -321,7 +327,10 @@ if ($codigo) {
 
         $("div[NovoCadastroBG]").click(function(){
             $("div[NovoCadastroBG]").css("display","none");
+            $("div[NovoCadastro]").css("display","none");
             $("div[NovoCadastro]").html('');
+            $("#beneficiado").val('');
+            $("#beneficiado").selectpicker('refresh');
         });
 
         $("#especialidade").selectpicker();

@@ -52,7 +52,29 @@ if ($codigo) {
 }
 
 ?>
-
+<style>
+    div[NovoCadastroBG]{
+        position:fixed;
+        left:0;
+        bottom:0;
+        width:100%;
+        height:100%;
+        z-index:999;
+        background-color:#333;
+        opacity:0.5;
+        display:none;
+        z-index:998;
+    }
+    div[NovoCadastro]{
+        position:relative;
+        z-index:999;
+        background-color:#fff;
+        padding:20px;
+        padding:20px;
+        border-radius:10px;
+        display:none;
+    }
+</style>
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb shadow bg-gray-custom">
         <li class="breadcrumb-item"><a href="#" url="content.php">Início</a></li>
@@ -139,6 +161,9 @@ if ($codigo) {
                 </select>
 
             </div>
+
+            <div NovoCadastroBG></div>
+            <div NovoCadastro></div>
 
             <div class="form-group">
                 <label for="contato">
@@ -322,6 +347,32 @@ if ($codigo) {
         $("#assessor").selectpicker();
 
         $("#beneficiado").selectpicker();
+
+
+        $("#beneficiado").change(function(){
+            valor = $(this).val();
+            if(valor === 'novo'){
+                $.ajax({
+                    url:"paginas/cadastros/beneficiados/novo.php",
+                    success:function(dados){
+                        $("div[NovoCadastro]").html(dados);
+                        $("div[NovoCadastroBG]").css("display","block");
+                        $("div[NovoCadastro]").css("display","block");
+                    },
+                    error:function(){
+                        alert('Ocorreu um erro!');
+                    }
+                });
+            }
+        });
+
+        $("div[NovoCadastroBG]").click(function(){
+            $("div[NovoCadastroBG]").css("display","none");
+            $("div[NovoCadastro]").css("display","none");
+            $("div[NovoCadastro]").html('');
+            $("#beneficiado").val('');
+            $("#beneficiado").selectpicker('refresh');
+        });
 
         $("#especialidade").selectpicker();
 

@@ -18,23 +18,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $attr = implode(', ', $attr);
 
-    if ($codigo) {
-        $query = "UPDATE beneficiados SET {$attr} WHERE codigo = '{$codigo}'";
-    } else {
-        $query = "INSERT INTO beneficiados SET {$attr}";
-    }
+    $query = "INSERT INTO beneficiados SET {$attr}";
 
     if (mysql_query($query)) {
-        $codigo = $codigo ?: mysql_insert_id();
+        $codigo = mysql_insert_id();
 
         sis_logs('beneficiados', $codigo, $query);
 
         echo json_encode([
             'status' => true,
-            'msg' => 'Dados salvo com sucesso',
+            'msg' => 'Salvo com sucesso',
+            'nome' => $_POST['nome'],
             'codigo' => $codigo,
         ]);
     } else {
+
         echo json_encode([
             'status' => false,
             'msg' => 'Erro ao salvar',
@@ -48,7 +46,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 ?>
+
+<style>
+    .btn-fechar{
+        position:absolute;
+        right:20px;
+        top:20px;
+        cursor:pointer;
+        font-size:20px;
+    }
+</style>
+
         <form id="form-beneficiados">
+            <h3>CADASTRO DE NOVO BENEFICIADO</h3>
+            <span Fechar class="btn-fechar"><i class="fas fa-times"></i></span>
             <div class="form-group">
                 <label for="nome">Nome <i class="text-danger">*</i></label>
                 <input
@@ -239,6 +250,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $('#form-beneficiados').validate();
 
+        $("span[Fechar]").click(function(){
+            $("div[NovoCadastroBG]").css("display","none");
+            $("div[NovoCadastro]").css("display","none");
+            $("div[NovoCadastro]").html('');
+            $("#beneficiado").val('');
+            $("#beneficiado").selectpicker('refresh');
+        });
+
         $("#cep").blur(function () {
             var cep = $(this).val().replace(/\D/g, '');
 
@@ -265,15 +284,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if (!$(this).valid()) return false;
 
-            var codigo = $('#codigo').val();
             var dados = $(this).serializeArray();
 
-            if (codigo) {
-                dados.push({name: 'codigo', value: codigo})
-            }
 
             $.ajax({
-                url: '<?= $urlBeneficiados; ?>/form.php',
+                url: '<?= $urlBeneficiados; ?>/novo.php',
                 method: 'POST',
                 data: dados,
                 success: function (response) {
@@ -282,6 +297,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     if (retorno.status) {
                         tata.success('Sucesso', retorno.msg);
 
+                        $("#beneficiado").append('<option value="'+retorno.codigo+'">'+retorno.nome+'</option>');
+                        $("#beneficiado").selectpicker('refresh');
+                        $("#beneficiado").selectpicker('val', retorno.codigo);
+
+                        $("div[NovoCadastroBG]").css("display","none");
+                        $("div[NovoCadastro]").css("display","none");
+                        $("div[NovoCadastro]").html('');
                         // $.ajax({
                         //     url: '<?= $urlBeneficiados; ?>/visualizar.php',
                         //     data: {codigo: retorno.codigo},
