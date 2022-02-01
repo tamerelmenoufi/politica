@@ -240,7 +240,33 @@ if ($codigo) {
 
             </div>
 
+            <div loca_responsavel class="form-group" style="display:<?=(($d->local_fonte == '48' or $d->local_fonte == '49' or $d->local_fonte == '50')?'block':'none')?>;">
+                <label for="loca_responsavel">
+                Responsável (Local)
+                </label>
+                <input
+                        type="text"
+                        class="form-control"
+                        id="loca_responsavel"
+                        name="loca_responsavel"
+                        value="<?= $d->loca_responsavel; ?>"
+                >
 
+            </div>
+
+            <div local_identificacao class="form-group" style="display:<?=(($d->local_fonte == '48' or $d->local_fonte == '49' or $d->local_fonte == '50')?'block':'none')?>;">
+                <label for="local_identificacao">
+                    Local
+                </label>
+                <input
+                        type="text"
+                        class="form-control"
+                        id="local_identificacao"
+                        name="local_identificacao"
+                        value="<?= $d->local_identificacao; ?>"
+                >
+
+            </div>
 
             <div class="row">
                 <div class="col-md-6">
@@ -307,6 +333,15 @@ if ($codigo) {
             }else{
                 $("div[detalhes]").css("display","none");
             }
+
+            if($(this).val() == '48' || $(this).val() == '49' || $(this).val() == '50'){
+                $("div[loca_responsavel]").css("display","block");
+                $("div[local_identificacao]").css("display","block");
+            }else{
+                $("div[loca_responsavel]").css("display","none");
+                $("div[local_identificacao]").css("display","none");
+            }            
+
         });
 
         $('#form-servicos').validate();
