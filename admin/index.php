@@ -3,7 +3,7 @@ include "../lib/includes.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $usuario = mysql_real_escape_string($_POST['usuario']);
-    $senha = mysql_real_escape_string(md5($_POST['senha']));
+    $senha = md5($_POST['senha']);
 
     $query = "SELECT * FROM usuarios WHERE usuario = '{$usuario}' AND senha = '{$senha}' LIMIT 1";
     $result = mysql_query($query);
@@ -28,8 +28,18 @@ session_destroy();
 
 ?>
 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Politica</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Sistema de Gerenciamento">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <?php include "../lib/header.php"; ?>
+</head>
 
-<body class="bg-gradient-primary">
+<body>
 
 <div class="container">
 
@@ -42,11 +52,20 @@ session_destroy();
                 <div class="card-body p-0">
                     <!-- Nested Row within Card Body -->
                     <div class="row">
-                        <div class="col-lg-6 d-none d-lg-block bg-gradient-info"></div>
+                        <div class="col-lg-6 d-none d-lg-flex justify-content-center align-items-center">
+                            <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+                            <lottie-player
+                                    src="https://assets4.lottiefiles.com/packages/lf20_chjeeskg.json"
+                                    background="transparent"
+                                    speed="0.8"
+                                    style="width: 350px; height: 350px;"
+                                    autoplay
+                            ></lottie-player>
+                        </div>
                         <div class="col-lg-6">
                             <div class="p-5">
                                 <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4">Acesso ao sistema</h1>
+                                    <h1 class="h4 text-gray-700 mb-4">Acesso ao sistema</h1>
                                 </div>
                                 <form class="form-login">
                                     <div class="form-group">
@@ -77,7 +96,7 @@ session_destroy();
                                             </label>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary btn-user btn-block">
+                                    <button type="submit" class="btn btn-info btn-user btn-block">
                                         Entrar
                                     </button>
                                 </form>
@@ -97,6 +116,9 @@ session_destroy();
 
 </div>
 
+<script src="<?= $caminho_vendor; ?>/jquery/jquery.min.js"></script>
+<script src="<?= $caminho_vendor; ?>/bootstrap4/js/bootstrap.bundle.min.js"></script>
+<script src="<?= $caminho_vendor; ?>/startbootstrap-sb-admin-2/js/sb-admin-2.min.js"></script>
 <script src="<?= $caminho_vendor; ?>/tata/tata.js"></script>
 <script src="<?= $caminho_vendor; ?>/tata/index.js"></script>
 
@@ -106,14 +128,14 @@ session_destroy();
             e.preventDefault();
 
             $.ajax({
-                url: 'autenticacao/login.php',
+                url: 'index.php',
                 data: $(this).serializeArray(),
                 method: 'POST',
                 success: function (response) {
                     let retorno = JSON.parse(response);
 
                     if (retorno.status) {
-                        window.location = 'painel/index.php';
+                        window.location = '../painel/index.php';
                     } else {
                         tata.error('Aviso', retorno.msg);
                     }
@@ -124,4 +146,5 @@ session_destroy();
     });
 </script>
 </body>
+
 
