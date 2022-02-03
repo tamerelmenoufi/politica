@@ -120,7 +120,7 @@ if ($codigo) {
                 <label for="servicos">Serviços <i class="text-danger">*</i></label>
 
                 <?php
-                $queryServicos = "SELECT * FROM servico_tipo ORDER BY tipo";
+                $queryServicos = "SELECT * FROM acao_social_tipo ORDER BY tipo";
                 $resultServico = mysql_query($queryServicos);
 
                 $servicos_check = explode(',', $d->servicos);
