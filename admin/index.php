@@ -63,7 +63,7 @@ session_destroy();
                             ></lottie-player>
                         </div>
                         <div class="col-lg-6">
-                            <div class="p-5">
+                            <div class="p-4 p-md-5 p-lg-5">
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-700 mb-4">Acesso ao sistema</h1>
                                 </div>

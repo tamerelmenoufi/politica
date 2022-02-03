@@ -84,7 +84,7 @@ include "lib/includes.php";
 
         <div class="row d-lg-flex justify-content-lg-center mt-3">
 
-            <div class="col col-lg-4 col-md-6 mb-4">
+            <div class="col-lg-4 col-md-6 col-12 mb-4">
                 <a href="consulta_agenda/">
                     <div class="card border-0 shadow rounded-xs pt-5" style="height: 300px">
                         <div class="card-body">
@@ -101,7 +101,7 @@ include "lib/includes.php";
             </div>
 
 
-            <div class="col col-lg-4 col-md-6 mb-4">
+            <div class="col col-lg-4 col-md-6 col-12 mb-4">
                 <a href="admin/">
                     <div class="card border-0 shadow rounded-xs pt-5" style="height: 300px">
                         <div class="card-body">
