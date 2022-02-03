@@ -106,7 +106,7 @@
     ?>
     <li class="nav-item">
         <a remove class="nav-link"  href="#" url="paginas/cadastros/oficios/index.php">
-            <i class="fa-solid fa-file-text-o"></i>
+            <i class="fa-solid fa-file-text"></i>
             <span>Ofícios</span></a>
     </li>
     <?php
