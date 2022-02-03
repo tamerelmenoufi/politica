@@ -176,6 +176,13 @@
                 <a class="collapse-item" href="#" url="paginas/cadastros/tipo_servico/index.php">Tipo de Serviço</a>
                 <?php
                 }
+
+                if(in_array('Tipo Ação Social - Visualizar', $ConfPermissoes)){
+                ?>
+                <a class="collapse-item" href="#" url="paginas/cadastros/acao_social_tipo/index.php">Tipo Ação Social</a>
+                <?php
+                }
+
                 if(in_array('Categorias de Serviço - Visualizar', $ConfPermissoes)){
                 ?>
                 <a class="collapse-item" href="#" url="paginas/cadastros/categorias/index.php">Categorias de Serviço</a>
