@@ -91,32 +91,27 @@
         </div>
     </li>
 
-    <!--Nav item - Cadastros-->
+
+    <?php
+    if(in_array('Ação Social - Visualizar', $ConfPermissoes)){
+    ?>
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#eventos"
-           aria-expanded="true" aria-controls="eventos">
-            <i class="fa-solid fa-calendar"></i>
-            <span>Eventos</span>
-        </a>
-        <div id="eventos" class="collapse" aria-labelledby="headingUtilities"
-             data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Tipos</h6>
-                <?php
-                if(in_array('Ação Social - Visualizar', $ConfPermissoes)){
-                ?>
-                <a remove class="collapse-item" href="#" url="paginas/cadastros/acao_social/index.php">Ação Social</a>
-                <?php
-                }
-                if(in_array('Ofícios - Visualizar', $ConfPermissoes)){
-                ?>
-                <a remove class="collapse-item" href="#" url="paginas/cadastros/oficios/index.php">Ofícios</a>
-                <?php
-                }
-                ?>
-            </div>
-        </div>
+        <a remove class="nav-link" href="#" url="paginas/cadastros/acao_social/index.php">
+            <i class="fa-solid fa-users"></i>
+            <span>Ação Social</span></a>
     </li>
+    <?php
+    }
+    if(in_array('Ofícios - Visualizar', $ConfPermissoes)){
+    ?>
+    <li class="nav-item">
+        <a remove class="nav-link"  href="#" url="paginas/cadastros/oficios/index.php">
+            <i class="fa-solid fa-file-text"></i>
+            <span>Ofícios</span></a>
+    </li>
+    <?php
+    }
+    ?>
 
 
     <li class="nav-item">
@@ -176,6 +171,13 @@
                 <a class="collapse-item" href="#" url="paginas/cadastros/tipo_servico/index.php">Tipo de Serviço</a>
                 <?php
                 }
+
+                if(in_array('Tipo Ação Social - Visualizar', $ConfPermissoes)){
+                ?>
+                <a class="collapse-item" href="#" url="paginas/cadastros/acao_social_tipo/index.php">Tipo Ação Social</a>
+                <?php
+                }
+
                 if(in_array('Categorias de Serviço - Visualizar', $ConfPermissoes)){
                 ?>
                 <a class="collapse-item" href="#" url="paginas/cadastros/categorias/index.php">Categorias de Serviço</a>

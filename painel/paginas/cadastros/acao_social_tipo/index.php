@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir') {
     exit;
 }
 
-$query = "SELECT * FROM acao_social_tipo";
+$query = "SELECT * FROM acao_social_tipo where deletado = '0'";
 $result = mysql_query($query);
 
 ?>
