@@ -86,7 +86,7 @@ $d = mysql_fetch_object($result);
             <div class="col-md-12 font-weight-bold">Serviço</div>
             <div class="col-md-12">
                 <?php
-                $queryServicos = "SELECT * FROM servico_tipo WHERE codigo IN({$d->servicos}) ORDER BY tipo";
+                $queryServicos = "SELECT * FROM acao_social_tipo WHERE codigo IN({$d->servicos}) ORDER BY tipo";
                 $resultServicos = mysql_query($queryServicos);
 
                 $servicosDescricao = [];
