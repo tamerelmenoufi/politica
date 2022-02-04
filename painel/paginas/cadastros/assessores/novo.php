@@ -243,6 +243,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $('#form-assessores').validate();
 
+        $("span[Fechar]").click(function(){
+            $("div[NovoCadastroBG]").css("display","none");
+            $("div[NovoCadastro]").css("display","none");
+            $("div[NovoCadastro]").html('');
+            $("#beneficiado").val('');
+            $("#beneficiado").selectpicker('refresh');
+        });
+
         $('#form-assessores').submit(function (e) {
             e.preventDefault();
 
