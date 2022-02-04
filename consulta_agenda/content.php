@@ -57,7 +57,7 @@ include_once "../lib/includes.php";
                             <label for="nome" class="col-lg-2 col-form-label">Chave de Acesso</label>
                             <div class="col-lg-10">
                                 <input
-                                        type="text"
+                                        type="password"
                                         class="form-control"
                                         id="senha"
                                         name="senha"
@@ -100,6 +100,11 @@ include_once "../lib/includes.php";
 
         $('#form-consulta').submit(function (e) {
             e.preventDefault();
+
+            if ($('#senha').val() === "") {
+                tata.error('Error!', 'Preencha a chave de acesso');
+                return false;
+            }
 
             var dados_form = $(this).serializeArray();
 

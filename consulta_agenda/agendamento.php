@@ -16,6 +16,22 @@ if (!@mysql_num_rows($result)) {
 
 $d = mysql_fetch_object($result);
 
+
+$queryEventos = "SELECT s.*, b.nome AS b_nome FROM servicos s "
+    . "LEFT JOIN beneficiados b ON b.codigo = s.beneficiado "
+    . "WHERE s.tipo = '{$servico_tipo}'";
+
+$resultEventos = mysql_query($queryEventos);
+$eventos = [];
+while ($dadosEventos = mysql_fetch_object($resultEventos)):
+    $eventos[] = [
+        'id' => $dadosEventos->codigo,
+        'title' => $dadosEventos->b_nome ?: 'Evento',
+        'start' => date('Y-m-d', strtotime($dadosEventos->data_agenda))
+    ];
+endwhile;
+
+#echo json_encode($eventos);
 ?>
 
 <style>
@@ -33,7 +49,6 @@ $d = mysql_fetch_object($result);
 
 <div class="col-md-12">
     <div class="row">
-
         <div class="col-md-12 mb-4">
             <div class="card shadow">
                 <div class="card-header py-3">
@@ -62,41 +77,71 @@ $d = mysql_fetch_object($result);
             </div>
         </div>
 
-        <div class="col-md-6 my-2">
+        <div class="col-md-12">
             <div class="card shadow">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Calendario</h6>
                 </div>
                 <div class="card-body">
-                    <div id="calendar"></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-6 my-2">
-            <div class="card shadow">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Serviços agendados</h6>
-                </div>
-                <div class="card-body" style="min-height:300px">
-
+                    <div class="row">
+                        <div class="col-md-6 my-2">
+                            <div id="calendar"></div>
+                        </div>
+                        <div class="col-md-6 my-2">
+                            <div id="resultado"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+<input
+        type="hidden"
+        id="servico_tipo"
+        value="<?= $servico_tipo ?>"
+>
+
 <script>
 
     $(document).ready(function () {
+        var servico_tipo = $('#servico_tipo').val();
+
+        var date = new Date();
+        let dateString = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
+
+        consulta_agenda(dateString, servico_tipo);
 
         var calendarEl = document.getElementById('calendar');
-        console.log(calendarEl);
+
         var calendar = new FullCalendar.Calendar(calendarEl, {
-            locale: 'pt-br'
+            locale: 'pt-br',
+            headerToolbar: {
+                right: 'prev,next today',
+            },
+            events: <?= json_encode($eventos); ?>,
+            dateClick: function (info) {
+                consulta_agenda(info.dateStr, servico_tipo);
+            },
         });
+
         calendar.render();
 
+
+        function consulta_agenda(data, servico_tipo) {
+            $.ajax({
+                url: 'resultado.php',
+                method: 'POST',
+                data: {
+                    data,
+                    servico_tipo
+                },
+                success: function (response) {
+                    $('#resultado').html(response);
+                }
+            });
+        }
     });
 
     $(function () {
