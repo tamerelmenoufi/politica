@@ -43,9 +43,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 ?>
-
+<style>
+    .btn-fechar{
+        position:absolute;
+        right:20px;
+        top:20px;
+        cursor:pointer;
+        font-size:20px;
+    }
+</style>
 
         <form id="form-assessores">
+            <h3>CADASTRO DE NOVO ASSESSOR</h3>
+            <span Fechar class="btn-fechar"><i class="fas fa-times"></i></span>
             <div class="form-group">
                 <label for="nome">Nome <i class="text-danger">*</i></label>
                 <input
