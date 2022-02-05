@@ -1,4 +1,18 @@
-<canvas id="myChart" width="400" height="400"></canvas>
+
+
+<div class="row">
+    <div class="col-6">
+        <h3>Nome do Gráfico 1</h3>
+        <canvas id="myChart" width="100%" height="auto"></canvas>
+    </div>
+    <div class="col-6">
+        <h3>Nome do Gráfico 2</h3>
+    </div>
+</div>
+
+
+
+
 <script>
 const ctx = document.getElementById('myChart');
 const myChart = new Chart(ctx, {
