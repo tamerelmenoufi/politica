@@ -141,6 +141,27 @@
     </li>
 
     <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#relatorios"
+           aria-expanded="true" aria-controls="relatorios">
+           <i class="fas fa-chart-pie"></i>
+            <span>Relatórios</span>
+        </a>
+        <div id="relatorios" class="collapse" aria-labelledby="headingUtilities"
+             data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <?php
+                if(in_array('Relatórios - Visualizar', $ConfPermissoes)){
+                ?>
+                <a class="collapse-item" href="#" url="paginas/cadastros/acao_social/index.php">Ação Social</a>
+                <?php
+                }
+                ?>
+            </div>
+        </div>
+    </li>
+
+
+    <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#configuracoes"
            aria-expanded="true" aria-controls="configuracoes">
             <i class="fas fa-fw fa-cog"></i>
@@ -210,25 +231,7 @@
     </li>
 
 
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#relatorios"
-           aria-expanded="true" aria-controls="relatorios">
-           <i class="fas fa-chart-pie"></i>
-            <span>Relatórios</span>
-        </a>
-        <div id="relatorios" class="collapse" aria-labelledby="headingUtilities"
-             data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <?php
-                if(in_array('Relatório - Visualizar', $ConfPermissoes)){
-                ?>
-                <a class="collapse-item" href="#" url="paginas/cadastros/acao_social/index.php">Ação Social</a>
-                <?php
-                }
-                ?>
-            </div>
-        </div>
-    </li>
+
 
     <!-- Nav Item - Configuração -->
     <!-- <li class="nav-item">
