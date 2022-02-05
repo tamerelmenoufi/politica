@@ -186,7 +186,7 @@ if (!isset($_SESSION['usuario'])) {
 
         $("span[grf]").click(function(){
             $.ajax({
-                url:"painel/paginas/relatorios/index.php",
+                url:"paginas/relatorios/index.php",
                 success: function (data) {
                     $('#palco').html(data);
                 },error:function(){
