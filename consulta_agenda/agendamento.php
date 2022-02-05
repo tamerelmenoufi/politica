@@ -27,7 +27,7 @@ while ($dadosEventos = mysql_fetch_object($resultEventos)):
     $eventos[] = [
         'id' => $dadosEventos->codigo,
         'title' => $dadosEventos->b_nome ?: 'Evento',
-        'start' => date('Y-m-d', strtotime($dadosEventos->data_agenda))
+        'start' => date('Y-m-d', strtotime($dadosEventos->data_agenda)),
     ];
 endwhile;
 
@@ -120,6 +120,9 @@ endwhile;
             headerToolbar: {
                 right: 'prev,next today',
             },
+            themeSystem: 'bootstrap',
+            fixedWeekCount: false,
+            showNonCurrentDates: false,
             events: <?= json_encode($eventos); ?>,
             dateClick: function (info) {
                 consulta_agenda(info.dateStr, servico_tipo);
