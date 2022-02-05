@@ -189,7 +189,7 @@ if ($codigo) {
             </div>
 
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label for="municipio">
                             Municipio <i class="text-danger">*</i>
@@ -217,7 +217,39 @@ if ($codigo) {
 
                     </div>
                 </div>
-                <div class="col-md-6">
+
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="bairro">
+                            Bairro <i class="text-danger">*</i>
+                        </label>
+                        <select
+                                class="form-control"
+                                id="bairro"
+                                name="bairro"
+                                data-live-search="true"
+                                required
+                        >
+                            <option value=""></option>
+                            <?php
+                            $query = "SELECT * FROM bairros where deletado = '0'";
+                            $result = mysql_query($query);
+
+                            while ($m = mysql_fetch_object($result)): ?>
+                                <option
+                                    <?= ($codigo and $d->bairro == $m->codigo) ? 'selected' : ''; ?>
+                                        value="<?= $m->codigo ?>">
+                                    <?= $m->descricao; ?>
+                                </option>
+                            <?php endwhile; ?>
+                        </select>
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-4">
                     <div class="form-group">
                         <label for="cpf">
                             CEP <i class="text-danger">*</i>
