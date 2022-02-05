@@ -122,6 +122,7 @@ include "lib/includes.php";
 
 <script src="<?= $caminho_vendor; ?>/bootstrap4/js/bootstrap.bundle.min.js"></script>
 <script src="<?= $caminho_vendor; ?>/startbootstrap-sb-admin-2/js/sb-admin-2.min.js"></script>
+
 <script>
     $(function () {
         //$('body').load('autenticacao/login.php');

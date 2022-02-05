@@ -122,7 +122,7 @@ if (!isset($_SESSION['usuario'])) {
 <script src="<?= "{$caminho_vendor}/bootstrap-fileinput/js/fileinput.min.js"; ?>"></script>
 <script src="<?= "{$caminho_vendor}/bootstrap-fileinput/js/locales/pt-BR.js"; ?>"></script>
 <script src="<?= "{$caminho_vendor}/bootstrap-fileinput/theme/theme.min.js"; ?>"></script>
-
+<script src="<?= $caminho_vendor; ?>/chart/chart.min.js"></script>
 <script>
     $(document).ready(function () {
 
@@ -183,6 +183,16 @@ if (!isset($_SESSION['usuario'])) {
                     $('.loading').fadeOut(200);
                 })
         });
+
+        $("span[grf]").click(function(){
+            $.ajax({
+                "painel/paginas/relatorios/index.php",
+                success: function (data) {
+                    $('#palco').html(data);
+                }
+            })
+        });
+
     });
 </script>
 
