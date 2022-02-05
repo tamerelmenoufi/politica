@@ -52,7 +52,29 @@ if ($codigo) {
 }
 
 ?>
-
+<style>
+    div[NovoAssessorBG]{
+        position:fixed;
+        left:0;
+        bottom:0;
+        width:100%;
+        height:100%;
+        z-index:999;
+        background-color:#333;
+        opacity:0.5;
+        display:none;
+        z-index:998;
+    }
+    div[NovoAssessor]{
+        position:relative;
+        z-index:999;
+        background-color:#fff;
+        padding:20px;
+        padding:20px;
+        border-radius:10px;
+        display:none;
+    }
+</style>
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb shadow bg-gray-custom">
         <li class="breadcrumb-item"><a href="#" url="content.php">Início</a></li>
@@ -101,6 +123,8 @@ if ($codigo) {
                 </select>
 
             </div>
+            <div NovoAssessorBG></div>
+            <div NovoAssessor></div>
 
             <div class="form-group">
                 <label for="local">Local <i class="text-danger">*</i></label>
@@ -178,6 +202,33 @@ if ($codigo) {
         $("#assessor").selectpicker();
 
         $('#form-acao-social').validate();
+
+        $("#assessor").change(function(){
+            valor = $(this).val();
+            if(valor === 'novo'){
+                $.ajax({
+                    url:"paginas/cadastros/assessores/novo.php",
+                    success:function(dados){
+                        $("div[NovoAssessor]").html(dados);
+                        $("div[NovoAssessorBG]").css("display","block");
+                        $("div[NovoAssessor]").css("display","block");
+                    },
+                    error:function(){
+                        alert('Ocorreu um erro!');
+                    }
+                });
+            }
+        });
+
+        $("div[NovoAssessorBG]").click(function(){
+            $("div[NovoAssessorBG]").css("display","none");
+            $("div[NovoAssessor]").css("display","none");
+            $("div[NovoAssessor]").html('');
+            $("#assessor").val('');
+            $("#assessor").selectpicker('refresh');
+        });
+
+
 
         $('#form-acao-social').submit(function (e) {
             e.preventDefault();
