@@ -150,7 +150,7 @@
              data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <?php
-                if(in_array('Relatórios - Visualizar', $ConfPermissoes)){
+                if(in_array('Relatórios', $ConfPermissoes)){
                 ?>
                 <a class="collapse-item" href="#" url="paginas/cadastros/acao_social/index.php">Ação Social</a>
                 <?php
