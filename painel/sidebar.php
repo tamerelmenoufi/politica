@@ -213,7 +213,7 @@
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#relatorios"
            aria-expanded="true" aria-controls="relatorios">
-           v<i class="fas fa-chart-pie"></i>
+           <i class="fas fa-chart-pie"></i>
             <span>Relatórios</span>
         </a>
         <div id="relatorios" class="collapse" aria-labelledby="headingUtilities"
