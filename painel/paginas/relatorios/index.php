@@ -2,11 +2,11 @@
 
 <div class="row">
     <div class="col-6">
-        <h3>Nome do Gráfico 1</h3>
-        <canvas id="myChart" width="100%" height="auto"></canvas>
+        <h5>Nome do Gráfico 1</h5>
+        <canvas id="myChart" width="100%" height="400"></canvas>
     </div>
     <div class="col-6">
-        <h3>Nome do Gráfico 2</h3>
+        <h5>Nome do Gráfico 2</h5>
     </div>
 </div>
 
