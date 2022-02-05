@@ -189,6 +189,8 @@ if (!isset($_SESSION['usuario'])) {
                 url:"painel/paginas/relatorios/index.php",
                 success: function (data) {
                     $('#palco').html(data);
+                },error:function(){
+                    alert('erro');
                 }
             })
         });
