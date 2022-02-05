@@ -184,17 +184,6 @@ if (!isset($_SESSION['usuario'])) {
                 })
         });
 
-        $("span[grf]").click(function(){
-            $.ajax({
-                url:"paginas/relatorios/index.php",
-                success: function (data) {
-                    $('#palco').html(data);
-                },error:function(){
-                    alert('erro');
-                }
-            })
-        });
-
     });
 </script>
 
