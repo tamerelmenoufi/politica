@@ -1,10 +1,10 @@
 <?php
-include_once "config_servicos.php";
+include_once "config_tipo_servico.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir') {
     $codigo = $_POST['codigo'];
 
-    if (exclusao('servicos', $codigo)) {
+    if (exclusao('bairros', $codigo)) {
         echo json_encode(["status" => true, "msg" => "Registro excluído com sucesso"]);
     } else {
         echo json_encode(["status" => false, "msg" => "Error ao tentar excluír"]);
@@ -12,31 +12,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir') {
     exit;
 }
 
-$query = "SELECT s.*, a.nome AS assessor, b.nome AS beneficiado FROM servicos s "
-    . "LEFT JOIN assessores a ON a.codigo = s.assessor "
-    . "LEFT JOIN beneficiados b ON b.codigo = s.beneficiado "
-    . "WHERE deletado = '0' "
-    . "ORDER BY s.codigo DESC";
+$query = "SELECT * FROM bairros where deletado = '0'";
 $result = mysql_query($query);
 
 ?>
 
+<!--<h1 class="h3 mb-2 text-gray-800">Secretarias</h1>-->
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb shadow bg-gray-custom">
         <li class="breadcrumb-item"><a href="#" url="content.php">Início</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Serviços</li>
+        <li class="breadcrumb-item active" aria-current="page">Bairros</li>
     </ol>
 </nav>
 
 <div class="card shadow mb-4">
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
         <h6 class="m-0 font-weight-bold text-primary">
-            Serviços
+            Bairros
         </h6>
-
-        <button type="button" class="btn btn-success btn-sm" url="<?= $urlServicos; ?>/form.php">
+        <?php
+        if(in_array('Bairros - Cadastrar', $ConfPermissoes)){
+        ?>
+        <button type="button" class="btn btn-success btn-sm" url="<?= $servicoTipo; ?>/form.php">
             <i class="fa-solid fa-plus"></i> Novo
         </button>
+        <?php
+        }
+        ?>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -44,36 +46,40 @@ $result = mysql_query($query);
             <table id="datatable" class="table" width="100%" cellspacing="0">
                 <thead>
                 <tr>
-                    <th>Beneficiado</th>
-                    <th>Assessor</th>
-                    <th>Data da Agenda</th>
-                    <th>Situação</th>
+                    <th>Descrição</th>
                     <th class="mw-20">Ações</th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php while ($d = mysql_fetch_object($result)): ?>
                     <tr id="linha-<?= $d->codigo; ?>">
-                        <td><?= $d->beneficiado; ?></td>
-                        <td><?= $d->assessor; ?></td>
-                        <td><?= formata_datahora($d->data_agenda, DATA_HM); ?></td>
-                        <td><?= getSituacaoOptions($d->situacao); ?></td>
+                        <td><?= $d->descricao ?></td>
                         <td>
                             <button
                                     class="btn btn-sm btn-link"
-                                    url="<?= $urlServicos ?>/visualizar.php?codigo=<?= $d->codigo ?>"
+                                    url="<?= $servicoTipo ?>/visualizar.php?codigo=<?= $d->codigo ?>"
                             >
                                 <i class="fa-regular fa-eye text-info"></i>
                             </button>
+                            <?php
+                            if(in_array('Bairros - Editar', $ConfPermissoes)){
+                            ?>
                             <button
                                     class="btn btn-sm btn-link"
-                                    url="<?= $urlServicos ?>/form.php?codigo=<?= $d->codigo; ?>"
+                                    url="<?= $servicoTipo ?>/form.php?codigo=<?= $d->codigo; ?>"
                             >
                                 <i class="fa-solid fa-pencil text-warning"></i>
                             </button>
+                            <?php
+                            }
+                            if(in_array('Bairros - Excluir', $ConfPermissoes)){
+                            ?>
                             <button class="btn btn-sm btn-link btn-excluir" data-codigo="<?= $d->codigo ?>">
                                 <i class="fa-regular fa-trash-can text-danger"></i>
                             </button>
+                            <?php
+                            }
+                            ?>
                         </td>
                     </tr>
                 <?php endwhile; ?>
@@ -102,7 +108,7 @@ $result = mysql_query($query);
                         btnClass: 'btn-red',
                         action: function () {
                             $.ajax({
-                                url: '<?= $urlServicos;?>/index.php',
+                                url: '<?= $servicoTipo;?>/index.php',
                                 method: 'POST',
                                 data: {
                                     acao: 'excluir',
