@@ -152,7 +152,7 @@
                 <?php
                 if(in_array('Relatórios', $ConfPermissoes)){
                 ?>
-                <a class="collapse-item" href="#" url="paginas/cadastros/relatorios/index.php">Relatórios</a>
+                <a class="collapse-item" href="#" url="paginas/relatorios/index.php">Relatórios</a>
                 <?php
                 }
                 ?>
