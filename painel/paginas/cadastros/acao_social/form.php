@@ -109,6 +109,7 @@ if ($codigo) {
                         required
                 >
                     <option value=""></option>
+                    <option value="novo">Novo Cadastro</option>
                     <?php
                     $query = "SELECT * FROM assessores ORDER BY nome";
                     $result = mysql_query($query);
