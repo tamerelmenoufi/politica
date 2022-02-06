@@ -1,6 +1,6 @@
 <?php
     include "lib/includes.php";
-
+    exit();
 
     for($i=0;$i<100;$i++){
 
