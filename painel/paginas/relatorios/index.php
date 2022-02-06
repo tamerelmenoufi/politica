@@ -1,4 +1,5 @@
 <?php
+    include "../lib/includes.php";
     $md5  = md5(date("YmdHis"));
 ?>
 
