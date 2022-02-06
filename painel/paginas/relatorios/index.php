@@ -1,9 +1,11 @@
-
+<?php
+    $md5  = md5(date("YmdHis"));
+?>
 
 <div class="row">
     <div class="col-6">
         <h5>Nome do Gráfico 1</h5>
-        <canvas id="myChart" width="400" height="400"></canvas>
+        <canvas id="myChart<?=$md5?>" width="400" height="400"></canvas>
     </div>
     <div class="col-6">
         <h5>Nome do Gráfico 2</h5>
@@ -14,8 +16,8 @@
 
 
 <script>
-const ctx = document.getElementById('myChart');
-const myChart = new Chart(ctx, {
+const ctx<?=$md5?> = document.getElementById('myChart<?=$md5?>');
+const myChart<?=$md5?> = new Chart(ctx<?=$md5?>, {
     type: 'bar',
     data: {
         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
