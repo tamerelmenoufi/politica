@@ -21,7 +21,7 @@
     ];
 
 
-    $query = "select b.tipo, count(a.*) as qt from servicos a left join servico_tipo b on a.tipo = b.codigo group by a.tipo";
+    $query = "select b.tipo, count(*) as qt from servicos a left join servico_tipo b on a.tipo = b.codigo group by a.tipo";
     $result = mysql_query($query);
     while($d = mysql_fetch_object($result)){
         $rotulo[] = $d->tipo;
