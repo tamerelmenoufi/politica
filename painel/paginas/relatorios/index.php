@@ -82,7 +82,8 @@ const myChart<?=$md5?> = new Chart(ctx<?=$md5?>,
                 'rgba(153, 102, 255, 1)',
                 'rgba(255, 159, 64, 1)'
             ],
-            borderWidth: 1
+            borderWidth: 1,
+            rotulos: [<?=$Lg?>]
         }]
     },
   options: {
@@ -108,7 +109,8 @@ const myChart<?=$md5?> = new Chart(ctx<?=$md5?>,
 
       tooltip: {
                 callbacks: {
-                    title: function(){
+                    title: function(context){
+                        console.log(context.dataset.rotulos);
                         return Legendas<?=$md5?>[0];
                     },
                     label: function(context) {
