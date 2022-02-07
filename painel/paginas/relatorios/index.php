@@ -47,9 +47,10 @@
 
 <script>
 const ctx<?=$md5?> = document.getElementById('myChart<?=$md5?>');
-const myChart<?=$md5?> = new Chart(ctx<?=$md5?>, {
-    type: 'bar',
-    data: {
+const myChart<?=$md5?> = new Chart(ctx<?=$md5?>,
+{
+  type: 'bar',
+  data: {
         labels: [<?=$rotulo?>],
         datasets: [{
             label: '# of Votes',
@@ -73,12 +74,28 @@ const myChart<?=$md5?> = new Chart(ctx<?=$md5?>, {
             borderWidth: 1
         }]
     },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
+  options: {
+    indexAxis: 'y',
+    // Elements options apply to all of the options unless overridden in a dataset
+    // In this case, we are setting the border of each horizontal bar to be 2px wide
+    elements: {
+      bar: {
+        borderWidth: 2,
+      }
+    },
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'right',
+      },
+      title: {
+        display: true,
+        text: 'Chart.js Horizontal Bar Chart'
+      }
     }
-});
+  },
+}
+
+
+);
 </script>
