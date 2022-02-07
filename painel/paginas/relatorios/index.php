@@ -119,7 +119,7 @@ const myChart<?=$md5?> = new Chart(ctx<?=$md5?>,
       tooltip: {
                 callbacks: {
                     title: function(context){
-                        console.log(context);
+                        console.log(context.dataset);
                         return Legendas<?=$md5?>['B'];
                     },
                     label: function(context) {
