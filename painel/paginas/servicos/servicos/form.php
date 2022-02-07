@@ -219,14 +219,14 @@ if ($codigo) {
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="data_agenda">Data de Agenda <i class="text-danger">*</i></label>
+                        <label for="data_agenda">Data de Agenda <i class="text-danger"></i></label>
                         <input
                                 type="datetime-local"
                                 class="form-control"
                                 id="data_agenda"
                                 name="data_agenda"
                                 value="<?= $codigo ? strftime('%Y-%m-%dT%H:%M:%S', strtotime($d->data_agenda)) : ''; ?>"
-                                required
+
                         >
 
                     </div>
