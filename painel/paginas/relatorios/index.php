@@ -34,6 +34,7 @@
         $bd[] = $Bd[$i];
     $i++;
     }
+    $Lg =  "'".implode("', '",$rotulo)."'";
     $lg = "'".implode("', '",$lg)."'";
     $qt = implode(", ",$qt);
 
@@ -53,6 +54,9 @@
 
 
 <script>
+
+const Legendas = [<?=$Lg?>];
+
 const ctx<?=$md5?> = document.getElementById('myChart<?=$md5?>');
 const myChart<?=$md5?> = new Chart(ctx<?=$md5?>,
 {
@@ -104,8 +108,8 @@ const myChart<?=$md5?> = new Chart(ctx<?=$md5?>,
 
       tooltip: {
                 callbacks: {
-                    title: function(tooltipItems, data){
-                        return data.labels;
+                    title: function(){
+                        return Legendas;
                     },
                     label: function(context) {
                         var label = context.dataset.label || '';
