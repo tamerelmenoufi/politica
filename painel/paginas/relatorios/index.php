@@ -104,7 +104,9 @@ const myChart<?=$md5?> = new Chart(ctx<?=$md5?>,
 
       tooltip: {
                 callbacks: {
-                    title: 'Nome da aplicação',
+                    title: function(){
+                        return 'Nome da aplicação';
+                    },
                     label: function(context) {
                         var label = context.dataset.label || '';
 
