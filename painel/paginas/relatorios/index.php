@@ -114,10 +114,10 @@ const myChart<?=$md5?> = new Chart(ctx<?=$md5?>,
                     },
                     label: function(context) {
                         indx = context.parsed.y;
-                        var label = context.dataset.label[indx] || '';
+                        var label = ' ' + context.dataset.label[indx] || '';
 
                         if (label) {
-                            label += ': ';
+                            label += ' : ';
                         }
                         if (context.parsed.y !== null) {
                             label += context.parsed.x;
