@@ -2,7 +2,9 @@
     include "../../../lib/includes.php";
     $md5  = md5(date("YmdHis"));
 
-    $bg = [
+    $Legenda = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+
+    $Bg = [
         'rgba(255, 99, 132, 0.2)',
         'rgba(54, 162, 235, 0.2)',
         'rgba(255, 206, 86, 0.2)',
@@ -11,7 +13,7 @@
         'rgba(255, 159, 64, 0.2)'
     ];
 
-    $bd = [
+    $Bd = [
         'rgba(255, 99, 132, 1)',
         'rgba(54, 162, 235, 1)',
         'rgba(255, 206, 86, 1)',
@@ -23,11 +25,16 @@
 
     $query = "select b.tipo, count(*) as qt from servicos a left join servico_tipo b on a.tipo = b.codigo group by a.tipo";
     $result = mysql_query($query);
+    $i=0;
     while($d = mysql_fetch_object($result)){
         $rotulo[] = $d->tipo;
         $qt[] =  $d->qt;
+        $lg[] = $Legenda[$i];
+        $bg[] = $Bg[$i];
+        $bd[] = $Bd[$i];
+    $i++;
     }
-    $rotulo = "'".implode("', '",$rotulo)."'";
+    $lg = "'".implode("', '",$lg)."'";
     $qt = implode(", ",$qt);
 
 ?>
@@ -51,7 +58,7 @@ const myChart<?=$md5?> = new Chart(ctx<?=$md5?>,
 {
   type: 'bar',
   data: {
-        labels: [<?=$rotulo?>],
+        labels: [<?=$lg?>],
         datasets: [{
             label: false,
             data: [<?=$qt?>],
