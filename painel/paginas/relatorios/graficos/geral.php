@@ -34,9 +34,9 @@
         $bd[] = $Bd[$i];
     $i++;
     }
-    $Lg =  "'".implode("', '",$rotulo)."'";
-    $lg = "'".implode("', '",$lg)."'";
-    $qt = implode(", ",$qt);
+    if($rotulo) $Lg =  "'".implode("', '",$rotulo)."'";
+    if($lg) $lg = "'".implode("', '",$lg)."'";
+    if($qt) $qt = implode(", ",$qt);
 ?>
 
 

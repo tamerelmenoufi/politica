@@ -34,13 +34,13 @@
         $bd[] = $Bd[$i];
     $i++;
     }
-    $Lg =  "'".implode("', '",$rotulo)."'";
-    $lg = "'".implode("', '",$lg)."'";
-    $qt = implode(", ",$qt);
+    if($rotulo) $Lg =  "'".implode("', '",$rotulo)."'";
+    if($lg) $lg = "'".implode("', '",$lg)."'";
+    if($qt) $qt = implode(", ",$qt);
 ?>
 
 
-<h5>Relatório Geral</h5>
+<h5>Relatório Por Bairro</h5>
 <canvas id="myChart<?=$md5?>" width="400" height="400"></canvas>
 
 <script>
