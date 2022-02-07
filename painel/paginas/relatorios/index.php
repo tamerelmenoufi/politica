@@ -19,7 +19,7 @@
             obj = $(this);
             opc = $(this).attr("opc");
             $.ajax({
-                url:"paginas/relatorios/grafios/"+opc+".php",
+                url:"paginas/relatorios/graficos/"+opc+".php",
                 success:function(dados){
                      obj.html(dados);
                 },
