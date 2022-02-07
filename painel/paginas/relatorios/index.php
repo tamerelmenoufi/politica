@@ -34,9 +34,6 @@
         $bd[] = $Bd[$i];
     $i++;
     }
-    $Lg =  "'".implode("', '",$rotulo)."'";
-    $lg = "'".implode("', '",$lg)."'";
-    $qt = implode(", ",$qt);
 
 ?>
 
@@ -63,6 +60,11 @@ const Legendas<?=$md5?> = [];
     Legendas['<?=$lg[$i]?>'] = '<?=$Lg[$i]?>';
 <?php
     }
+
+    $Lg =  "'".implode("', '",$rotulo)."'";
+    $lg = "'".implode("', '",$lg)."'";
+    $qt = implode(", ",$qt);
+
 ?>
 
 const ctx<?=$md5?> = document.getElementById('myChart<?=$md5?>');
