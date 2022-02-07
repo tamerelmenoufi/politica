@@ -2,12 +2,22 @@
     include "../../../lib/includes.php";
 ?>
 <div class="row">
-<div class="col-md-8 offset-md-2">
-        <div graficos opc="geral"></div>
-    </div>
     <div class="col-md-8 offset-md-2">
-        <div graficos opc="bairros"></div>
+        <div class="card">
+            <div class="card-body">
+                <div graficos opc="geral"></div>
+            </div>
+        </div>
     </div>
+
+    <div class="col-md-8 offset-md-2" style="margin-top:20px;">
+        <div class="card">
+            <div class="card-body">
+                <div graficos opc="bairros"></div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 
