@@ -14,6 +14,7 @@ include "../lib/includes.php";
 
     <?php include "../lib/header.php"; ?>
     <link rel="stylesheet" href="<?= $caminho_vendor; ?>/fullcalendar/lib/main.min.css">
+    <link rel="stylesheet" href="<?= $caminho_vendor ?>/jquery-confirm/css/jquery-confirm.min.css">
 
     <script src="<?= $caminho_vendor; ?>/jquery/jquery.min.js"></script>
     <script src="<?= $caminho_vendor; ?>/bootstrap4/js/bootstrap.bundle.min.js"></script>
@@ -21,6 +22,7 @@ include "../lib/includes.php";
     <script src="<?= $caminho_vendor; ?>/fullcalendar/lib/locales-all.min.js"></script>
     <script src="<?= $caminho_vendor; ?>/tata/tata.js"></script>
     <script src="<?= $caminho_vendor; ?>/tata/index.js"></script>
+    <script src="<?= "{$caminho_vendor}/jquery-confirm/js/jquery-confirm.min.js"; ?>"></script>
 </head>
 <body>
 
