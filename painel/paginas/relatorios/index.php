@@ -34,7 +34,9 @@
         $bd[] = $Bd[$i];
     $i++;
     }
-
+    $Lg =  "'".implode("', '",$rotulo)."'";
+    $lg = "'".implode("', '",$lg)."'";
+    $qt = implode(", ",$qt);
 ?>
 
 <div class="row">
@@ -52,20 +54,7 @@
 
 <script>
 
-const Legendas<?=$md5?> = [];
-
-<?php
-    for($i = 0; $i < count($lg); $i++){
-?>
-    Legendas<?=$md5?>['<?=$lg[$i]?>'] = '<?=$rotulo[$i]?>';
-<?php
-    }
-
-    $Lg =  "'".implode("', '",$rotulo)."'";
-    $lg = "'".implode("', '",$lg)."'";
-    $qt = implode(", ",$qt);
-
-?>
+const Legendas<?=$md5?> = [<?=$Lg[$i]?>];
 
 const ctx<?=$md5?> = document.getElementById('myChart<?=$md5?>');
 const myChart<?=$md5?> = new Chart(ctx<?=$md5?>,
