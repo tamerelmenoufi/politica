@@ -57,7 +57,7 @@ const Legendas<?=$md5?> = [];
 <?php
     for($i = 0; $i < count($lg); $i++){
 ?>
-    Legendas['<?=$lg[$i]?>'] = '<?=$rotulo[$i]?>';
+    Legendas<?=$md5?>['<?=$lg[$i]?>'] = '<?=$rotulo[$i]?>';
 <?php
     }
 
