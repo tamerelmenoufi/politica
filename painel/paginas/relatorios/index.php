@@ -14,20 +14,25 @@
 
 
 <script>
+
+    function grafico(obj,opc){
+        $.ajax({
+            url:"paginas/relatorios/graficos/"+opc+".php",
+            success:function(dados){
+                    obj.html(dados);
+            },
+            error:function(){
+                alert('Ocorreu um erro!');
+            }
+        });
+    }
+
     $(function(){
         $("div[graficos]").each(function(){
             obj = $(this);
             opc = $(this).attr("opc");
             console.log(opc);
-            $.ajax({
-                url:"paginas/relatorios/graficos/"+opc+".php",
-                success:function(dados){
-                     obj.html(dados);
-                },
-                error:function(){
-                    alert('Ocorreu um erro!');
-                }
-            });
+            grafico(obj,opc);
         });
     })
 </script>
