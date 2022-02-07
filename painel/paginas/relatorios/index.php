@@ -40,12 +40,9 @@
 ?>
 
 <div class="row">
-    <div class="col-6">
+    <div class="col-12">
         <h5>Nome do Gráfico 1</h5>
         <canvas id="myChart<?=$md5?>" width="400" height="400"></canvas>
-    </div>
-    <div class="col-6">
-        <h5>Nome do Gráfico 2</h5>
     </div>
 </div>
 
@@ -120,7 +117,7 @@ const myChart<?=$md5?> = new Chart(ctx<?=$md5?>,
                             label += ' : ';
                         }
                         if (context.parsed.y !== null) {
-                            label += context.parsed.x;
+                            label += context.parsed.x + ' Registro(s)';
                         }
                         return label;
                     }
