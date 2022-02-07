@@ -16,11 +16,15 @@
 <script>
     $(function(){
         $("div[graficos]").each(function(){
+            obj = $(this);
             opc = $(this).attr("opc");
             $.ajax({
                 url:"paginas/relatorios/grafios/"+opc+".php",
                 success:function(dados){
-                     $(this).html(dados);
+                     obj.html(dados);
+                },
+                error:function(){
+                    alert('Ocorreu um erro!');
                 }
             });
         });
