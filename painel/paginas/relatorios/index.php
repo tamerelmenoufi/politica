@@ -55,7 +55,15 @@
 
 <script>
 
-const Legendas<?=$md5?> = [<?=$Lg?>];
+const Legendas<?=$md5?> = [];
+
+<?php
+    for($i = 0; $i < ount($Lg); $i++){
+?>
+    Legendas['<?=$lg[$i]?>'] = '<?=$Lg[$i]?>';
+<?php
+    }
+?>
 
 const ctx<?=$md5?> = document.getElementById('myChart<?=$md5?>');
 const myChart<?=$md5?> = new Chart(ctx<?=$md5?>,
@@ -82,8 +90,7 @@ const myChart<?=$md5?> = new Chart(ctx<?=$md5?>,
                 'rgba(153, 102, 255, 1)',
                 'rgba(255, 159, 64, 1)'
             ],
-            borderWidth: 1,
-            rotulos: [<?=$Lg?>]
+            borderWidth: 1
         }]
     },
   options: {
@@ -110,8 +117,8 @@ const myChart<?=$md5?> = new Chart(ctx<?=$md5?>,
       tooltip: {
                 callbacks: {
                     title: function(context){
-                        console.log(context.data);
-                        return Legendas<?=$md5?>[0];
+                        console.log(context);
+                        return Legendas<?=$md5?>['B'];
                     },
                     label: function(context) {
                         var label = context.dataset.label || '';
