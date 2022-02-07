@@ -81,7 +81,8 @@ const myChart<?=$md5?> = new Chart(ctx<?=$md5?>,
                 'rgba(153, 102, 255, 1)',
                 'rgba(255, 159, 64, 1)'
             ],
-            borderWidth: 1
+            borderWidth: 1,
+            rotulos:[<?=$Lg?>]
         }]
     },
   options: {
@@ -109,7 +110,8 @@ const myChart<?=$md5?> = new Chart(ctx<?=$md5?>,
                 callbacks: {
                     title: function(context){
                         indx = context[0].parsed.y;
-                        return Legendas<?=$md5?>[indx];
+                        //return Legendas<?=$md5?>[indx];
+                        return context[0].dataset.rotulos;
                     },
                     label: function(context) {
                         var label = context.dataset.label || '';
