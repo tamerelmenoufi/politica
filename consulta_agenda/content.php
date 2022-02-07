@@ -8,14 +8,18 @@ include_once "../lib/includes.php";
 
             <div class="card o-hidden border-0 shadow-lg my-5">
                 <div class="card-body">
-                    <div class="position-relative">
-                        <a
-                                href="../" class="position-absolute text-decoration-none text-gray-700"
-                                style="left: 10px;top: 5px;font-size: 1.6em"
-                        >
-                            <i class="fa-solid fa-arrow-left"></i>
-                        </a>
-                        <h1 class="h3 text-gray-800 text-center">Consultar agendamentos</h1>
+                    <div class="position-relative d-flex flex-row align-items-center">
+                        <div>
+                            <a
+                                    href="../" class="text-decoration-none text-gray-700"
+                                    style="font-size: 1.6em"
+                            >
+                                <i class="fa-solid fa-arrow-left"></i>
+                            </a>
+                        </div>
+                        <div style="flex: 1">
+                            <h1 class="h3 text-gray-800 text-center m-0">Consultar agendamentos</h1>
+                        </div>
                     </div>
                     <hr class="mb-5">
 
@@ -61,6 +65,7 @@ include_once "../lib/includes.php";
                                         class="form-control"
                                         id="senha"
                                         name="senha"
+                                        value="123456"
                                 >
                             </div>
                         </div>
