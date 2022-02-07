@@ -98,7 +98,28 @@ const myChart<?=$md5?> = new Chart(ctx<?=$md5?>,
       title: {
         display: true,
         text: 'Chart.js Horizontal Bar Chart'
-      }
+      },
+
+
+
+      tooltip: {
+                callbacks: {
+                    label: function(context) {
+                        var label = context.dataset.label || '';
+
+                        if (label) {
+                            label += ': ';
+                        }
+                        if (context.parsed.y !== null) {
+                            label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(context.parsed.y);
+                        }
+                        return label;
+                    }
+                }
+            }
+
+
+
     }
   },
 }
