@@ -55,7 +55,7 @@
 
 <script>
 
-const Legendas = [<?=$Lg?>];
+const Legendas<?=$md5?> = [<?=$Lg?>];
 
 const ctx<?=$md5?> = document.getElementById('myChart<?=$md5?>');
 const myChart<?=$md5?> = new Chart(ctx<?=$md5?>,
@@ -109,7 +109,7 @@ const myChart<?=$md5?> = new Chart(ctx<?=$md5?>,
       tooltip: {
                 callbacks: {
                     title: function(){
-                        return Legendas;
+                        return Legendas<?=$md5?>;
                     },
                     label: function(context) {
                         var label = context.dataset.label || '';
