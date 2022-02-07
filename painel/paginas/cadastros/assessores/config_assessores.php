@@ -20,8 +20,8 @@ function getSexoOptions($sexo)
 function getResponsavel()
 {
     return [
-        'FELIPE SOUSA' => 'Felipe Sousa',
-        'THAYSA' => 'Thaysa'
+        'Felipe Souza' => 'Felipe Souza',
+        'Thaysa Lippy' => 'Thaysa Lippy'
     ];
 }
 
