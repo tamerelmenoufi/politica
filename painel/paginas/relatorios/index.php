@@ -18,6 +18,7 @@
         $("div[graficos]").each(function(){
             obj = $(this);
             opc = $(this).attr("opc");
+            console.log(opc);
             $.ajax({
                 url:"paginas/relatorios/graficos/"+opc+".php",
                 success:function(dados){
