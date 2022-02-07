@@ -34,15 +34,39 @@
         $bd[] = $Bd[$i];
     $i++;
     }
-    if($rotulo) $Lg =  "'".implode("', '",$rotulo)."'";
-    if($lg) $lg = "'".implode("', '",$lg)."'";
-    if($qt) $qt = implode(", ",$qt);
 ?>
 
 
 <h5>Relatório Geral</h5>
 <canvas id="myChart<?=$md5?>" width="400" height="400"></canvas>
 
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Legenda</th>
+      <th scope="col">Descrição</th>
+      <th scope="col">Quantidade</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+      for($i = 0; $i < count($lg); $i++){
+    ?>
+    <tr>
+      <td><?=$lg[$i]?></td>
+      <td><?=$rotulo[$i]?></td>
+      <td><?=$qt[$i]?></td>
+    </tr>
+    <?php
+      }
+    ?>
+  </tbody>
+</table>
+<?php
+    if($rotulo) $Lg =  "'".implode("', '",$rotulo)."'";
+    if($lg) $lg = "'".implode("', '",$lg)."'";
+    if($qt) $qt = implode(", ",$qt);
+?>
 <script>
 
 const ctx<?=$md5?> = document.getElementById('myChart<?=$md5?>');
