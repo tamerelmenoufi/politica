@@ -54,7 +54,7 @@
 
 <script>
 
-const Legendas<?=$md5?> = [<?=$Lg[$i]?>];
+const Legendas<?=$md5?> = [<?=$Lg?>];
 
 const ctx<?=$md5?> = document.getElementById('myChart<?=$md5?>');
 const myChart<?=$md5?> = new Chart(ctx<?=$md5?>,
