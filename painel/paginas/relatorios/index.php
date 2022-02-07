@@ -34,6 +34,7 @@
         $bd[] = $Bd[$i];
     $i++;
     }
+    $Lg =  "'".implode("', '",$rotulo)."'";
     $lg = "'".implode("', '",$lg)."'";
     $qt = implode(", ",$qt);
 
@@ -53,6 +54,9 @@
 
 
 <script>
+
+const Legendas<?=$md5?> = [<?=$Lg?>];
+
 const ctx<?=$md5?> = document.getElementById('myChart<?=$md5?>');
 const myChart<?=$md5?> = new Chart(ctx<?=$md5?>,
 {
@@ -98,7 +102,31 @@ const myChart<?=$md5?> = new Chart(ctx<?=$md5?>,
       title: {
         display: true,
         text: 'Chart.js Horizontal Bar Chart'
-      }
+      },
+
+
+
+      tooltip: {
+                callbacks: {
+                    title: function(){
+                        return Legendas<?=$md5?>[0];
+                    },
+                    label: function(context) {
+                        var label = context.dataset.label || '';
+
+                        if (label) {
+                            label += ': ';
+                        }
+                        if (context.parsed.y !== null) {
+                            label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(context.parsed.y);
+                        }
+                        return label;
+                    }
+                }
+            }
+
+
+
     }
   },
 }
