@@ -120,6 +120,7 @@ const myChart<?=$md5?> = new Chart(ctx<?=$md5?>,
                 callbacks: {
                     title: function(context){
                         console.log(context);
+                        console.log(context.dataIndex);
                         return Legendas<?=$md5?>['B'];
                     },
                     label: function(context) {
