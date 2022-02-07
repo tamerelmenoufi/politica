@@ -53,7 +53,7 @@ const myChart<?=$md5?> = new Chart(ctx<?=$md5?>,
   data: {
         labels: [<?=$rotulo?>],
         datasets: [{
-            label: '# of Votes',
+            label: false,
             data: [<?=$qt?>],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -85,9 +85,9 @@ const myChart<?=$md5?> = new Chart(ctx<?=$md5?>,
     },
     responsive: true,
     plugins: {
-      legend: {
+      legend: false/*{
         position: 'right',
-      },
+      }*/,
       title: {
         display: true,
         text: 'Chart.js Horizontal Bar Chart'
