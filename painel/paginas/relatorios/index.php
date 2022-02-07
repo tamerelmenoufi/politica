@@ -63,7 +63,7 @@ const myChart<?=$md5?> = new Chart(ctx<?=$md5?>,
   data: {
         labels: [<?=$lg?>],
         datasets: [{
-            label: false,
+            label:  [<?=$lg?>],
             data: [<?=$qt?>],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -110,17 +110,17 @@ const myChart<?=$md5?> = new Chart(ctx<?=$md5?>,
                 callbacks: {
                     title: function(context){
                         indx = context[0].parsed.y;
-                        //return Legendas<?=$md5?>[indx];
                         return context[0].dataset.rotulos[indx];
                     },
                     label: function(context) {
+                        indx = context.parsed.y;
                         var label = context.dataset.label || '';
 
                         if (label) {
                             label += ': ';
                         }
                         if (context.parsed.y !== null) {
-                            label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(context.parsed.y);
+                            label += context.parsed.x;
                         }
                         return label;
                     }
