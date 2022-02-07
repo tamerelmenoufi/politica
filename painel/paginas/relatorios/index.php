@@ -2,10 +2,10 @@
     include "../../../lib/includes.php";
 ?>
 <div class="row">
-<div class="col-6">
+<div class="col-md-8 offset-md-2">
         <div graficos opc="geral"></div>
     </div>
-    <div class="col-6">
+    <div class="col-md-8 offset-md-2">
         <div graficos opc="bairros"></div>
     </div>
 </div>
