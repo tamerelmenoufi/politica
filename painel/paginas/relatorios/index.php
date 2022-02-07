@@ -108,14 +108,10 @@ const myChart<?=$md5?> = new Chart(ctx<?=$md5?>,
       tooltip: {
                 callbacks: {
                     title: function(context){
-                        console.log('TITLE CONTEXT:');
-                        console.log(context[0].parsed.y);
                         indx = context[0].parsed.y;
                         return Legendas<?=$md5?>[indx];
                     },
                     label: function(context) {
-                        console.log('LABEL CONTEXT:');
-                        console.log(context);
                         var label = context.dataset.label || '';
 
                         if (label) {
