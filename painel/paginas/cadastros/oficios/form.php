@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             mysql_query("update oficios_sequecia set numero = (numero + 1) where codigo = '{$d->codigo}'");
         }else{
             $n = 1;
-            mysql_query("update oficios_sequecia set numero = 2, ano = year(NOW())");
+            mysql_query("insert into oficios_sequecia set numero = 2, ano = year(NOW())");
         }
         $attr[] = "numero = '{$n}/".date("y")."'";
     }
