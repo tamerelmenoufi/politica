@@ -2,8 +2,8 @@
 include '../lib/includes.php';
 
 $data = $_POST['data'];
-$servico_tipo = $_POST['servico_tipo'];
-
+$servico_tipo = $_SESSION['servico_tipo'];
+$filtro = $_POST['filtro'];
 
 $query = "SELECT s.*, b.nome AS b_nome FROM servicos s "
     . "LEFT JOIN beneficiados b ON b.codigo = s.beneficiado ";
@@ -28,7 +28,7 @@ $mesArray = [
     '10' => 'Outubro',
     '11' => 'Novembro',
     '12' => 'Dezembro'
-]
+];
 ?>
 <br>
 <h1 class="h5 text-gray-800 my-1 mt-2">
