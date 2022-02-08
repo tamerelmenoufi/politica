@@ -145,7 +145,7 @@ if ($codigo) {
                 <div class="col-md-8">
                     <div class="form-group">
                         <label for="email">
-                            E-Mail <i class="text-danger">*</i>
+                            E-Mail <i class="text-danger"></i>
                         </label>
                         <input
                                 type="email"
@@ -153,7 +153,6 @@ if ($codigo) {
                                 id="email"
                                 name="email"
                                 value="<?= $d->email; ?>"
-                                required
                         >
 
                     </div>
