@@ -2,7 +2,7 @@
     include "../../../lib/includes.php";
 ?>
 <div class="row">
-    <div class="col-md-8 offset-md-2">
+    <div class="col-md-10 offset-md-1">
         <div class="card">
             <div class="card-body">
                 <div graficos opc="geral"></div>
@@ -10,7 +10,7 @@
         </div>
     </div>
 
-    <div class="col-md-8 offset-md-2" style="margin-top:20px;">
+    <div class="col-md-10 offset-md-1" style="margin-top:20px;">
         <div class="card">
             <div class="card-body">
                 <div graficos opc="bairros"></div>
