@@ -4,6 +4,8 @@ include "../lib/includes.php";
 $servico_tipo = $_POST['servico_tipo'];
 $senha = mysql_real_escape_string($_POST['senha']);
 
+$_SESSION['servico_tipo'] = $servico_tipo;
+
 $query = "SELECT lf.*, st.tipo AS st_tipo FROM local_fontes lf "
     . "INNER JOIN servico_tipo st ON st.codigo = lf.servico_tipo "
     . "WHERE lf.servico_tipo = '{$servico_tipo}' AND lf.senha = '{$senha}' AND lf.deletado = '0' ";
@@ -15,7 +17,6 @@ if (!@mysql_num_rows($result)) {
 }
 
 $d = mysql_fetch_object($result);
-
 
 $queryEventos = "SELECT s.*, b.nome AS b_nome, c.descricao AS c_descricao FROM servicos s "
     . "LEFT JOIN beneficiados b ON b.codigo = s.beneficiado "
@@ -43,11 +44,11 @@ endwhile;
     }
 
     .fc-basic-view .fc-body .fc-row {
-        min-height: .3em;
+        min-height: .1em;
     }
 
     div.fc-day-content div {
-        max-height: 50px;
+        max-height: 20px;
         overflow: hidden;
     }
 
@@ -124,6 +125,8 @@ endwhile;
         var calendarEl = document.getElementById('calendar');
 
         var calendar = new FullCalendar.Calendar(calendarEl, {
+            height: 'auto',
+            contentHeight: 'auto',
             locale: 'pt-br',
             timeZone: 'America/Manaus',
             headerToolbar: {
@@ -144,6 +147,7 @@ endwhile;
             },
             events: <?= json_encode($eventos); ?>,
             dateClick: function (info) {
+                calendar.gotoDate(date)
                 consulta_agenda(info.dateStr, servico_tipo);
             },
         });
@@ -163,6 +167,17 @@ endwhile;
                 }
             });
         }
+
+        $('.fc-prev-button').click(function () {
+            var date = calendar.getDate();
+            consulta_agenda(date.toISOString().slice(0, 10));
+        });
+
+        $('.fc-next-button').click(function () {
+            var date = calendar.getDate();
+            consulta_agenda(date.toISOString().slice(0, 10));
+        });
+
     });
 
     $(function () {
