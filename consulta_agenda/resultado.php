@@ -40,7 +40,7 @@ $mesArray = [
     <table class="table table-sm table-hover" style="font-size: .9rem;">
         <thead>
         <tr>
-            <th class="text-center">Horário</th>
+            <th class="text-center">Data</th>
             <th class="text-center">Beneficiado</th>
             <th class="text-center">Especialista</th>
             <th class="text-center">Situação</th>
@@ -84,7 +84,7 @@ $mesArray = [
     <table class="table table-sm table-hover" style="font-size: .9rem;">
         <thead>
         <tr>
-            <th class="text-center">Horário</th>
+            <th class="text-center">Data</th>
             <th class="text-center">Beneficiado</th>
             <th class="text-center">Especialista</th>
             <th class="text-center">Situação</th>
