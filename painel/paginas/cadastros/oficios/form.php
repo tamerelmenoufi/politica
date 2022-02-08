@@ -13,6 +13,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $attr[] = "{$name} = '" . mysql_real_escape_string($value) . "'";
     }
 
+    if(!$codigo){
+        $q = "select * from oficios_sequecia where ano = year(NOW())";
+        $r = mysql_query($q);
+        if(mysql_num_rows($r)){
+            $d = mysql_fetch_object($r);
+            $n = $d->numero;
+            mysql_query("update oficios_sequecia set numero = (numero + 1) where codigo = '{$d->codigo}'");
+        }else{
+            $n = 1;
+            mysql_query("update oficios_sequecia set numero = 2, ano = year(NOW())");
+        }
+        $attr[] = "numero = '{$n}/".date("y")."'";
+    }
+
+
     $attr = implode(', ', $attr);
 
     if ($codigo) {

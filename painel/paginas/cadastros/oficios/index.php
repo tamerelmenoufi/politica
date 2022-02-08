@@ -54,6 +54,7 @@ $result = mysql_query($query);
             <table id="datatable" class="table" width="100%" cellspacing="0">
                 <thead>
                 <tr>
+                    <th>Número</th>
                     <th>Assessor</th>
                     <th>Local</th>
                     <th>Secretária</th>
@@ -64,6 +65,7 @@ $result = mysql_query($query);
                 <tbody>
                 <?php while ($d = mysql_fetch_object($result)): ?>
                     <tr id="linha-<?= $d->codigo; ?>">
+                        <td><?= $d->numero; ?></td>
                         <td><?= $d->assessor; ?></td>
                         <td><?= $d->esfera; ?></td>
                         <td><?= $d->secretaria; ?></td>

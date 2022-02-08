@@ -70,6 +70,10 @@ $d = mysql_fetch_object($result);
         </div>
     </div>
     <div class="card-body">
+    <div class="row">
+            <div class="col-md-4 font-weight-bold">Número</div>
+            <div class="col-md-8"><?= $d->numero; ?></div>
+        </div>
         <div class="row">
             <div class="col-md-4 font-weight-bold">Assessor</div>
             <div class="col-md-8"><?= $d->assessor; ?></div>
