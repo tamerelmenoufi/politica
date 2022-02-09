@@ -65,7 +65,7 @@ include_once "../lib/includes.php";
                                         class="form-control"
                                         id="senha"
                                         name="senha"
-                                        value="123456"
+                                        value=""
                                 >
                             </div>
                         </div>
