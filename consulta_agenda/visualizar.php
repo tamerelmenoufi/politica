@@ -17,16 +17,6 @@ $d = mysql_fetch_object($result);
 
 <div class="container-fluid">
 
-    <div class="row">
-        <div class="col-md-12 my-2">
-            <div class="float-right">
-                <button class="btn btn-info btn-sm">
-                    <i class="fa-solid fa-print"></i> Imprimir
-                </button>
-            </div>
-        </div>
-    </div>
-    <hr>
     <div>
         <h5 class="card-title text-gray-800">Informações do beneficiado</h5>
 

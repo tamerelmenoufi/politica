@@ -30,7 +30,7 @@ $eventos = [];
 while ($dadosEventos = mysql_fetch_object($resultEventos)):
     $eventos[] = [
         'id' => $dadosEventos->codigo,
-        'title' => $dadosEventos->c_descricao ?: 'Outros',
+        'title' => formata_datahora($dadosEventos->data_agenda, HORA_MINUTO) . ' - ' . $dadosEventos->b_nome . " (" . ($dadosEventos->c_descricao ?: 'Outros') . ")",
         'start' => date('Y-m-d', strtotime($dadosEventos->data_agenda)),
     ];
 endwhile;
@@ -47,10 +47,22 @@ endwhile;
         min-height: .1em;
     }
 
+    /* ===== Full calendar ===== */
+
     div.fc-day-content div {
         max-height: 20px;
         overflow: hidden;
     }
+
+    .fc .fc-daygrid-body-natural .fc-daygrid-day-events {
+        margin-bottom: 0;
+    }
+
+    .fc-daygrid-day-frame {
+        cursor: pointer;
+    }
+
+    /* ===== Full calendar ===== */
 
     /* ===== Scrollbar CSS ===== */
     /* Firefox */
@@ -133,16 +145,18 @@ endwhile;
                 right: 'prev,next today',
             },
             initialView: 'dayGridMonth',
-            themeSystem: 'bootstrap',
+
             fixedWeekCount: false,
             showNonCurrentDates: false,
             dayMaxEvents: 0,
             moreLinkContent: function (arg) {
                 let italicEl = document.createElement('i')
 
-                italicEl.innerHTML = '<span class="badge badge-info text-center d-flex flex-row justify-content-center">' + arg.shortText + '</span>';
+                let html = `<span class="badge badge-info text-right float-right">${arg.shortText}</span>`;
+                italicEl.innerHTML = html;
 
-                let arrayOfDomNodes = [italicEl]
+                let arrayOfDomNodes = [italicEl];
+
                 return {domNodes: arrayOfDomNodes}
             },
             events: <?= json_encode($eventos); ?>,
@@ -192,6 +206,16 @@ endwhile;
             })
         });
 
+        $(document).on('click', '.btn-visualizar', function () {
+            var codigo = $(this).data('codigo');
 
+            $.dialog({
+                title: false,
+                content: `url: visualizar.php?codigo=${codigo}`,
+                theme: 'bootstrap',
+                columnClass: 'large'
+            });
+        });
     });
+
 </script>

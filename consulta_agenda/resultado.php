@@ -71,7 +71,7 @@ $mesArray = [
             <?php endwhile; ?>
 
         <?php else:
-            echo '<tr><td colspan="6">Nenhum agendamento encontrado na data de hoje</td></tr>';
+            echo '<tr><td class="text-center" colspan="6">Nenhum agendamento encontrado na data de hoje</td></tr>';
             ?>
         <?php endif; ?>
         </tbody>
@@ -102,7 +102,7 @@ $mesArray = [
                     <td class="text-center"><?= $d->b_nome; ?></td>
                     <td class="text-center"><?= $d->especialista; ?></td>
                     <td class="text-center"><?= $d->situacao; ?></td>
-                    <td>
+                    <td class="text-center">
                         <button
                                 type="button"
                                 class="btn btn-sm btn-link btn-visualizar"
@@ -115,7 +115,7 @@ $mesArray = [
             <?php endwhile; ?>
 
         <?php else:
-            echo '<tr><td colspan="6">Nenhum agendamento encontrado</td></tr>';
+            echo '<tr><td class="text-center" colspan="6">Nenhum agendamento encontrado</td></tr>';
             ?>
         <?php endif; ?>
         </tbody>
@@ -124,15 +124,6 @@ $mesArray = [
 
 <script>
     $(function () {
-        $('.btn-visualizar').click(function () {
-            var codigo = $(this).data('codigo');
 
-            $.dialog({
-                title: false,
-                content: `url: visualizar.php?codigo=${codigo}`,
-                theme: 'bootstrap',
-                columnClass: 'large'
-            });
-        });
     });
 </script>
