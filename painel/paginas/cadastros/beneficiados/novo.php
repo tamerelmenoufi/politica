@@ -142,7 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="col-md-8">
                     <div class="form-group">
                         <label for="email">
-                            E-Mail <i class="text-danger">*</i>
+                            E-Mail <i class="text-danger"></i>
                         </label>
                         <input
                                 type="email"
@@ -150,7 +150,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 id="email"
                                 name="email"
                                 value="<?= $d->email; ?>"
-                                required
                         >
 
                     </div>
