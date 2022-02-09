@@ -295,7 +295,7 @@ if ($codigo) {
 
         $('#cep').mask('99999-999');
 
-        $('#telefone').mask('(99) 9999-9999');
+        $('#telefone').mask('(99) 9 9999-9999');
 
         $('#municipio').selectpicker();
 
