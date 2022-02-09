@@ -115,6 +115,21 @@ if ($codigo) {
         <form id="form-oficios" enctype="multipart/form-data">
 
             <div class="form-group">
+                <label for="numero">
+                    Número <i class="text-danger">*</i>
+                </label>
+                <input
+                        type="text"
+                        name="numero"
+                        id="numero"
+                        class="form-control"
+                        value="<?=$d->numero?>"
+                        required
+                >
+            </div>
+
+
+            <div class="form-group">
                 <label for="assessor">
                     Assessor <i class="text-danger">*</i>
                 </label>
@@ -265,6 +280,9 @@ if ($codigo) {
 
 <script>
     $(function () {
+
+        $("#numero").mask("999/99");
+
         $("#input-id").fileinput({
             <?php if($codigo and is_file("docs/{$codigo}.pdf")):?>
             initialPreview: [
