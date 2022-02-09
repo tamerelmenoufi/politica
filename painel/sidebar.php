@@ -139,7 +139,9 @@
             </div>
         </div>
     </li>
-
+    <?php
+    if(in_array('Relatórios', $ConfPermissoes)){
+    ?>
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#relatorios"
            aria-expanded="true" aria-controls="relatorios">
@@ -149,17 +151,19 @@
         <div id="relatorios" class="collapse" aria-labelledby="headingUtilities"
              data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <?php
-                if(in_array('Relatórios', $ConfPermissoes)){
-                ?>
-                <a class="collapse-item" href="#" url="paginas/relatorios/index.php">Relatórios</a>
-                <?php
-                }
-                ?>
+                <a class="collapse-item" href="#" url="paginas/relatorios/index.php?tipo=geral">Geral</a>
+                <a class="collapse-item" href="#" url="paginas/relatorios/index.php?tipo=bairros">Bairros</a>
+                <a class="collapse-item" href="#" url="paginas/relatorios/index.php?tipo=servicos">Serviços</a>
+                <a class="collapse-item" href="#" url="paginas/relatorios/index.php?tipo=idade">Idade</a>
+                <a class="collapse-item" href="#" url="paginas/relatorios/index.php?tipo=sexo">Sexo</a>
+                <a class="collapse-item" href="#" url="paginas/relatorios/index.php?tipo=municipios">Municípios</a>
+                <a class="collapse-item" href="#" url="paginas/relatorios/index.php?tipo=assessores">Assessores</a>
             </div>
         </div>
     </li>
-
+    <?php
+    }
+    ?>
 
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#configuracoes"

@@ -5,22 +5,11 @@
     <div class="col-md-10 offset-md-1">
         <div class="card">
             <div class="card-body">
-                <div graficos opc="geral"></div>
+                <div graficos opc="<?=$_GET['tipo']?>"></div>
             </div>
         </div>
     </div>
-
-    <div class="col-md-10 offset-md-1" style="margin-top:20px;">
-        <div class="card">
-            <div class="card-body">
-                <div graficos opc="bairros"></div>
-            </div>
-        </div>
-    </div>
-
 </div>
-
-
 
 
 <script>
