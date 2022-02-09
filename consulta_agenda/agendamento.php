@@ -62,6 +62,10 @@ endwhile;
         cursor: pointer;
     }
 
+    .day-highlight {
+        background-color: #dcedc8 !important;
+    }
+
     /* ===== Full calendar ===== */
 
     /* ===== Scrollbar CSS ===== */
@@ -85,44 +89,50 @@ endwhile;
         border-radius: 2px;
         border: 1px none #ffffff;
     }
+
+    .btn-visualizar {
+        cursor: pointer;
+    }
 </style>
 
-<nav class="navbar d-block navbar-light bg-light bg-white mb-4 static-top py-3 shadow">
-    <a class="navbar-brand mr-4 voltar" href="#" style="font-size: 1.2em">
-        <i class="fa-solid fa-arrow-left"></i>
-    </a>
+<div id="agendamento">
+    <nav class="navbar d-block navbar-light bg-light bg-white mb-4 static-top py-3 shadow">
+        <a class="navbar-brand mr-4 voltar" href="#" style="font-size: 1.2em">
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
 
-    <span><?= $d->st_tipo; ?></span> - <span><?= $d->descricao; ?></span>
-</nav>
+        <span><?= $d->st_tipo; ?></span> - <span><?= $d->descricao; ?></span>
+    </nav>
 
-<div class="col-md-12">
-    <div class="row">
+    <div class="col-md-12">
+        <div class="row">
 
-        <div class="col-md-12">
-            <div class="card shadow">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Agendamentos</h6>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-12 col-lg-5 my-2">
-                            <div id="calendar"></div>
-                        </div>
-                        <div class="col-sm-12 col-md-12 col-lg-7 my-2">
-                            <div id="resultado"></div>
+            <div class="col-md-12">
+                <div class="card shadow">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Agendamentos</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-5 my-2">
+                                <div id="calendar"></div>
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-7 my-2">
+                                <div id="resultado"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<input
-        type="hidden"
-        id="servico_tipo"
-        value="<?= $servico_tipo ?>"
->
+    <input
+            type="hidden"
+            id="servico_tipo"
+            value="<?= $servico_tipo ?>"
+    >
+</div>
 
 <script>
 
@@ -149,6 +159,7 @@ endwhile;
             fixedWeekCount: false,
             showNonCurrentDates: false,
             dayMaxEvents: 0,
+            events: <?= json_encode($eventos); ?>,
             moreLinkContent: function (arg) {
                 let italicEl = document.createElement('i')
 
@@ -159,8 +170,19 @@ endwhile;
 
                 return {domNodes: arrayOfDomNodes}
             },
-            events: <?= json_encode($eventos); ?>,
+            eventContent: function (arg) {
+                let italicEl = document.createElement('i')
+                let dados = arg.event._def;
+                let html = `<span class="btn-visualizar" data-codigo="${dados.publicId}" style="font-style: normal;">${dados.title}</span>`;
+
+                italicEl.innerHTML = html;
+
+                let arrayOfDomNodes = [italicEl]
+                return {domNodes: arrayOfDomNodes}
+            },
             dateClick: function (info) {
+                $(".day-highlight").removeClass("day-highlight");
+                $(info.dayEl).addClass("day-highlight");
                 calendar.gotoDate(date)
                 consulta_agenda(info.dateStr, servico_tipo);
             },
@@ -206,7 +228,7 @@ endwhile;
             })
         });
 
-        $(document).on('click', '.btn-visualizar', function () {
+        $('#agendamento').on('click', '.btn-visualizar', function () {
             var codigo = $(this).data('codigo');
 
             $.dialog({
