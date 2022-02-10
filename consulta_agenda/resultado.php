@@ -35,7 +35,7 @@ $mesArray = [
     <?= date('d', strtotime($data)); ?> de <?= $mesArray[date('m', strtotime($data))]; ?>
 </h1>
 
-<div class="table-responsive mb-2" style="min-height: 140px;border: 1px solid #e3e6f0">
+<div class="table-responsive mb-2" style="min-height: 140px;">
 
     <table class="table table-sm table-hover" style="font-size: .9rem;">
         <thead>
@@ -57,7 +57,9 @@ $mesArray = [
                     <td class="text-center"><?= $data; ?></td>
                     <td class="text-center"><?= $d->b_nome; ?></td>
                     <td class="text-center"><?= $d->especialista; ?></td>
-                    <td class="text-center"><?= $d->situacao; ?></td>
+                    <td class="text-center">
+                        <span text_situacao_<?= $d->codigo; ?>><?= $d->situacao; ?></span>
+                    </td>
                     <td>
                         <button
                                 type="button"
@@ -80,7 +82,7 @@ $mesArray = [
 <br>
 <h1 class="h5 text-gray-800">Mês de <?= $mesArray[date('m', strtotime($data))]; ?></h1>
 
-<div class="table-responsive" style="min-height: 140px;border: 1px solid #e3e6f0">
+<div class="table-responsive" style="min-height: 140px;">
     <table class="table table-sm table-hover" style="font-size: .9rem;">
         <thead>
         <tr>
@@ -101,7 +103,9 @@ $mesArray = [
                     <td class="text-center"><?= $data; ?></td>
                     <td class="text-center"><?= $d->b_nome; ?></td>
                     <td class="text-center"><?= $d->especialista; ?></td>
-                    <td class="text-center"><?= $d->situacao; ?></td>
+                    <td class="text-center">
+                        <span text_situacao_<?= $d->codigo; ?>><?= $d->situacao; ?></span>
+                    </td>
                     <td class="text-center">
                         <button
                                 type="button"
