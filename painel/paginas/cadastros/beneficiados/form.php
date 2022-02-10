@@ -252,7 +252,7 @@ if ($codigo) {
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="cpf">
-                            CEP <i class="text-danger">*</i>
+                            CEP <i class="text-danger"></i>
                         </label>
                         <input
                                 type="text"
@@ -260,7 +260,6 @@ if ($codigo) {
                                 id="cep"
                                 name="cep"
                                 value="<?= $d->cep; ?>"
-                                required
                         >
 
                     </div>
