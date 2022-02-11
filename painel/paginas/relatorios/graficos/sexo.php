@@ -22,13 +22,15 @@ $Bd = [
     'rgba(255, 159, 64, 1)'
 ];
 
-
-$query = "select (CASE WHEN b.sexo = 'm' THEN 'Masculino' WHEN b.sexo = 'f' THEN 'Feminino' END) AS descricao, count(*) as qt from beneficiados b "
-    #."INNER JOIN  servicos s on s.beneficiado = b.codigo "
+$colunaDescricao = "(CASE WHEN b.sexo = 'm' THEN 'Masculino' WHEN b.sexo = 'f' THEN 'Feminino' END) AS descricao";
+$query = "SELECT {$colunaDescricao}, count(*) as qt from beneficiados b "
+    . "INNER JOIN  servicos s on s.beneficiado = b.codigo "
     . "group by b.sexo";
+
 $result = mysql_query($query);
 
 $i = 0;
+
 while ($d = mysql_fetch_object($result)) {
     $rotulo[] = $d->descricao;
     $qt[] = $d->qt;
@@ -117,7 +119,7 @@ if ($qt) $qt = implode(", ", $qt);
       }*/,
                     title: {
                         display: true,
-                        text: 'Chart.js Horizontal Bar Chart'
+                        text: 'Quantitativo de sexo de beneficiados'
                     },
 
 

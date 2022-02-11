@@ -23,7 +23,7 @@
     ];
 
 
-    $query = "select b.tipo, COUNT(*) as qt from servicos a left join servico_tipo b on a.tipo = b.codigo group by a.tipo";
+    $query = "SELECT b.tipo, COUNT(*) AS qt FROM servicos a LEFT JOIN servico_tipo b ON a.tipo = b.codigo GROUP BY a.tipo";
     $result = mysql_query($query);
     $i=0;
     while($d = mysql_fetch_object($result)){
@@ -114,7 +114,7 @@ const myChart<?=$md5?> = new Chart(ctx<?=$md5?>,
       }*/,
       title: {
         display: true,
-        text: 'Chart.js Horizontal Bar Chart'
+        text: 'Quantitativo de serviços'
       },
 
 

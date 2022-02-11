@@ -22,12 +22,15 @@
         'rgba(255, 159, 64, 1)'
     ];
 
+    $query = "SELECT a.nome AS descricao, COUNT(*) AS qt FROM servicos s "
+    ."INNER JOIN assessores a ON a.codigo = s.assessor "
+    ."GROUP BY s.assessor";
 
-    $query = "select b.tipo, count(*) as qt from servicos a left join servico_tipo b on a.tipo = b.codigo group by a.tipo";
+    #$query = "select b.tipo, count(*) as qt from servicos a left join servico_tipo b on a.tipo = b.codigo group by a.tipo";
     $result = mysql_query($query);
     $i=0;
     while($d = mysql_fetch_object($result)){
-        $rotulo[] = $d->tipo;
+        $rotulo[] = $d->descricao;
         $qt[] =  $d->qt;
         $lg[] = $Legenda[$i];
         $bg[] = $Bg[$i];

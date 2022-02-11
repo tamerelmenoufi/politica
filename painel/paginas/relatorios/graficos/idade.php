@@ -37,7 +37,7 @@ SELECT SUM(IF((YEAR(CURRENT_DATE) - DATE_FORMAT(data_nascimento, '%Y')) >= 46,1,
 FROM beneficiados
 
 ";
-    //"LEFT JOIN servicos s ON s.beneficiado = b.codigo";
+//"LEFT JOIN servicos s ON s.beneficiado = b.codigo";
 
 $result = mysql_query($query);
 $i = 0;
@@ -129,7 +129,7 @@ if ($qt) $qt = implode(", ", $qt);
       }*/,
                     title: {
                         display: true,
-                        text: 'Chart.js Horizontal Bar Chart'
+                        text: 'Quantitativo por idade'
                     },
 
 
