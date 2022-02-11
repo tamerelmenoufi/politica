@@ -63,7 +63,7 @@ if ($codigo) {
                 $queryServicos = "SELECT * FROM acao_social_tipo ORDER BY tipo";
                 $resultServico = mysql_query($queryServicos);
 
-                $servicos_check = explode(',', $d->servicos);
+                $servicos_check = explode(',', $d['servicos']);
 
                 while ($dados_servico = mysql_fetch_object($resultServico)):
                     $isChecked = (@in_array($dados_servico->codigo, $servicos_check));
@@ -91,7 +91,7 @@ if ($codigo) {
             </div>
 
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label for="data">Data <i class="text-danger">*</i></label>
                         <input
