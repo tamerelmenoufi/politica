@@ -53,47 +53,50 @@ if ($codigo) {
 
 ?>
 <style>
-    div[NovoCadastroBG]{
-        position:fixed;
-        left:0;
-        bottom:0;
-        width:100%;
-        height:100%;
-        z-index:999;
-        background-color:#333;
-        opacity:0.5;
-        display:none;
-        z-index:998;
+    div[NovoCadastroBG] {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 999;
+        background-color: #333;
+        opacity: 0.5;
+        display: none;
+        z-index: 998;
     }
-    div[NovoCadastro]{
-        position:relative;
-        z-index:999;
-        background-color:#fff;
-        padding:20px;
-        padding:20px;
-        border-radius:10px;
-        display:none;
+
+    div[NovoCadastro] {
+        position: relative;
+        z-index: 999;
+        background-color: #fff;
+        padding: 20px;
+        padding: 20px;
+        border-radius: 10px;
+        display: none;
     }
-    div[NovoAssessorBG]{
-        position:fixed;
-        left:0;
-        bottom:0;
-        width:100%;
-        height:100%;
-        z-index:999;
-        background-color:#333;
-        opacity:0.5;
-        display:none;
-        z-index:998;
+
+    div[NovoAssessorBG] {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 999;
+        background-color: #333;
+        opacity: 0.5;
+        display: none;
+        z-index: 998;
     }
-    div[NovoAssessor]{
-        position:relative;
-        z-index:999;
-        background-color:#fff;
-        padding:20px;
-        padding:20px;
-        border-radius:10px;
-        display:none;
+
+    div[NovoAssessor] {
+        position: relative;
+        z-index: 999;
+        background-color: #fff;
+        padding: 20px;
+        padding: 20px;
+        border-radius: 10px;
+        display: none;
     }
 </style>
 <nav aria-label="breadcrumb">
@@ -111,49 +114,49 @@ if ($codigo) {
 <div class="card shadow mb-4">
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
         <h6 class="m-0 font-weight-bold text-primary">
-            <?= $codigo ? 'Alterar' : 'Cadastrar'; ?> Saúde (<?=$cat_desc?>)
+            <?= $codigo ? 'Alterar' : 'Cadastrar'; ?> Saúde (<?= $cat_desc ?>)
         </h6>
     </div>
     <div class="card-body">
         <form id="form-servicos">
 
-            <input type="hidden" id="tipo" name="tipo" value="7" />
-            <input type="hidden" id="categoria" name="categoria" value="<?=$_SESSION['categoria']?>" />
+            <input type="hidden" id="tipo" name="tipo" value="7"/>
+            <input type="hidden" id="categoria" name="categoria" value="<?= $_SESSION['categoria'] ?>"/>
 
 
             <?php
-                $query = "SELECT * FROM especialidades where servico_tipo = '7' and deletado = '0' ORDER BY descricao";
-                $result = mysql_query($query);
-                if(mysql_num_rows($result)){
-            ?>
+            $query = "SELECT * FROM especialidades where servico_tipo = '7' and deletado = '0' ORDER BY descricao";
+            $result = mysql_query($query);
+            if (mysql_num_rows($result)) {
+                ?>
 
-            <div class="form-group">
-                <label for="especialidade">
-                    Especialidade <i class="text-danger">*</i>
-                </label>
-                <select
-                        class="form-control"
-                        id="especialidade"
-                        name="especialidade"
-                        data-live-search="true"
-                        data-none-selected-text="Selecione"
-                        required
-                >
-                    <option value=""></option>
-                    <?php
+                <div class="form-group">
+                    <label for="especialidade">
+                        Especialidade <i class="text-danger">*</i>
+                    </label>
+                    <select
+                            class="form-control"
+                            id="especialidade"
+                            name="especialidade"
+                            data-live-search="true"
+                            data-none-selected-text="Selecione"
+                            required
+                    >
+                        <option value=""></option>
+                        <?php
 
-                    while ($b = mysql_fetch_object($result)): ?>
-                        <option
-                            <?= ($codigo and $d->especialidade == $b->codigo) ? 'selected' : ''; ?>
-                                value="<?= $b->codigo ?>">
-                            <?= $b->descricao; ?>
-                        </option>
-                    <?php endwhile; ?>
-                </select>
+                        while ($b = mysql_fetch_object($result)): ?>
+                            <option
+                                <?= ($codigo and $d->especialidade == $b->codigo) ? 'selected' : ''; ?>
+                                    value="<?= $b->codigo ?>">
+                                <?= $b->descricao; ?>
+                            </option>
+                        <?php endwhile; ?>
+                    </select>
 
-            </div>
-            <?php
-                }
+                </div>
+                <?php
+            }
             ?>
             <div class="form-group">
                 <label for="beneficiado">
@@ -204,7 +207,8 @@ if ($codigo) {
 
             <div class="form-group">
                 <label for="especialista">
-                    <?=(($cat_desc == 'Exame' or $cat_desc == 'Cirurgia')?'Especialidade':(($cat_desc == 'Outros')?'Fonte/Responsável':'Especialista'))?> <i class="text-danger">*</i>
+                    <?= (($cat_desc == 'Exame' or $cat_desc == 'Cirurgia') ? 'Especialidade' : (($cat_desc == 'Outros') ? 'Fonte/Responsável' : 'Especialista')) ?>
+                    <i class="text-danger">*</i>
                 </label>
                 <input
                         type="text"
@@ -250,7 +254,7 @@ if ($codigo) {
 
             <div class="form-group">
                 <label for="local_fonte">
-                <?=(($cat_desc == 'Outros')?'Tipo':'Fonte Local')?> <i class="text-danger">*</i>
+                    <?= (($cat_desc == 'Outros') ? 'Tipo' : 'Fonte Local') ?> <i class="text-danger">*</i>
                 </label>
                 <select
                         class="form-control"
@@ -276,7 +280,7 @@ if ($codigo) {
 
             </div>
 
-            <div detalhes class="form-group" style="display:<?=(($d->local_fonte == '43')?'block':'none')?>;">
+            <div detalhes class="form-group" style="display:<?= (($d->local_fonte == '43') ? 'block' : 'none') ?>;">
                 <label for="detalhes">
                     Tipo
                 </label>
@@ -290,9 +294,10 @@ if ($codigo) {
 
             </div>
 
-            <div local_responsavel class="form-group" style="display:<?=(($d->local_fonte == '48' or $d->local_fonte == '49' or $d->local_fonte == '50')?'block':'none')?>;">
+            <div local_responsavel class="form-group"
+                 style="display:<?= (($d->local_fonte == '48' or $d->local_fonte == '49' or $d->local_fonte == '50') ? 'block' : 'none') ?>;">
                 <label for="loca_responsavel">
-                Responsável (Local)
+                    Responsável (Local)
                 </label>
                 <input
                         type="text"
@@ -304,7 +309,8 @@ if ($codigo) {
 
             </div>
 
-            <div local_identificacao class="form-group" style="display:<?=(($d->local_fonte == '48' or $d->local_fonte == '49' or $d->local_fonte == '50')?'block':'none')?>;">
+            <div local_identificacao class="form-group"
+                 style="display:<?= (($d->local_fonte == '48' or $d->local_fonte == '49' or $d->local_fonte == '50') ? 'block' : 'none') ?>;">
                 <label for="local_identificacao">
                     Local
                 </label>
@@ -373,52 +379,52 @@ if ($codigo) {
 
         $("#beneficiado").selectpicker();
 
-
-        $("#beneficiado").change(function(){
+        $("#beneficiado").change(function () {
             valor = $(this).val();
-            if(valor === 'novo'){
+
+            if (valor === 'novo') {
                 $.ajax({
-                    url:"paginas/cadastros/beneficiados/novo.php",
-                    success:function(dados){
+                    url: "paginas/cadastros/beneficiados/novo.php",
+                    success: function (dados) {
                         $("div[NovoCadastro]").html(dados);
-                        $("div[NovoCadastroBG]").css("display","block");
-                        $("div[NovoCadastro]").css("display","block");
+                        $("div[NovoCadastroBG]").css("display", "block");
+                        $("div[NovoCadastro]").css("display", "block");
                     },
-                    error:function(){
+                    error: function () {
                         alert('Ocorreu um erro!');
                     }
                 });
             }
         });
 
-        $("div[NovoCadastroBG]").click(function(){
-            $("div[NovoCadastroBG]").css("display","none");
-            $("div[NovoCadastro]").css("display","none");
+        $("div[NovoCadastroBG]").click(function () {
+            $("div[NovoCadastroBG]").css("display", "none");
+            $("div[NovoCadastro]").css("display", "none");
             $("div[NovoCadastro]").html('');
             $("#beneficiado").val('');
             $("#beneficiado").selectpicker('refresh');
         });
 
-        $("#assessor").change(function(){
+        $("#assessor").change(function () {
             valor = $(this).val();
-            if(valor === 'novo'){
+            if (valor === 'novo') {
                 $.ajax({
-                    url:"paginas/cadastros/assessores/novo.php",
-                    success:function(dados){
+                    url: "paginas/cadastros/assessores/novo.php",
+                    success: function (dados) {
                         $("div[NovoAssessor]").html(dados);
-                        $("div[NovoAssessorBG]").css("display","block");
-                        $("div[NovoAssessor]").css("display","block");
+                        $("div[NovoAssessorBG]").css("display", "block");
+                        $("div[NovoAssessor]").css("display", "block");
                     },
-                    error:function(){
+                    error: function () {
                         alert('Ocorreu um erro!');
                     }
                 });
             }
         });
 
-        $("div[NovoAssessorBG]").click(function(){
-            $("div[NovoAssessorBG]").css("display","none");
-            $("div[NovoAssessor]").css("display","none");
+        $("div[NovoAssessorBG]").click(function () {
+            $("div[NovoAssessorBG]").css("display", "none");
+            $("div[NovoAssessor]").css("display", "none");
             $("div[NovoAssessor]").html('');
             $("#assessor").val('');
             $("#assessor").selectpicker('refresh');
@@ -428,20 +434,20 @@ if ($codigo) {
 
         $("#local_fonte").selectpicker();
 
-        $("#local_fonte").change(function(){
-            if($(this).val() == '43'){
-                $("div[detalhes]").css("display","block");
-            }else{
-                $("div[detalhes]").css("display","none");
+        $("#local_fonte").change(function () {
+            if ($(this).val() == '43') {
+                $("div[detalhes]").css("display", "block");
+            } else {
+                $("div[detalhes]").css("display", "none");
                 $("#detalhes").val('');
             }
 
-            if($(this).val() == '48' || $(this).val() == '49' || $(this).val() == '50'){
-                $("div[local_responsavel]").css("display","block");
-                $("div[local_identificacao]").css("display","block");
-            }else{
-                $("div[local_responsavel]").css("display","none");
-                $("div[local_identificacao]").css("display","none");
+            if ($(this).val() == '48' || $(this).val() == '49' || $(this).val() == '50') {
+                $("div[local_responsavel]").css("display", "block");
+                $("div[local_identificacao]").css("display", "block");
+            } else {
+                $("div[local_responsavel]").css("display", "none");
+                $("div[local_identificacao]").css("display", "none");
                 $("#local_responsavel").val('');
                 $("#local_identificacao").val('');
             }

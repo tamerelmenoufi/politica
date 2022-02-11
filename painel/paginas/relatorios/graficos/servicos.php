@@ -23,7 +23,7 @@
     ];
 
 
-    $query = "select b.tipo, count(*) as qt from servicos a left join servico_tipo b on a.tipo = b.codigo group by a.tipo";
+    $query = "select b.tipo, COUNT(*) as qt from servicos a left join servico_tipo b on a.tipo = b.codigo group by a.tipo";
     $result = mysql_query($query);
     $i=0;
     while($d = mysql_fetch_object($result)){

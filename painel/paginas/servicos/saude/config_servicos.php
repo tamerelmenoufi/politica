@@ -3,9 +3,9 @@ include "../../../../lib/includes.php";
 
 $urlServicos = 'paginas/servicos/saude';
 
-$_SESSION['categoria'] = (($_GET['categoria'])?:$_SESSION['categoria']);
+$_SESSION['categoria'] = (($_GET['categoria']) ?: $_SESSION['categoria']);
 
-$categoria = (($_GET['categoria'])?:$_SESSION['categoria']);
+$categoria = (($_GET['categoria']) ?: $_SESSION['categoria']);
 list($cat_cod, $cat_desc) = mysql_fetch_row(mysql_query("select codigo, descricao from categorias where codigo = '{$categoria}'"));
 
 
@@ -29,4 +29,20 @@ function getSituacaoOptions($situacao)
 {
     $list = getSituacao();
     return $list[$situacao];
+}
+
+function getAtendimento()
+{
+    return [
+        'atendido' => 'Atendido',
+        'nao atendido' => 'Não atendido',
+        'agendado' => 'agendado'
+    ];
+}
+
+function getAtendimentoOptions($situacaoAtendimento)
+{
+    $list = getAtendimento();
+    return $list[$situacaoAtendimento];
+
 }
