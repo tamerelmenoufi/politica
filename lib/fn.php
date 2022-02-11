@@ -56,12 +56,15 @@ function ListaLogs($tabela, $registro){
 function InsertQuery($query){
     list($l, $d) = explode("SET", $query);
     $d = str_replace("=","=>", $d);
-    return "[{$d}]";
+    eval("\$r = [{$d}];");
+    return $r;
 }
 
 function UpdateQuery($query){
     list($l, $d) = explode("SET", $query);
     list($l, $d) = explode("WHERE", $d);
     $d = str_replace("=","=>", $d);
-    return "[{$d}]";
+    eval("\$r = [{$d}];");
+    return $r;
+
 }
