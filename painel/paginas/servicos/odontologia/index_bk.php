@@ -3,7 +3,6 @@ include_once "config_servicos.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir') {
     $codigo = $_POST['codigo'];
-    $query = "DELETE FROM servicos WHERE codigo = '{$codigo}'";
 
     if (exclusao('servicos', $codigo)) {
         echo json_encode(["status" => true, "msg" => "Registro excluído com sucesso"]);
@@ -16,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir') {
 $query = "SELECT s.*, a.nome AS assessor, b.nome AS beneficiado FROM servicos s "
     . "LEFT JOIN assessores a ON a.codigo = s.assessor "
     . "LEFT JOIN beneficiados b ON b.codigo = s.beneficiado "
-    . "WHERE s.tipo = '3' AND s.deletado = '0' "
+    . "WHERE s.tipo = '6' AND s.deletado = '0' "
     . "ORDER BY s.codigo DESC";
 $result = mysql_query($query);
 
@@ -25,17 +24,17 @@ $result = mysql_query($query);
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb shadow bg-gray-custom">
         <li class="breadcrumb-item"><a href="#" url="content.php">Início</a></li>
-        <li class="breadcrumb-item active" aria-current="page">CRAS</li>
+        <li class="breadcrumb-item active" aria-current="page">Odontologia</li>
     </ol>
 </nav>
 
 <div class="card shadow mb-4">
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
         <h6 class="m-0 font-weight-bold text-primary">
-            Serviços - CRAS
+            Serviços
         </h6>
         <?php
-        if (in_array('CRAS - Cadastrar', $ConfPermissoes)) {
+        if (in_array('Odontologia - Cadastrar', $ConfPermissoes)) {
             ?>
             <button type="button" class="btn btn-success btn-sm" url="<?= $urlServicos; ?>/form.php">
                 <i class="fa-solid fa-plus"></i> Novo
@@ -50,28 +49,11 @@ $result = mysql_query($query);
             <table id="datatable" class="table" width="100%" cellspacing="0">
                 <thead>
                 <tr>
-                    <th colspan="5">
-                        <div class="row d-md-flex flex-row align-items-center">
-                            <label>Filtros: </label>
-                            <div class="col-md-3">
-                                <div class="form-group mb-2">
-
-                                    <select
-                                            id="filtro-situacao"
-                                            class="form-control filtro-situacao"
-                                            title="Situação"
-                                            data-width="auto"
-                                    >
-                                        <option value=""></option>
-                                        <?php
-                                        foreach (getSituacao() as $key => $value):
-                                            echo "<option value=\"{$value}\">{$value}</option>";
-                                        endforeach;
-                                        ?>
-                                    </select>
-                                </div>
-                            </div>
-                    </th>
+                    <th class="filterhead"></th>
+                    <th class="filterhead"></th>
+                    <th class="filterhead"></th>
+                    <th class="filterhead">Situação</th>
+                    <th class="filterhead"></th>
                 </tr>
                 <tr>
                     <th>Beneficiado</th>
@@ -96,7 +78,7 @@ $result = mysql_query($query);
                                 <i class="fa-regular fa-eye text-info"></i>
                             </button>
                             <?php
-                            if (in_array('CRAS - Editar', $ConfPermissoes)) {
+                            if (in_array('Odontologia - Editar', $ConfPermissoes)) {
                                 ?>
                                 <button
                                         class="btn btn-sm btn-link"
@@ -106,7 +88,7 @@ $result = mysql_query($query);
                                 </button>
                                 <?php
                             }
-                            if (in_array('CRAS - Excluir', $ConfPermissoes)) {
+                            if (in_array('Odontologia - Excluir', $ConfPermissoes)) {
                                 ?>
                                 <button class="btn btn-sm btn-link btn-excluir" data-codigo="<?= $d->codigo ?>">
                                     <i class="fa-regular fa-trash-can text-danger"></i>
@@ -118,7 +100,15 @@ $result = mysql_query($query);
                     </tr>
                 <?php endwhile; ?>
                 </tbody>
-
+                <tfoot>
+                <tr>
+                    <th>Beneficiado</th>
+                    <th>Assessor</th>
+                    <th>Data da Agenda</th>
+                    <th>Situação</th>
+                    <th></th>
+                </tr>
+                </tfoot>
             </table>
         </div>
     </div>
@@ -126,16 +116,21 @@ $result = mysql_query($query);
 
 <script>
     $(function () {
-        var table = $("#datatable").DataTable();
+        var table = $('#datatable').DataTable({
+            "bLengthChange": false,
+            "iDisplayLength": 15
+        });
 
-        $('#filtro-situacao').selectpicker();
-
-        $('#filtro-situacao').change(function () {
-            var val = $(this).val();
-
-            table.column(3)
-                .search(val ? '^' + $(this).val() + '$' : val, true, false)
-                .draw();
+        $(".filterhead").each(function (i) {
+            var select = $('<select><option value=""></option></select>')
+                .appendTo($(this).empty())
+                .on('change', function () {
+                    var term = $(this).val();
+                    table.column(i).search(term, false, false).draw();
+                });
+            table.column(i).data().unique().sort().each(function (d, j) {
+                select.append('<option value="' + d + '">' + d + '</option>')
+            });
         });
 
         $('.btn-excluir').click(function () {
