@@ -25,6 +25,7 @@ function getSituacao()
     ];
 }
 
+
 function getSituacaoOptions($situacao)
 {
     $list = getSituacao();
@@ -34,9 +35,10 @@ function getSituacaoOptions($situacao)
 function getAtendimento()
 {
     return [
-        'atendido' => 'Atendido',
-        'nao atendido' => 'Não atendido',
-        'agendado' => 'agendado'
+        'Atendido',
+        'Não atendido',
+        'Agendado',
+        'Aguardando'
     ];
 }
 

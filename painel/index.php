@@ -137,7 +137,7 @@ if (!isset($_SESSION['usuario'])) {
                 targets: 'no-sort',
                 orderable: false,
             }],
-            stateSave: false
+            stateSave: true,
         });
 
         //Jconfirm
@@ -160,6 +160,10 @@ if (!isset($_SESSION['usuario'])) {
 
         // Bootstrap select
         $.fn.selectpicker.Constructor.DEFAULTS.noneSelectedText = 'Selecione';
+
+        $.fn.selectpicker.Constructor.DEFAULTS.mobile = true;
+
+
     });
 
     $(function () {

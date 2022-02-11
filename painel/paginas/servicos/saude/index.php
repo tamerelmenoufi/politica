@@ -12,15 +12,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'excluir') {
     exit;
 }
 
-$query = "SELECT s.*, a.nome AS assessor, b.nome AS beneficiado FROM servicos s "
+$colunaAtendimento = "(CASE WHEN s.data_agenda <= NOW() AND s.situacao = 'concluido' AND s.data_agenda > 0 THEN 'Atendido' "
+    . "WHEN s.data_agenda < NOW() AND s.situacao != 'concluido' AND s.data_agenda > 0 THEN 'Não atendido' "
+    . "WHEN s.data_agenda > NOW() AND s.data_agenda > 0 THEN 'agendado' "
+    . "ELSE 'Aguardando' "
+    . "END) AS atendimento";
+
+$query = "SELECT s.*, a.nome AS assessor, b.nome AS beneficiado, {$colunaAtendimento} FROM servicos s "
     . "LEFT JOIN assessores a ON a.codigo = s.assessor "
     . "LEFT JOIN beneficiados b ON b.codigo = s.beneficiado "
     . "WHERE s.tipo = '7' AND s.deletado = '0' AND categoria = '{$categoria}'"
     . "ORDER BY s.codigo DESC";
+
 $result = mysql_query($query);
 
 ?>
 
+<style>
+    .bootstrap-select .dropdown-menu {
+        padding: 5px;
+        width: auto !important;
+    }
+
+    .bootstrap-select .dropdown-menu > li {
+
+    }
+</style>
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb shadow bg-gray-custom">
         <li class="breadcrumb-item"><a href="#" url="content.php">Início</a></li>
@@ -52,14 +69,14 @@ $result = mysql_query($query);
                     <th colspan="5">
                         <div class="row d-md-flex flex-row align-items-center">
                             <label>Filtros: </label>
-                            <div class="col-md-3">
+                            <div class="col-12 col-md-3">
                                 <div class="form-group mb-2">
 
                                     <select
                                             id="filtro-situacao"
                                             class="form-control filtro-situacao"
                                             title="Situação"
-                                            data-width="auto"
+                                            data-width="100%"
                                     >
                                         <option value=""></option>
                                         <?php
@@ -70,6 +87,26 @@ $result = mysql_query($query);
                                     </select>
                                 </div>
                             </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group mb-2">
+
+                                    <select
+                                            id="filtro-atendimento"
+                                            class="form-control filtro-atendimento"
+                                            title="Atendimento"
+                                            data-width="100%"
+                                    >
+                                        <option value=""></option>
+                                        <?php
+                                        foreach (getAtendimento() as $value):
+                                            echo "<option value=\"{$value}\">{$value}</option>";
+                                        endforeach;
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     </th>
                 </tr>
                 <tr>
@@ -77,6 +114,7 @@ $result = mysql_query($query);
                     <th>Assessor</th>
                     <th>Data da Agenda</th>
                     <th>Situação</th>
+                    <th>Atendimento</th>
                     <th class="mw-20">Ações</th>
                 </tr>
                 </thead>
@@ -87,6 +125,7 @@ $result = mysql_query($query);
                         <td><?= $d->assessor; ?></td>
                         <td><?= formata_datahora($d->data_agenda, DATA_HM); ?></td>
                         <td><?= getSituacaoOptions($d->situacao); ?></td>
+                        <td><?= $d->atendimento; ?></td>
                         <td>
                             <button
                                     class="btn btn-sm btn-link"
@@ -129,10 +168,20 @@ $result = mysql_query($query);
 
         $('#filtro-situacao').selectpicker();
 
+        $('#filtro-atendimento').selectpicker();
+
         $('#filtro-situacao').change(function () {
             var val = $(this).val();
 
             table.column(3)
+                .search(val ? '^' + $(this).val() + '$' : val, true, false)
+                .draw();
+        });
+
+        $('#filtro-atendimento').change(function () {
+            var val = $(this).val();
+
+            table.column(4)
                 .search(val ? '^' + $(this).val() + '$' : val, true, false)
                 .draw();
         });

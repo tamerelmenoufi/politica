@@ -8,5 +8,7 @@ function formata_datahora($datahora, $formato = null)
 {
     if (!$formato) $formato = 'd/m/Y H:i:s';
 
+    if ($datahora == 0) return '(Não definido)';
+
     return date($formato, strtotime($datahora));
 }
