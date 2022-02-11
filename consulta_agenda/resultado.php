@@ -32,7 +32,7 @@ $mesArray = [
 ?>
 <br>
 <h1 class="h5 text-gray-800 my-1 mt-2">
-    <?= date('d', strtotime($data)); ?> de <?= $mesArray[date('m', strtotime($data))]; ?>
+    <?= 'Dia ' . date('d', strtotime($data)); ?>
 </h1>
 
 <div class="table-responsive mb-2" style="min-height: 140px;">

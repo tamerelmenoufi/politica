@@ -78,7 +78,6 @@ $result = mysql_query($query);
                                             title="Situação"
                                             data-width="100%"
                                     >
-                                        <option value=""></option>
                                         <?php
                                         foreach (getSituacao() as $key => $value):
                                             echo "<option value=\"{$value}\">{$value}</option>";
@@ -97,7 +96,6 @@ $result = mysql_query($query);
                                             title="Atendimento"
                                             data-width="100%"
                                     >
-                                        <option value=""></option>
                                         <?php
                                         foreach (getAtendimento() as $value):
                                             echo "<option value=\"{$value}\">{$value}</option>";

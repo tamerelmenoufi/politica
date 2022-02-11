@@ -21,7 +21,8 @@ $d = mysql_fetch_object($result);
 $queryEventos = "SELECT s.*, b.nome AS b_nome, c.descricao AS c_descricao FROM servicos s "
     . "LEFT JOIN beneficiados b ON b.codigo = s.beneficiado "
     . "LEFT JOIN categorias c ON c.codigo = s.categoria "
-    . "WHERE s.tipo = '{$servico_tipo}'";
+    . "WHERE s.tipo = '{$servico_tipo}' AND s.data_agenda > 0 AND s.deletado = '0'";
+
 
 $resultEventos = mysql_query($queryEventos);
 
@@ -96,12 +97,74 @@ endwhile;
 </style>
 
 <div id="agendamento">
-    <nav class="navbar d-block navbar-light bg-light bg-white mb-4 static-top py-3 shadow">
-        <a class="navbar-brand mr-4 voltar" href="#" style="font-size: 1.2em">
-            <i class="fa-solid fa-arrow-left"></i>
-        </a>
+    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow flex-row justify-content-between align-items-center">
+        <div>
+            <a class="navbar-brand mr-4 voltar text-gray-700" href="#" style="font-size: 1.2em">
+                <i class="fa-solid fa-arrow-left"></i>
+            </a>
+        </div>
+        <div class="text-gray-700 h4 font-weight-bold mb-0"><?= $d->st_tipo; ?></div>
 
-        <span><?= $d->st_tipo; ?></span> - <span><?= $d->descricao; ?></span>
+        <div>
+            <ul class="navbar-nav ml-auto">
+                <?php
+                $querySemAgenda = "SELECT lf.*, st.tipo AS st_tipo, b.nome AS b_nome, s.codigo AS s_codigo FROM local_fontes lf "
+                    . "INNER JOIN servico_tipo st ON st.codigo = lf.servico_tipo "
+                    . "INNER JOIN servicos s ON s.local_fonte = lf.codigo "
+                    . "INNER JOIN beneficiados b ON b.codigo = s.beneficiado "
+                    . "WHERE lf.servico_tipo = '{$servico_tipo}' AND lf.senha = '{$senha}' "
+                    . "AND s.data_agenda = 0 AND lf.deletado = '0' ";
+                #echo $querySemAgenda;
+                $resultSemAgenda = mysql_query($querySemAgenda);
+
+                $numSemAgenda = mysql_num_rows($resultSemAgenda);
+                ?>
+                <li class="nav-item dropdown no-arrow mx-1">
+                    <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                       data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-bell fa-fw"></i>
+                        <!-- Counter - Alerts -->
+                        <span class="badge badge-danger badge-counter"><?= $numSemAgenda ?: '0' ?>+</span>
+                    </a>
+
+                    <!-- Dropdown - Alerts -->
+                    <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                         aria-labelledby="alertsDropdown">
+                        <h6 class="dropdown-header">
+                            Agendamento sem data
+                        </h6>
+                        <?php if ($numSemAgenda): ?>
+                            <?php while ($dadosSemAgenda = mysql_fetch_object($resultSemAgenda)): ?>
+                                <a
+                                        class="dropdown-item d-flex align-items-center sem-agenda"
+                                        href="#"
+                                        id="sem_agenda_<?= $dadosSemAgenda->s_codigo; ?>"
+                                        data-cod_servico="<?= $dadosSemAgenda->s_codigo; ?>"
+                                >
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-primary">
+                                            <i class="fas fa-file-alt text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500"><?= $dadosSemAgenda->descricao; ?></div>
+                                        <span class="font-weight-bold"><?= $dadosSemAgenda->b_nome; ?></span>
+                                    </div>
+                                </a>
+                            <?php endwhile; ?>
+                            <!-- <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>-->
+                        <?php else: ?>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <div>
+                                    <span class="font-weight-bold text-gray-500">Nenhum agendamento encontrado</span>
+                                </div>
+                            </a>
+                        <?php endif; ?>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </nav>
 
     <div class="col-md-12">
@@ -236,6 +299,17 @@ endwhile;
                 content: `url: visualizar.php?codigo=${codigo}`,
                 theme: 'bootstrap',
                 columnClass: 'large'
+            });
+        });
+
+        $('.sem-agenda').click(function () {
+            var cod_servico = $(this).data('cod_servico');
+
+            dialogDefineData = $.dialog({
+                title: 'Definir data do agendamento',
+                content: `url: form_definir_data.php?cod_servico=${cod_servico}`,
+                theme: 'bootstrap',
+                columnClass: 'medium'
             });
         });
     });

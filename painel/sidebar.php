@@ -151,7 +151,7 @@
         <div id="relatorios" class="collapse" aria-labelledby="headingUtilities"
              data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="#" url="paginas/relatorios/index.php?tipo=geral">Geral</a>
+                <!--<a class="collapse-item" href="#" url="paginas/relatorios/index.php?tipo=geral">Geral</a>-->
                 <a class="collapse-item" href="#" url="paginas/relatorios/index.php?tipo=bairros">Bairros</a>
                 <a class="collapse-item" href="#" url="paginas/relatorios/index.php?tipo=servicos">Serviços</a>
                 <a class="collapse-item" href="#" url="paginas/relatorios/index.php?tipo=idade">Idade</a>
