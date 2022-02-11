@@ -31,7 +31,7 @@ function exclusao($tabela, $codigo, $fisica = false)
 }
 
 function ListaLogs($tabela, $registro){
-    $query = [];
+    $Query = [];
     $query = "select a.*, b.nome from sis_logs a left join usuarios b on a.usuario=b.codigo where a.tabela = '{$tabela}' and a.registro = '{$registro}' order by a.codigo asc";
     $result = mysql_query($query);
     while($d = mysql_fetch_object($result)){
@@ -39,18 +39,18 @@ function ListaLogs($tabela, $registro){
         switch($d->operacao){
 
             case 'INSERT':{
-                $query[] = InsertQuery($d->query);
+                $Query[] = InsertQuery($d->query);
                 break;
             }
             case 'UPDATE':{
-                $query[] = UpdateQuery($d->query);
+                $Query[] = UpdateQuery($d->query);
                 break;
             }
 
         }
 
     }
-    return $query;
+    return $Query;
 }
 
 function InsertQuery($query){
