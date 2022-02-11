@@ -30,3 +30,38 @@ function exclusao($tabela, $codigo, $fisica = false)
     }
 }
 
+function ListaLogs($tabela, $registro){
+    $query = [];
+    $query = "select a.*, b.nome from sis_logs a left join usuarios b on a.usuario=b.codigo where a.tabela = '{$tabela}' and a.registro = '{$registro}' order by a.codigo asc";
+    $result = mysql_query($query);
+    while($d = mysql_fetch_object($result)){
+
+        switch($d->operacao){
+
+            case 'INSERT':{
+                $query[] = InsertQuery($d->query);
+                break;
+            }
+            case 'UPDATE':{
+                $query[] = UpdateQuery($d->query);
+                break;
+            }
+
+        }
+
+    }
+    return $query;
+}
+
+function InsertQuery($query){
+    list($l, $d) = explode("SET", $query);
+    $d = str_replace("=","=>", $d);
+    eval("return [{$d}];");
+}
+
+function UpdateQuery($query){
+    list($l, $d) = explode("SET", $query);
+    list($l, $d) = explode("WHERE", $d);
+    $d = str_replace("=","=>", $d);
+    eval("return [{$d}];");
+}

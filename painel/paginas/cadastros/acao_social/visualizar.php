@@ -52,7 +52,18 @@ $d = mysql_fetch_object($result);
             </button>
             <?php
             }
-            if(in_array('Ação Social - Excluir', $ConfPermissoes)){
+            if(in_array('Ação Social - Logs', $ConfPermissoes)){
+            ?>
+            <button
+                    type="button"
+                    class="btn btn-info btn-logs btn-sm float-left"
+                    data-codigo="<?= $codigo; ?>"
+            >
+                <i class="fa-regular fa-trash-can"></i> Logs
+            </button>
+            <?php
+            }
+           if(in_array('Ação Social - Excluir', $ConfPermissoes)){
             ?>
             <button
                     type="button"
@@ -112,6 +123,15 @@ $d = mysql_fetch_object($result);
 </div>
 
 <script>
+
+    $(".btn-logs").click(function(){
+        dados = '<?php print_r(ListaLogs('acao_social', $codigo))?>';
+        $.dialog({
+            content:dados,
+            title:false,
+        });
+    });
+
     $('.btn-excluir').click(function () {
         var codigo = $(this).data('codigo');
 
