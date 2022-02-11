@@ -113,8 +113,8 @@ if ($codigo) {
 <script>
     $(function () {
         $("#assessor").selectpicker();
-
         $('#form-acao-social').validate();
+        $("select, input").attr("disabled","disabled");
 
     });
 </script>
