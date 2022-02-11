@@ -90,14 +90,13 @@ if ($codigo) {
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label for="cpf">CPF <i class="text-danger">*</i></label>
+                        <label for="cpf">CPF <i class="text-danger"></i></label>
                         <input
                                 type="text"
                                 class="form-control"
                                 id="cpf"
                                 name="cpf"
                                 value="<?= $d->cpf; ?>"
-                                required
                         >
 
                     </div>
