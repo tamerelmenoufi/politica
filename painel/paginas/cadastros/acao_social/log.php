@@ -9,6 +9,11 @@ if ($codigo) {
 }
 
 ?>
+<style>
+    .jconfirm .jconfirm-box div.jconfirm-closeIcon{
+        right:35px;
+    }
+</style>
 <div class="card shadow mb-4" style="margin:20px;">
     <div class="card-body">
         <form id="form-acao-social">
