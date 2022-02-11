@@ -124,6 +124,7 @@ $usuario_permissao = explode(',', $d->permissoes);
                         "{$dVinc->descricao} - Visualizar",
                         "{$dVinc->descricao} - Cadastrar",
                         "{$dVinc->descricao} - Editar",
+                        "{$dVinc->descricao} - Logs",
                         "{$dVinc->descricao} - Excluir",
                     ];
                 }
