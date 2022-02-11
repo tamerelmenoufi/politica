@@ -6,6 +6,7 @@ $codigo = $_GET['codigo'];
 if ($codigo) {
     $d = ListaLogs('acao_social', $codigo);
     $d = $d[0];
+    print_r($d);
 }
 
 ?>

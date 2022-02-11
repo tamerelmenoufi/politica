@@ -126,7 +126,7 @@ $d = mysql_fetch_object($result);
 
     $(".btn-logs").click(function(){
         $.dialog({
-            content:"url:<?= $acaoSocial;?>/log.php",
+            content:"url:<?= $acaoSocial;?>/log.php?codigo=<?=$codigo?>",
             title:false,
         });
     });
