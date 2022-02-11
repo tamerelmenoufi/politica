@@ -136,7 +136,8 @@ if (!isset($_SESSION['usuario'])) {
             "columnDefs": [{
                 targets: 'no-sort',
                 orderable: false,
-            }]
+            }],
+            stateSave: false
         });
 
         //Jconfirm

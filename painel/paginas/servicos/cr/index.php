@@ -34,12 +34,12 @@ $result = mysql_query($query);
             Serviços - CR
         </h6>
         <?php
-        if(in_array('CR - Cadastrar', $ConfPermissoes)){
-        ?>
-        <button type="button" class="btn btn-success btn-sm" url="<?= $urlServicos; ?>/form.php">
-            <i class="fa-solid fa-plus"></i> Novo
-        </button>
-        <?php
+        if (in_array('CR - Cadastrar', $ConfPermissoes)) {
+            ?>
+            <button type="button" class="btn btn-success btn-sm" url="<?= $urlServicos; ?>/form.php">
+                <i class="fa-solid fa-plus"></i> Novo
+            </button>
+            <?php
         }
         ?>
     </div>
@@ -48,6 +48,30 @@ $result = mysql_query($query);
 
             <table id="datatable" class="table" width="100%" cellspacing="0">
                 <thead>
+                <tr>
+                    <th colspan="5">
+                        <div class="row d-md-flex flex-row align-items-center">
+                            <label>Filtros: </label>
+                            <div class="col-md-3">
+                                <div class="form-group mb-2">
+
+                                    <select
+                                            id="filtro-situacao"
+                                            class="form-control filtro-situacao"
+                                            title="Situação"
+                                            data-width="auto"
+                                    >
+                                        <option value=""></option>
+                                        <?php
+                                        foreach (getSituacao() as $key => $value):
+                                            echo "<option value=\"{$value}\">{$value}</option>";
+                                        endforeach;
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                    </th>
+                </tr>
                 <tr>
                     <th>Beneficiado</th>
                     <th>Assessor</th>
@@ -71,22 +95,22 @@ $result = mysql_query($query);
                                 <i class="fa-regular fa-eye text-info"></i>
                             </button>
                             <?php
-                            if(in_array('CR - Editar', $ConfPermissoes)){
-                            ?>
-                            <button
-                                    class="btn btn-sm btn-link"
-                                    url="<?= $urlServicos ?>/form.php?codigo=<?= $d->codigo; ?>"
-                            >
-                                <i class="fa-solid fa-pencil text-warning"></i>
-                            </button>
-                            <?php
+                            if (in_array('CR - Editar', $ConfPermissoes)) {
+                                ?>
+                                <button
+                                        class="btn btn-sm btn-link"
+                                        url="<?= $urlServicos ?>/form.php?codigo=<?= $d->codigo; ?>"
+                                >
+                                    <i class="fa-solid fa-pencil text-warning"></i>
+                                </button>
+                                <?php
                             }
-                            if(in_array('CR - Excluir', $ConfPermissoes)){
-                            ?>
-                            <button class="btn btn-sm btn-link btn-excluir" data-codigo="<?= $d->codigo ?>">
-                                <i class="fa-regular fa-trash-can text-danger"></i>
-                            </button>
-                            <?php
+                            if (in_array('CR - Excluir', $ConfPermissoes)) {
+                                ?>
+                                <button class="btn btn-sm btn-link btn-excluir" data-codigo="<?= $d->codigo ?>">
+                                    <i class="fa-regular fa-trash-can text-danger"></i>
+                                </button>
+                                <?php
                             }
                             ?>
                         </td>
@@ -101,7 +125,17 @@ $result = mysql_query($query);
 
 <script>
     $(function () {
-        $("#datatable").DataTable();
+        var table = $("#datatable").DataTable();
+
+        $('#filtro-situacao').selectpicker();
+
+        $('#filtro-situacao').change(function () {
+            var val = $(this).val();
+
+            table.column(3)
+                .search(val ? '^' + $(this).val() + '$' : val, true, false)
+                .draw();
+        });
 
         $('.btn-excluir').click(function () {
             var codigo = $(this).data('codigo');
