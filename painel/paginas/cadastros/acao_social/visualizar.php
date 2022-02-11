@@ -125,9 +125,8 @@ $d = mysql_fetch_object($result);
 <script>
 
     $(".btn-logs").click(function(){
-        dados = '<?php print_r(ListaLogs('acao_social', $codigo))?>';
         $.dialog({
-            content:dados,
+            content:'<?php print_r(ListaLogs('acao_social', $codigo))?>',
             title:false,
         });
     });
