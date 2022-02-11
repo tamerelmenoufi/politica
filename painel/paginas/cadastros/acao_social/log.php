@@ -9,11 +9,6 @@ if ($codigo) {
 }
 
 ?>
-<style>
-    .jconfirm .jconfirm-box div.jconfirm-closeIcon{
-        right:35px;
-    }
-</style>
 <h1>Dados de teste</h1>
 <div class="card shadow mb-4" style="margin:20px;">
     <div class="card-body">
