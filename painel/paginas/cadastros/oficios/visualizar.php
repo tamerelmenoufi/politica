@@ -55,6 +55,17 @@ $d = mysql_fetch_object($result);
             </button>
             <?php
             }
+            if(in_array('Ofícios - Logs', $ConfPermissoes)){
+                ?>
+                <button
+                        type="button"
+                        class="btn btn-info btn-logs btn-sm float-left"
+                        data-codigo="<?= $codigo; ?>"
+                >
+                    <i class="fal fa-list-alt"></i> Logs
+                </button>
+                <?php
+                }
             if(in_array('Ofícios - Excluir', $ConfPermissoes)){
             ?>
             <button
@@ -109,6 +120,15 @@ $d = mysql_fetch_object($result);
 </div>
 
 <script>
+
+    $(".btn-logs").click(function(){
+        $.dialog({
+            content:"url:<?= $urlOficios;?>/log.php?codigo=<?=$codigo?>",
+            title:false,
+            columnClass:'col-md-8 col-md-offset-2'
+        });
+    });
+
     $('.btn-excluir').click(function () {
         var codigo = $(this).data('codigo');
 
