@@ -59,7 +59,7 @@ $d = mysql_fetch_object($result);
                     class="btn btn-info btn-logs btn-sm float-left"
                     data-codigo="<?= $codigo; ?>"
             >
-                <i class="fa-list"></i> Logs
+                <i class="fa-regular fa-history"></i> Logs
             </button>
             <?php
             }
