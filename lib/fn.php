@@ -39,11 +39,11 @@ function ListaLogs($tabela, $registro){
         switch($d->operacao){
 
             case 'INSERT':{
-                $Query[] = InsertQuery($d->query);
+                $Query[] = [$d->data, $d->operacao, $d->usuario, InsertQuery($d->query)];
                 break;
             }
             case 'UPDATE':{
-                $Query[] = UpdateQuery($d->query);
+                $Query[] = [$d->data, $d->operacao, $d->usuario, UpdateQuery($d->query)];
                 break;
             }
 

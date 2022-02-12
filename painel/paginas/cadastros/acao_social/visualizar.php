@@ -59,7 +59,7 @@ $d = mysql_fetch_object($result);
                     class="btn btn-info btn-logs btn-sm float-left"
                     data-codigo="<?= $codigo; ?>"
             >
-                <i class="fal fa-list-alt"></i> Logs
+                <i class="fa-list"></i> Logs
             </button>
             <?php
             }
@@ -126,7 +126,7 @@ $d = mysql_fetch_object($result);
 
     $(".btn-logs").click(function(){
         $.dialog({
-            content:"url:<?= $acaoSocial;?>/log.php?codigo=<?=$codigo?>",
+            content:"url:<?= $acaoSocial;?>/log_lista.php",
             title:false,
             columnClass:'col-md-8 col-md-offset-2'
         });
