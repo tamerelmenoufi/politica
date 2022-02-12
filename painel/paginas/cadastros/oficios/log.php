@@ -10,7 +10,11 @@ if ($codigo) {
 }
 
 ?>
-
+<style>
+    .jconfirm .jconfirm-box div.jconfirm-closeIcon{
+        right:35px;
+    }
+</style>
 <div class="card shadow mb-4">
 
     <div class="card-body">
@@ -131,18 +135,6 @@ if ($codigo) {
                 ><?= $d['descricao']; ?></textarea>
             </div>
 
-            <div class="row">
-                <div class="col-md-12">
-                    <input
-                            id="input-id"
-                            type="file"
-                            name="file"
-                            class="file"
-                            data-preview-file-type="text"
-                    >
-                </div>
-            </div>
-
 
             <div class="row">
                 <div class="col-md-6">
@@ -177,10 +169,9 @@ if ($codigo) {
     $(function () {
 
         $("#numero").mask("999/99");
-
         $("#assessor").selectpicker();
-
         $(".secretaria").selectpicker();
+        $("select, input, textarea").attr("disabled","disabled");
 
 
     });
