@@ -3,10 +3,12 @@ include "config_oficios.php";
 
 
 $codigo = $_GET['codigo'];
+$indice = $_GET['indice'];
 
 if ($codigo) {
-    $d = ListaLogs('oficios', $codigo);
-    $d = $d[0];
+    $d = ListaLogs('acao_social', $codigo);
+    $D = $d[$indice];
+    $d = $D[3];
 }
 
 ?>
@@ -18,6 +20,12 @@ if ($codigo) {
 <div class="card shadow mb-4" style="margin:20px;">
 
     <div class="card-body">
+
+        <table class="table">
+            <tr><td><b>Data:</b></td><td><?=$D[0]?></td></tr>
+            <tr><td><b>Operação:</b></td><td><?=$D[1]?></td></tr>
+            <tr><td><b>Usuário:</b></td><td><?=$D[2]?></td></tr>
+        </table>
         <form id="form-oficios" enctype="multipart/form-data">
 
             <div class="form-group">

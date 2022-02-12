@@ -62,7 +62,7 @@ $d = mysql_fetch_object($result);
                         class="btn btn-info btn-logs btn-sm float-left"
                         data-codigo="<?= $codigo; ?>"
                 >
-                    <i class="fal fa-list-alt"></i> Logs
+                    <i class="fa-solid fa-clock-rotate-left"></i> Logs
                 </button>
                 <?php
                 }
@@ -125,7 +125,7 @@ $d = mysql_fetch_object($result);
         $.dialog({
             content:"url:<?= $urlOficios;?>/log.php?codigo=<?=$codigo?>",
             title:false,
-            columnClass:'col-md-8 col-md-offset-2'
+            columnClass:'col-md-10 col-md-offset-1'
         });
     });
 
