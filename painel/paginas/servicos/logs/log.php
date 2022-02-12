@@ -4,9 +4,9 @@ include "config_logs.php";
 $codigo = $_GET['codigo'];
 
 if ($codigo) {
-    $query = "SELECT * FROM servicos WHERE codigo = '{$codigo}'";
-    $result = mysql_query($query);
-    $d = mysql_fetch_object($result);
+    $d = ListaLogs('acao_social', $codigo);
+    $D = $d[$indice];
+    $d = $D[3];
 }
 
 ?>
