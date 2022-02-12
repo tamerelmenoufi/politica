@@ -6,7 +6,7 @@ $codigo = $_GET['codigo'];
 if ($codigo) {
     $d = ListaLogs('acao_social', $codigo);
 }
-print_r($d);
+
 ?>
 <style>
     .jconfirm .jconfirm-box div.jconfirm-closeIcon{
