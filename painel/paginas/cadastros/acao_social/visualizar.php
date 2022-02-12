@@ -128,7 +128,7 @@ $d = mysql_fetch_object($result);
         $.dialog({
             content:"url:<?= $acaoSocial;?>/log_lista.php?codigo=<?=$codigo?>",
             title:false,
-            columnClass:'col-md-8 col-md-offset-2'
+            columnClass:'col-md-10 col-md-offset-1'
         });
     });
 

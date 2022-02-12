@@ -6,7 +6,8 @@ $indice = $_GET['indice'];
 
 if ($codigo) {
     $d = ListaLogs('acao_social', $codigo);
-    $d = $d[$indice][3];
+    $D = $d[$indice];
+    $d = $D[3];
 }
 
 ?>
@@ -17,6 +18,13 @@ if ($codigo) {
 </style>
 <div class="card shadow mb-4" style="margin:20px;">
     <div class="card-body">
+
+        <table class="table">
+            <tr><td><b>Data:</b></td><td><?=dataBr($D[0])?></td></tr>
+            <tr><td><b>Operação:</b></td><td><?=$D[1]?></td></tr>
+            <tr><td><b>Usuário:</b></td><td><?=$D[2]?></td></tr>
+        </table>
+
         <form id="form-acao-social">
 
             <div class="form-group">
