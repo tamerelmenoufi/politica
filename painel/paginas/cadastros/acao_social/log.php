@@ -20,7 +20,7 @@ if ($codigo) {
     <div class="card-body">
 
         <table class="table">
-            <tr><td><b>Data:</b></td><td><?=dataBr($D[0])?></td></tr>
+            <tr><td><b>Data:</b></td><td><?=$D[0]?></td></tr>
             <tr><td><b>Operação:</b></td><td><?=$D[1]?></td></tr>
             <tr><td><b>Usuário:</b></td><td><?=$D[2]?></td></tr>
         </table>
