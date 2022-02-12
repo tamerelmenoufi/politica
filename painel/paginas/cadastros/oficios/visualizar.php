@@ -123,7 +123,7 @@ $d = mysql_fetch_object($result);
 
     $(".btn-logs").click(function(){
         $.dialog({
-            content:"url:<?= $urlOficios;?>/log.php?codigo=<?=$codigo?>",
+            content:"url:<?= $urlOficios;?>/log_lista.php?codigo=<?=$codigo?>",
             title:false,
             columnClass:'col-md-10 col-md-offset-1'
         });
