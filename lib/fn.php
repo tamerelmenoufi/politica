@@ -62,7 +62,7 @@ function InsertQuery($query){
 
 function UpdateQuery($query){
     list($l, $d) = explode("SET", $query);
-    list($l, $d) = explode("WHERE", $d);
+    list($d, $l) = explode("WHERE", $d);
     $d = str_replace("=","=>", $d);
     eval("\$r = [{$d}];");
     return $r;
