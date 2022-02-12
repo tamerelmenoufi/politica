@@ -2,6 +2,7 @@
 include "config_logs.php";
 
 $codigo = $_GET['codigo'];
+$indice = $_GET['indice'];
 
 if ($codigo) {
     $d = ListaLogs('acao_social', $codigo);
