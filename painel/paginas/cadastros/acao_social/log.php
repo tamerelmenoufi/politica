@@ -2,10 +2,11 @@
 include "config_acao_social.php";
 
 $codigo = $_GET['codigo'];
+$indice = $_GET['indice'];
 
 if ($codigo) {
     $d = ListaLogs('acao_social', $codigo);
-    $d = $d[0];
+    $d = $d[$indice][3];
 }
 
 ?>
