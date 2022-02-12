@@ -25,12 +25,22 @@ print_r($d);
                 </tr>
             </thead>
             <tbody>
+                <?php
+                foreach($d as $ind => $val){
+                ?>
                 <tr>
-                    <td>Data</td>
-                    <td>Operação</td>
-                    <td>Usuário</td>
-                    <td></td>
+                    <td><?=$val[0]?></td>
+                    <td><?=$val[1]?></td>
+                    <td><?=$val[2]?></td>
+                    <td>
+                        <button abrir cod="<?=$ind?>" class="btn btn-success">
+                            <i class="fa fa-eye"></i>
+                        </button>
+                    </td>
                 </tr>
+                <?php
+                }
+                ?>
             </tbody>
         </table>
     </div>
@@ -39,7 +49,14 @@ print_r($d);
 <script>
     $(function () {
 
-
+        $("button[abrir]").click(function(){
+            indice = $(this).attr('cod');
+            $.dialog({
+                content:"url:<?= $acaoSocial;?>/log.php?codigo=<?=$codigo?>&indice="+indice,
+                title:false,
+                columnClass:'col-md-8 col-md-offset-2'
+            });
+        });
 
     });
 </script>
