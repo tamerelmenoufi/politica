@@ -117,7 +117,7 @@ const myChart<?=$md5?> = new Chart(ctx<?=$md5?>,
       }*/,
       title: {
         display: true,
-        text: 'Chart.js Horizontal Bar Chart'
+        text: 'Quantidade de serviços por assessores'
       },
 
 
