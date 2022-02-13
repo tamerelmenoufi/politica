@@ -56,6 +56,17 @@ $d = mysql_fetch_object($result);
                 <i class="fa-solid fa-pencil"></i> Editar
             </button>
             <?php
+            if(in_array('Registro Geral - Logs', $ConfPermissoes)){
+                ?>
+                    <button
+                            type="button"
+                            class="btn btn-info btn-logs btn-sm float-left"
+                            data-codigo="<?= $codigo; ?>"
+                    >
+                        <i class="fa-solid fa-clock-rotate-left"></i> Logs
+                    </button>
+                <?php
+                }
             }
             if(in_array('Registro Geral - Excluir', $ConfPermissoes)){
             ?>
@@ -112,6 +123,15 @@ $d = mysql_fetch_object($result);
 </div>
 
 <script>
+
+    $(".btn-logs").click(function(){
+        $.dialog({
+            content:"url:paginas/servicos/logs/log_lista.php?codigo=<?=$codigo?>",
+            title:false,
+            columnClass:'col-md-10 col-md-offset-1'
+        });
+    });
+
     $('.btn-excluir').click(function () {
         var codigo = $(this).data('codigo');
 
