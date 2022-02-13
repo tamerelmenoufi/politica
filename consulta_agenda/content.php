@@ -63,9 +63,7 @@ include_once "../lib/includes.php";
                                 <input
                                         type="password"
                                         class="form-control"
-                                        id="senha"
                                         name="senha"
-                                        value=""
                                 >
                             </div>
                         </div>

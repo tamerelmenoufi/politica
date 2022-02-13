@@ -1,7 +1,9 @@
 <?php
 include '../lib/includes.php';
 
-$data = $_POST['data'];
+if ($_POST['data']) $_SESSION['data'] = $_POST['data'];
+
+$data = $_SESSION['data'];
 $servico_tipo = $_SESSION['servico_tipo'];
 $filtro = $_POST['filtro'];
 
@@ -29,15 +31,16 @@ $mesArray = [
     '11' => 'Novembro',
     '12' => 'Dezembro'
 ];
+
 ?>
-<br>
-<h1 class="h5 text-gray-800 my-1 mt-2">
+
+<h1 class="h5 text-gray-600 font-weight-bold mt-lg-0 mt-4 mt-sm-4">
     <?= 'Dia ' . date('d', strtotime($data)); ?>
 </h1>
 
-<div class="table-responsive mb-2" style="min-height: 140px;">
+<div class="table-responsive mb-2" style="min-height: 120px;border: 1px solid #cccccc">
 
-    <table class="table table-sm table-hover" style="font-size: .9rem;">
+    <table class="table table-sm table-striped" style="font-size: .9rem;">
         <thead>
         <tr>
             <th class="text-center">Data</th>
@@ -73,17 +76,17 @@ $mesArray = [
             <?php endwhile; ?>
 
         <?php else:
-            echo '<tr><td class="text-center" colspan="6">Nenhum agendamento encontrado na data de hoje</td></tr>';
+            echo '<tr><td class="text-center" colspan="6">Nenhum agendamento previsto na data de hoje</td></tr>';
             ?>
         <?php endif; ?>
         </tbody>
     </table>
 </div>
 <br>
-<h1 class="h5 text-gray-800">Mês de <?= $mesArray[date('m', strtotime($data))]; ?></h1>
+<h1 class="h5 text-gray-600 font-weight-bold">Mês de <?= $mesArray[date('m', strtotime($data))]; ?></h1>
 
-<div class="table-responsive" style="min-height: 140px;">
-    <table class="table table-sm table-hover" style="font-size: .9rem;">
+<div class="table-responsive" style="min-height: 120px;border: 1px solid #cccccc">
+    <table class="table table-sm table-striped" style="font-size: .9rem;">
         <thead>
         <tr>
             <th class="text-center">Data</th>
@@ -119,7 +122,7 @@ $mesArray = [
             <?php endwhile; ?>
 
         <?php else:
-            echo '<tr><td class="text-center" colspan="6">Nenhum agendamento encontrado</td></tr>';
+            echo '<tr><td class="text-center" colspan="6">Nenhum agendamento previsto neste mês</td></tr>';
             ?>
         <?php endif; ?>
         </tbody>

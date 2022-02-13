@@ -57,6 +57,7 @@ endwhile;
 
     .fc .fc-daygrid-body-natural .fc-daygrid-day-events {
         margin-bottom: 0;
+        min-height: 1.5em;
     }
 
     .fc-daygrid-day-frame {
@@ -125,7 +126,7 @@ endwhile;
                        aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-bell fa-fw"></i>
                         <!-- Counter - Alerts -->
-                        <span class="badge badge-danger badge-counter"><?= $numSemAgenda ?: '0' ?>+</span>
+                        <span class="badge badge-danger badge-counter" text_count_sem_agenda><?= $numSemAgenda ?: '0' ?>+</span>
                     </a>
 
                     <!-- Dropdown - Alerts -->
@@ -153,7 +154,7 @@ endwhile;
                                     </div>
                                 </a>
                             <?php endwhile; ?>
-                            <!-- <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>-->
+                            <a class="dropdown-item text-center small text-gray-500 teste" href="#">Show All Alerts</a>
                         <?php else: ?>
                             <a class="dropdown-item d-flex align-items-center" href="#">
                                 <div>
@@ -173,14 +174,14 @@ endwhile;
             <div class="col-md-12">
                 <div class="card shadow">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Agendamentos</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Consulta de agendamentos</h6>
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-sm-12 col-md-12 col-lg-5 my-2">
+                            <div class="col-sm-12 col-md-12 col-lg-5">
                                 <div id="calendar"></div>
                             </div>
-                            <div class="col-sm-12 col-md-12 col-lg-7 my-2">
+                            <div class="col-sm-12 col-md-12 col-lg-7">
                                 <div id="resultado"></div>
                             </div>
                         </div>
@@ -203,26 +204,26 @@ endwhile;
         var servico_tipo = $('#servico_tipo').val();
 
         var date = new Date();
+
         let dateString = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
 
         consulta_agenda(dateString, servico_tipo);
 
         var calendarEl = document.getElementById('calendar');
 
-        var calendar = new FullCalendar.Calendar(calendarEl, {
+        calendar = new FullCalendar.Calendar(calendarEl, {
             height: 'auto',
             contentHeight: 'auto',
             locale: 'pt-br',
             timeZone: 'America/Manaus',
-            headerToolbar: {
-                right: 'prev,next today',
-            },
             initialView: 'dayGridMonth',
-
             fixedWeekCount: false,
             showNonCurrentDates: false,
             dayMaxEvents: 0,
             events: <?= json_encode($eventos); ?>,
+            headerToolbar: {
+                right: 'prev,next today',
+            },
             moreLinkContent: function (arg) {
                 let italicEl = document.createElement('i')
 
@@ -253,19 +254,8 @@ endwhile;
 
         calendar.render();
 
-        function consulta_agenda(data, servico_tipo) {
-            $.ajax({
-                url: 'resultado.php',
-                method: 'POST',
-                data: {
-                    data,
-                    servico_tipo
-                },
-                success: function (response) {
-                    $('#resultado').html(response);
-                }
-            });
-        }
+
+        /* -- Eventos cliques -- */
 
         $('.fc-prev-button').click(function () {
             var date = calendar.getDate();
@@ -277,9 +267,6 @@ endwhile;
             consulta_agenda(date.toISOString().slice(0, 10));
         });
 
-    });
-
-    $(function () {
         $('.voltar').click(function (e) {
             e.preventDefault();
 
@@ -312,6 +299,47 @@ endwhile;
                 columnClass: 'medium'
             });
         });
+
+        $('.teste').click(function (e) {
+            e.preventDefault();
+
+            var source = [
+                {
+                    title: 'Click for Google',
+                    start: new Date(2022, 1, 28),
+                    end: new Date(2022, 2, 29),
+                    url: 'http://google.com/'
+                },
+            ];
+
+            calendar.batchRendering(() => {
+                // remove all events
+                // calendar.getEvents().forEach(event => event.remove());
+                // add your new events source
+                calendar.addEventSource(source);
+            });
+
+        });
+
+        /* -- Eventos cliques -- */
+
+        function consulta_agenda(data, servico_tipo) {
+            $.ajax({
+                url: 'resultado.php',
+                method: 'POST',
+                data: {
+                    data,
+                    servico_tipo
+                },
+                success: function (response) {
+                    $('#resultado').html(response);
+                }
+            });
+        }
+    });
+
+    $(function () {
+
     });
 
 </script>

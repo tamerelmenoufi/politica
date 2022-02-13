@@ -7,9 +7,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $query = "UPDATE servicos SET data_agenda = '{$data_agenda}' WHERE codigo = '{$cod_servico}'";
     if (mysql_query($query)) {
-        echo json_encode(['status' => true, 'msg' => 'Data de agendamento cadastrado com sucesso']);
+
+        $query = "SELECT s.*, b.nome AS b_nome, c.descricao AS c_descricao FROM servicos s "
+            . "LEFT JOIN beneficiados b ON b.codigo = s.beneficiado "
+            . "LEFT JOIN categorias c ON c.codigo = s.categoria "
+            . " WHERE s.codigo = '{$cod_servico}'";
+
+        $result = mysql_query($query);
+        $d = mysql_fetch_object($result);
+
+        echo json_encode([
+            'status' => true,
+            'msg' => 'Data de agendamento cadastrado com sucesso',
+            'data' => [
+                'id' => $d->codigo,
+                'title' => formata_datahora($d->data_agenda, HORA_MINUTO) . ' - ' . $d->b_nome . " (" . ($d->c_descricao ?: 'Outros') . ")",
+                'start' => date('Y-m-d', strtotime($d->data_agenda))
+            ],
+        ]);
     } else {
-        echo json_encode(['status' => false, 'msg' => 'Error ao cadastrar data de agendamento']);
+        echo json_encode([
+            'status' => false,
+            'msg' => 'Error ao cadastrar data de agendamento'
+        ]);
     }
     exit();
 }
@@ -133,16 +153,38 @@ $d = mysql_fetch_object($result);
                     data_agenda
                 },
                 success: function (response) {
+                    console.log(response);
+
                     if (response.status) {
                         $.ajax({
                             url: 'resultado.php',
                             success: function (html) {
                                 $('#resultado').html(html);
                             }
-                        })
+                        });
+
+                        let source = [
+                            {
+                                id: response.data.id,
+                                title: response.data.title,
+                                start: response.data.start,
+                            },
+                        ];
+
+                        calendar.batchRendering(() => calendar.addEventSource(source));
+
+                        let count_sem_agenda = $('span[text_count_sem_agenda]');
+                        let count = (parseInt(count_sem_agenda.text()) - 1);
+
+                        console.log(count_sem_agenda.text(), count);
+
+                        count_sem_agenda.text(count);
+
                         tata.success('Sucesso', response.msg);
                         $(`#sem_agenda_${cod_servico}`).remove();
                         dialogDefineData.close();
+
+
                     } else {
                         tata.error('Error', response.msg);
                     }

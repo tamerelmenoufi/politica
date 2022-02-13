@@ -18,12 +18,12 @@ include "../lib/includes.php";
 
     <script src="<?= $caminho_vendor; ?>/jquery/jquery.min.js"></script>
     <script src="<?= $caminho_vendor; ?>/bootstrap4/js/bootstrap.bundle.min.js"></script>
-    <script src="<?= "{$caminho_vendor}/startbootstrap-sb-admin-2/js/sb-admin-2.min.js"; ?>"></script>
+    <script src="<?= $caminho_vendor ?>/startbootstrap-sb-admin-2/js/sb-admin-2.min.js"></script>
     <script src="<?= $caminho_vendor; ?>/fullcalendar/lib/main.min.js"></script>
     <script src="<?= $caminho_vendor; ?>/fullcalendar/lib/locales-all.min.js"></script>
     <script src="<?= $caminho_vendor; ?>/tata/tata.js"></script>
     <script src="<?= $caminho_vendor; ?>/tata/index.js"></script>
-    <script src="<?= "{$caminho_vendor}/jquery-confirm/js/jquery-confirm.min.js"; ?>"></script>
+    <script src="<?= $caminho_vendor; ?>/jquery-confirm/js/jquery-confirm.min.js"></script>
 
 </head>
 <body>
