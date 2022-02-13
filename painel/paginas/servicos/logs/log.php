@@ -9,7 +9,7 @@ if ($codigo) {
     $D = $d[$indice];
     $d = $D[3];
 }
-
+print_r($d);
 ?>
 
 <style>
