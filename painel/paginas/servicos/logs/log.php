@@ -9,7 +9,7 @@ if ($codigo) {
     $D = $d[$indice];
     $d = $D[3];
 }
-print_r($d);
+
 ?>
 
 <style>
@@ -183,7 +183,7 @@ print_r($d);
                 >
                     <option value=""></option>
                     <?php
-                    $query = "SELECT * FROM local_fontes where servico_tipo = '1' ORDER BY descricao";
+                    $query = "SELECT * FROM local_fontes ORDER BY descricao";
                     $result = mysql_query($query);
 
                     while ($l = mysql_fetch_object($result)): ?>
