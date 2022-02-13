@@ -18,7 +18,7 @@ if ($codigo) {
     }
 </style>
 
-<div class="card shadow mb-4">
+<div class="card shadow mb-4" style="margin:20px;">
     <div class="card-body">
 
         <table class="table">
@@ -32,7 +32,7 @@ if ($codigo) {
             <?php
                 $query = "SELECT * FROM especialidades where servico_tipo = '1' ORDER BY descricao";
                 $result = mysql_query($query);
-                if(mysql_num_rows($result)){
+                if(mysql_num_rows($result) and $d['especialidade']){
             ?>
 
             <div class="form-group">
@@ -62,6 +62,8 @@ if ($codigo) {
             </div>
             <?php
                 }
+
+                if($d['beneficiado']){
             ?>
 
 
@@ -92,7 +94,11 @@ if ($codigo) {
                 </select>
 
             </div>
+            <?php
+                }
 
+                if($d['contato']){
+            ?>
             <div class="form-group">
                 <label for="contato">
                     Contato <i class="text-danger">*</i>
@@ -107,8 +113,12 @@ if ($codigo) {
                 >
 
             </div>
+            <?php
+                }
 
-            <!-- <div class="form-group">
+                if($d['especialista']){
+            ?>
+            <div class="form-group">
                 <label for="especialista">
                     Especialista <i class="text-danger">*</i>
                 </label>
@@ -117,12 +127,16 @@ if ($codigo) {
                         class="form-control"
                         id="especialista"
                         name="especialista"
-                        value="<?= $d->especialista; ?>"
+                        value="<?= $d['especialista']; ?>"
                         required
                 >
 
-            </div> -->
+            </div>
+            <?php
+                }
 
+                if($d['assessor']){
+            ?>
             <div class="form-group">
                 <label for="assessor">
                     Assessor <i class="text-danger">*</i>
@@ -150,6 +164,11 @@ if ($codigo) {
                 </select>
 
             </div>
+            <?php
+                }
+
+                if($d['local_fonte']){
+            ?>
             <div class="form-group">
                 <label for="local_fonte">
                     Fonte Local <i class="text-danger">*</i>
@@ -177,7 +196,11 @@ if ($codigo) {
                 </select>
 
             </div>
+            <?php
+                }
 
+                if($d['detalhes']){
+            ?>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
@@ -192,7 +215,59 @@ if ($codigo) {
                         >
                     </div>
                 </div>
+                <div class="form-group">
+                    <label for="detalhes">
+                        Tipo
+                    </label>
+                    <input
+                            type="text"
+                            class="form-control"
+                            id="detalhes"
+                            name="detalhes"
+                            value="<?= $d['detalhes']; ?>"
+                    >
+                </div>
+                <?php
+                }
 
+                if($d['local_responsavel']){
+            ?>
+
+                <div class="form-group">
+                <label for="loca_responsavel">
+                    Responsável (Local)
+                </label>
+                <input
+                        type="text"
+                        class="form-control"
+                        id="local_responsavel"
+                        name="local_responsavel"
+                        value="<?= $d['local_responsavel']; ?>"
+                >
+
+                </div>
+                <?php
+                }
+
+                if($d['local_identificacao']){
+                ?>
+                <div class="form-group">
+                    <label for="local_identificacao">
+                        Local
+                    </label>
+                    <input
+                            type="text"
+                            class="form-control"
+                            id="local_identificacao"
+                            name="local_identificacao"
+                            value="<?= $d['local_identificacao']; ?>"
+                    >
+                </div>
+                <?php
+                }
+
+                if($d['situacao']){
+                ?>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="situacao">
@@ -215,6 +290,9 @@ if ($codigo) {
                         </select>
                     </div>
                 </div>
+                <?php
+                }
+            ?>
             </div>
         </form>
     </div>
