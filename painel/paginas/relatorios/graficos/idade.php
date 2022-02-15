@@ -24,22 +24,26 @@ $Bd = [
 
 $ano_atual = date('Y');
 
-$query = "SELECT SUM(IF((YEAR(CURRENT_DATE) - DATE_FORMAT(data_nascimento, '%Y')) < 18,1,0)) AS qt, 'Menor 18' AS descricao FROM
-beneficiados
+$query = "SELECT SUM(IF((YEAR(CURRENT_DATE) - DATE_FORMAT(b.data_nascimento, '%Y')) < 18,1,0)) AS qt, 'Menor 18' AS descricao FROM
+beneficiados b INNER JOIN servicos s ON s.beneficiado = b.codigo
 UNION
-SELECT SUM(IF((YEAR(CURRENT_DATE) - DATE_FORMAT(data_nascimento, '%Y')) BETWEEN 18 AND 25,1,0)) AS qt, 'Entre 18 e 25' AS descricao FROM beneficiados
+SELECT SUM(IF((YEAR(CURRENT_DATE) - DATE_FORMAT(b.data_nascimento, '%Y')) BETWEEN 18 AND 25,1,0)) AS qt, 'Entre 18 e 25' AS descricao 
+FROM beneficiados b INNER JOIN servicos s ON s.beneficiado = b.codigo
 UNION
-SELECT SUM(IF((YEAR(CURRENT_DATE) - DATE_FORMAT(data_nascimento, '%Y')) BETWEEN 26 AND 35,1,0)) AS qt,  'Entre 26 e 35' AS descricao FROM beneficiados
+SELECT SUM(IF((YEAR(CURRENT_DATE) - DATE_FORMAT(b.data_nascimento, '%Y')) BETWEEN 26 AND 35,1,0)) AS qt,  'Entre 26 e 35' AS descricao 
+FROM beneficiados b INNER JOIN servicos s ON s.beneficiado = b.codigo
 UNION
-SELECT SUM(IF((YEAR(CURRENT_DATE) - DATE_FORMAT(data_nascimento, '%Y')) BETWEEN 36 AND 45,1,0)) AS qt,  'Entre 36 e 45' AS descricao FROM beneficiados
+SELECT SUM(IF((YEAR(CURRENT_DATE) - DATE_FORMAT(b.data_nascimento, '%Y')) BETWEEN 36 AND 45,1,0)) AS qt,  'Entre 36 e 45' AS descricao 
+FROM beneficiados b INNER JOIN servicos s ON s.beneficiado = b.codigo
 UNION
 SELECT SUM(IF((YEAR(CURRENT_DATE) - DATE_FORMAT(data_nascimento, '%Y')) >= 46,1,0)) AS qt, 'Maior 46' AS descricao
-FROM beneficiados
+FROM beneficiados b INNER JOIN servicos s ON s.beneficiado = b.codigo
 
 ";
 //"LEFT JOIN servicos s ON s.beneficiado = b.codigo";
 
 $result = mysql_query($query);
+var_dump(mysql_error());
 $i = 0;
 while ($d = mysql_fetch_object($result)) {
     $rotulo[] = $d->descricao;
