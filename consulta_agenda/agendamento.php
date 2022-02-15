@@ -30,7 +30,7 @@ $queryEventos = "SELECT s.*, b.nome AS b_nome, c.descricao AS c_descricao FROM s
 
 
 $resultEventos = mysql_query($queryEventos);
-file_put_contents('debug.txt', $queryEventos);
+#file_put_contents('debug.txt', $queryEventos);
 $eventos = [];
 
 while ($dadosEventos = mysql_fetch_object($resultEventos)):

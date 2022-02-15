@@ -93,7 +93,7 @@ include_once "../lib/includes.php";
 
 <script>
     $(function () {
-        $('#servico_tipo').change(function () {
+        /*$('#servico_tipo').change(function () {
             var valor = $(this).val();
 
             if (valor == 7) {
@@ -111,7 +111,7 @@ include_once "../lib/includes.php";
                     }
                 });
             }
-        });
+        });*/
 
         $('#servico_tipo').change(function () {
             var valor = $(this).val();
