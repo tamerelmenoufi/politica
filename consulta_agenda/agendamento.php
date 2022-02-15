@@ -3,12 +3,16 @@ include "../lib/includes.php";
 
 $servico_tipo = $_POST['servico_tipo'];
 $senha = mysql_real_escape_string($_POST['senha']);
+$codigo = $_POST['local_fonte'];
 
 $_SESSION['servico_tipo'] = $servico_tipo;
 
+$whereLocalFonte = $codigo ? "lf.codigo = '{$codigo}' AND" : "";
+$_SESSION['whereLocalFonte'] = $whereLocalFonte;
+
 $query = "SELECT lf.*, st.tipo AS st_tipo FROM local_fontes lf "
     . "INNER JOIN servico_tipo st ON st.codigo = lf.servico_tipo "
-    . "WHERE lf.servico_tipo = '{$servico_tipo}' AND lf.senha = '{$senha}' AND lf.deletado = '0' ";
+    . "WHERE {$whereLocalFonte} lf.servico_tipo = '{$servico_tipo}' AND lf.senha = '{$senha}' AND lf.deletado = '0' ";
 $result = mysql_query($query);
 
 if (!@mysql_num_rows($result)) {
@@ -21,11 +25,12 @@ $d = mysql_fetch_object($result);
 $queryEventos = "SELECT s.*, b.nome AS b_nome, c.descricao AS c_descricao FROM servicos s "
     . "LEFT JOIN beneficiados b ON b.codigo = s.beneficiado "
     . "LEFT JOIN categorias c ON c.codigo = s.categoria "
-    . "WHERE s.tipo = '{$servico_tipo}' AND s.data_agenda > 0 AND s.deletado = '0'";
+    . "LEFT JOIN local_fontes lf ON lf.codigo = s.local_fonte "
+    . "WHERE {$whereLocalFonte} s.tipo = '{$servico_tipo}' AND s.data_agenda > 0 AND s.deletado = '0'";
 
 
 $resultEventos = mysql_query($queryEventos);
-
+file_put_contents('debug.txt', $queryEventos);
 $eventos = [];
 
 while ($dadosEventos = mysql_fetch_object($resultEventos)):
@@ -104,7 +109,9 @@ endwhile;
                 <i class="fa-solid fa-arrow-left"></i>
             </a>
         </div>
-        <div class="text-gray-700 h4 font-weight-bold mb-0"><?= $d->st_tipo; ?></div>
+        <div class="text-gray-700 h4 font-weight-bold mb-0">
+            <?= $d->st_tipo . ($whereLocalFonte ? " - {$d->descricao}" : " - Geral"); ?>
+        </div>
 
         <div>
             <ul class="navbar-nav ml-auto">
@@ -113,7 +120,7 @@ endwhile;
                     . "INNER JOIN servico_tipo st ON st.codigo = lf.servico_tipo "
                     . "INNER JOIN servicos s ON s.local_fonte = lf.codigo "
                     . "INNER JOIN beneficiados b ON b.codigo = s.beneficiado "
-                    . "WHERE lf.servico_tipo = '{$servico_tipo}' AND lf.senha = '{$senha}' "
+                    . "WHERE {$whereLocalFonte} lf.servico_tipo = '{$servico_tipo}' AND lf.senha = '{$senha}' "
                     . "AND s.data_agenda = 0 AND lf.deletado = '0' ";
                 #echo $querySemAgenda;
                 $resultSemAgenda = mysql_query($querySemAgenda);

@@ -8,13 +8,14 @@ $servico_tipo = $_SESSION['servico_tipo'];
 $filtro = $_POST['filtro'];
 
 $query = "SELECT s.*, b.nome AS b_nome FROM servicos s "
+    . "LEFT JOIN local_fontes lf ON lf.codigo = s.local_fonte "
     . "LEFT JOIN beneficiados b ON b.codigo = s.beneficiado ";
 
-$whereGeral = "WHERE s.data_agenda LIKE '%{$data}%' AND s.tipo = '{$servico_tipo}' ORDER BY data_agenda";
+$whereGeral = "WHERE {$_SESSION['whereLocalFonte']} s.data_agenda LIKE '%{$data}%' AND s.tipo = '{$servico_tipo}' ORDER BY data_agenda";
 $result = mysql_query($query . $whereGeral);
 
 $mes = date('m', strtotime($data));
-$whereMes = "WHERE DATE_FORMAT(s.data_agenda, \"%m\") = '{$mes}' AND s.tipo = '{$servico_tipo}' ORDER BY data_agenda";
+$whereMes = "WHERE {$_SESSION['whereLocalFonte']} DATE_FORMAT(s.data_agenda, \"%m\") = '{$mes}' AND s.tipo = '{$servico_tipo}' ORDER BY data_agenda";
 $resultMes = mysql_query($query . $whereMes);
 
 $mesArray = [

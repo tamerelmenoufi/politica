@@ -45,7 +45,19 @@ include_once "../lib/includes.php";
                             </div>
                         </div>
 
-                        <div class="form-group row form-especialidade" style="display: none">
+                        <div class="form-group row form-local-fonte" style="display: none">
+                            <label for="local_fonte" class="col-lg-2 col-form-label">Local/Fonte</label>
+                            <div class="col-lg-10">
+                                <select
+                                        class="form-control"
+                                        id="local_fonte"
+                                        name="local_fonte"
+                                >
+                                </select>
+                            </div>
+                        </div>
+
+                        <!--<div class="form-group row form-especialidade" style="display: none">
                             <label for="especialidade" class="col-lg-2 col-form-label">Especialidade</label>
                             <div class="col-lg-10">
                                 <select
@@ -55,7 +67,7 @@ include_once "../lib/includes.php";
                                 >
                                 </select>
                             </div>
-                        </div>
+                        </div>-->
 
                         <div class="form-group row">
                             <label for="nome" class="col-lg-2 col-form-label">Chave de Acesso</label>
@@ -64,6 +76,7 @@ include_once "../lib/includes.php";
                                         type="password"
                                         class="form-control"
                                         name="senha"
+                                        id="senha"
                                 >
                             </div>
                         </div>
@@ -80,15 +93,14 @@ include_once "../lib/includes.php";
 
 <script>
     $(function () {
-        $('#tipo_servico').change(function () {
+        $('#servico_tipo').change(function () {
             var valor = $(this).val();
 
-            if (valor == 6) {
+            if (valor == 7) {
                 $.ajax({
-                    url: 'select.php',
+                    url: 'select_especialidade.php',
                     data: {servico_tipo: valor},
                     success: function (response) {
-                        console.log(response);
                         if (response.length > 0) {
                             $('#especialidade').html(response);
                             $('.form-especialidade').fadeIn(400);
@@ -101,6 +113,24 @@ include_once "../lib/includes.php";
             }
         });
 
+        $('#servico_tipo').change(function () {
+            var valor = $(this).val();
+
+            $.ajax({
+                url: 'select_local_fonte.php',
+                data: {servico_tipo: valor},
+                success: function (response) {
+                    if (response.length > 0) {
+                        $('#local_fonte').html(response);
+                        $('.form-local-fonte').fadeIn(400);
+                    } else {
+                        $('#local_fonte').html('');
+                        $('.form-local-fonte').fadeOut(400);
+                    }
+                }
+            })
+        });
+
         $('#form-consulta').submit(function (e) {
             e.preventDefault();
 
@@ -109,12 +139,20 @@ include_once "../lib/includes.php";
                 return false;
             }
 
-            var dados_form = $(this).serializeArray();
+            //var dados_form = $(this).serializeArray();
+            var local_fonte = $('#local_fonte').val();
+            var servico_tipo = $('#servico_tipo').val();
+            var senha = $('#senha').val();
 
+            console.log(local_fonte);
             $.ajax({
                 url: 'agendamento.php',
                 method: 'POST',
-                data: dados_form,
+                data: {
+                    local_fonte,
+                    servico_tipo,
+                    senha
+                },
                 success: function (response) {
                     if (response == '0') {
                         tata.error('Error', 'Consulta não encontrada')
