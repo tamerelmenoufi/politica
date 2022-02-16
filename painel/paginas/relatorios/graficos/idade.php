@@ -43,7 +43,7 @@ FROM beneficiados b INNER JOIN servicos s ON s.beneficiado = b.codigo
 //"LEFT JOIN servicos s ON s.beneficiado = b.codigo";
 
 $result = mysql_query($query);
-var_dump(mysql_error());
+
 $i = 0;
 while ($d = mysql_fetch_object($result)) {
     $rotulo[] = $d->descricao;
