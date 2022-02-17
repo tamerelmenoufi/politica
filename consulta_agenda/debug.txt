@@ -1,1 +1,0 @@
-SELECT s.*, b.nome AS b_nome, c.descricao AS c_descricao FROM servicos s LEFT JOIN beneficiados b ON b.codigo = s.beneficiado LEFT JOIN categorias c ON c.codigo = s.categoria LEFT JOIN local_fontes lf ON lf.codigo = s.local_fonte WHERE lf.codigo = '22' AND s.tipo = '7' AND s.data_agenda > 0 AND s.deletado = '0'

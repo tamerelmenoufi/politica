@@ -33,7 +33,7 @@ include_once "../lib/includes.php";
                                         id="servico_tipo"
                                         name="servico_tipo"
                                 >
-                                    <option value=""></option>
+                                    <option value="">Geral</option>
                                     <?php
                                     $query = "SELECT * FROM servico_tipo WHERE deletado = '0' ORDER BY tipo";
                                     $result = mysql_query($query);
@@ -56,18 +56,6 @@ include_once "../lib/includes.php";
                                 </select>
                             </div>
                         </div>
-
-                        <!--<div class="form-group row form-especialidade" style="display: none">
-                            <label for="especialidade" class="col-lg-2 col-form-label">Especialidade</label>
-                            <div class="col-lg-10">
-                                <select
-                                        class="form-control"
-                                        id="especialidade"
-                                        name="especialidade"
-                                >
-                                </select>
-                            </div>
-                        </div>-->
 
                         <div class="form-group row">
                             <label for="nome" class="col-lg-2 col-form-label">Chave de Acesso</label>
@@ -93,26 +81,6 @@ include_once "../lib/includes.php";
 
 <script>
     $(function () {
-        /*$('#servico_tipo').change(function () {
-            var valor = $(this).val();
-
-            if (valor == 7) {
-                $.ajax({
-                    url: 'select_especialidade.php',
-                    data: {servico_tipo: valor},
-                    success: function (response) {
-                        if (response.length > 0) {
-                            $('#especialidade').html(response);
-                            $('.form-especialidade').fadeIn(400);
-                        } else {
-                            $('#especialidade').html('');
-                            $('.form-especialidade').fadeOut(400);
-                        }
-                    }
-                });
-            }
-        });*/
-
         $('#servico_tipo').change(function () {
             var valor = $(this).val();
 
@@ -139,12 +107,10 @@ include_once "../lib/includes.php";
                 return false;
             }
 
-            //var dados_form = $(this).serializeArray();
             var local_fonte = $('#local_fonte').val();
             var servico_tipo = $('#servico_tipo').val();
             var senha = $('#senha').val();
 
-            console.log(local_fonte);
             $.ajax({
                 url: 'agendamento.php',
                 method: 'POST',

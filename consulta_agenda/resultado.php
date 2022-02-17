@@ -7,15 +7,17 @@ $data = $_SESSION['data'];
 $servico_tipo = $_SESSION['servico_tipo'];
 $filtro = $_POST['filtro'];
 
-$query = "SELECT s.*, b.nome AS b_nome FROM servicos s "
+$query = "SELECT s.*, b.nome AS b_nome, lf.descricao AS lf_descricao, st.tipo AS st_descricao FROM servicos s "
     . "LEFT JOIN local_fontes lf ON lf.codigo = s.local_fonte "
+    . "LEFT JOIN servico_tipo st ON st.codigo = s.tipo "
     . "LEFT JOIN beneficiados b ON b.codigo = s.beneficiado ";
 
-$whereGeral = "WHERE {$_SESSION['whereLocalFonte']} s.data_agenda LIKE '%{$data}%' AND s.tipo = '{$servico_tipo}' ORDER BY data_agenda";
+$whereGeral = "WHERE {$_SESSION['whereServicoTipo']} {$_SESSION['whereLocalFonte']} s.data_agenda LIKE '%{$data}%'  ORDER BY data_agenda";
 $result = mysql_query($query . $whereGeral);
 
 $mes = date('m', strtotime($data));
-$whereMes = "WHERE {$_SESSION['whereLocalFonte']} DATE_FORMAT(s.data_agenda, \"%m\") = '{$mes}' AND s.tipo = '{$servico_tipo}' ORDER BY data_agenda";
+$whereMes = "WHERE {$_SESSION['whereServicoTipo']} {$_SESSION['whereLocalFonte']} DATE_FORMAT(s.data_agenda, \"%m\") = '{$mes}' "
+    . "ORDER BY data_agenda";
 $resultMes = mysql_query($query . $whereMes);
 
 $mesArray = [
@@ -39,14 +41,15 @@ $mesArray = [
     <?= 'Dia ' . date('d', strtotime($data)); ?>
 </h1>
 
-<div class="table-responsive mb-2" style="min-height: 120px;border: 1px solid #cccccc">
+<div class="table-responsive mb-2" style="min-height: 120px;">
 
-    <table class="table table-sm table-striped" style="font-size: .9rem;">
+    <table class="table table-sm table-bordered" style="font-size: .9rem;">
         <thead>
         <tr>
             <th class="text-center">Data</th>
             <th class="text-center">Beneficiado</th>
-            <th class="text-center">Especialista</th>
+            <th class="text-center">Local</th>
+            <th class="text-center">Serviço</th>
             <th class="text-center">Situação</th>
             <th class="text-center">Ações</th>
         </tr>
@@ -59,10 +62,11 @@ $mesArray = [
                 ?>
                 <tr>
                     <td class="text-center"><?= $data; ?></td>
-                    <td class="text-center"><?= $d->b_nome; ?></td>
-                    <td class="text-center"><?= $d->especialista; ?></td>
+                    <td class="text-center text-nowrap"><?= $d->b_nome; ?></td>
+                    <td class="text-center text-nowrap"><?= $d->lf_descricao; ?></td>
+                    <td class="text-center text-nowrap"><?= $d->st_descricao; ?></td>
                     <td class="text-center">
-                        <span text_situacao_<?= $d->codigo; ?>><?= $d->situacao; ?></span>
+                        <span text_situacao_<?= $d->codigo; ?>><?= getSituacaoOptions($d->situacao); ?></span>
                     </td>
                     <td>
                         <button
@@ -86,13 +90,14 @@ $mesArray = [
 <br>
 <h1 class="h5 text-gray-600 font-weight-bold">Mês de <?= $mesArray[date('m', strtotime($data))]; ?></h1>
 
-<div class="table-responsive" style="min-height: 120px;border: 1px solid #cccccc">
-    <table class="table table-sm table-striped" style="font-size: .9rem;">
+<div class="table-responsive" style="min-height: 120px;">
+    <table class="table table-sm table-bordered" style="font-size: .9rem;">
         <thead>
         <tr>
             <th class="text-center">Data</th>
             <th class="text-center">Beneficiado</th>
-            <th class="text-center">Especialista</th>
+            <th class="text-center">Local</th>
+            <th class="text-center">Serviço</th>
             <th class="text-center">Situação</th>
             <th class="text-center">Ações</th>
         </tr>
@@ -105,10 +110,11 @@ $mesArray = [
                 ?>
                 <tr>
                     <td class="text-center"><?= $data; ?></td>
-                    <td class="text-center"><?= $d->b_nome; ?></td>
-                    <td class="text-center"><?= $d->especialista; ?></td>
+                    <td class="text-center text-nowrap"><?= $d->b_nome; ?></td>
+                    <td class="text-center text-nowrap"><?= $d->lf_descricao; ?></td>
+                    <td class="text-center text-nowrap"><?= $d->st_descricao; ?></td>
                     <td class="text-center">
-                        <span text_situacao_<?= $d->codigo; ?>><?= $d->situacao; ?></span>
+                        <span text_situacao_<?= $d->codigo; ?>><?= getSituacaoOptions($d->situacao); ?></span>
                     </td>
                     <td class="text-center">
                         <button

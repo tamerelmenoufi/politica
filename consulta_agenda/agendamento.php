@@ -8,11 +8,16 @@ $codigo = $_POST['local_fonte'];
 $_SESSION['servico_tipo'] = $servico_tipo;
 
 $whereLocalFonte = $codigo ? "lf.codigo = '{$codigo}' AND" : "";
+$whereServicoTipo = $servico_tipo ? "lf.servico_tipo = '{$servico_tipo}' AND " : "";
+
+$_SESSION['whereServicoTipo'] = $whereServicoTipo;
 $_SESSION['whereLocalFonte'] = $whereLocalFonte;
+
 
 $query = "SELECT lf.*, st.tipo AS st_tipo FROM local_fontes lf "
     . "INNER JOIN servico_tipo st ON st.codigo = lf.servico_tipo "
-    . "WHERE {$whereLocalFonte} lf.servico_tipo = '{$servico_tipo}' AND lf.senha = '{$senha}' AND lf.deletado = '0' ";
+    . "WHERE {$whereServicoTipo} {$whereLocalFonte} lf.senha = '{$senha}' AND lf.deletado = '0' ";
+#echo $query;
 $result = mysql_query($query);
 
 if (!@mysql_num_rows($result)) {
@@ -26,7 +31,8 @@ $queryEventos = "SELECT s.*, b.nome AS b_nome, c.descricao AS c_descricao FROM s
     . "LEFT JOIN beneficiados b ON b.codigo = s.beneficiado "
     . "LEFT JOIN categorias c ON c.codigo = s.categoria "
     . "LEFT JOIN local_fontes lf ON lf.codigo = s.local_fonte "
-    . "WHERE {$whereLocalFonte} s.tipo = '{$servico_tipo}' AND s.data_agenda > 0 AND s.deletado = '0'";
+    . "WHERE {$whereLocalFonte} {$whereServicoTipo} "
+    . "s.data_agenda > 0 AND s.deletado = '0'";
 
 
 $resultEventos = mysql_query($queryEventos);
@@ -67,6 +73,11 @@ endwhile;
 
     .fc-daygrid-day-frame {
         cursor: pointer;
+    }
+
+    .fc .fc-daygrid-day-frame i span {
+        font-style: normal;
+        padding: 3px;
     }
 
     .day-highlight {
@@ -120,7 +131,7 @@ endwhile;
                     . "INNER JOIN servico_tipo st ON st.codigo = lf.servico_tipo "
                     . "INNER JOIN servicos s ON s.local_fonte = lf.codigo "
                     . "INNER JOIN beneficiados b ON b.codigo = s.beneficiado "
-                    . "WHERE {$whereLocalFonte} lf.servico_tipo = '{$servico_tipo}' AND lf.senha = '{$senha}' "
+                    . "WHERE {$whereServicoTipo} {$whereLocalFonte} lf.senha = '{$senha}' "
                     . "AND s.data_agenda = 0 AND lf.deletado = '0' ";
                 #echo $querySemAgenda;
                 $resultSemAgenda = mysql_query($querySemAgenda);
@@ -133,7 +144,9 @@ endwhile;
                        aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-bell fa-fw"></i>
                         <!-- Counter - Alerts -->
-                        <span class="badge badge-danger badge-counter" text_count_sem_agenda><?= $numSemAgenda ?: '0' ?>+</span>
+                        <span class="badge badge-danger badge-counter" text_count_sem_agenda>
+                            <?= $numSemAgenda ?: '0' ?>+
+                        </span>
                     </a>
 
                     <!-- Dropdown - Alerts -->
@@ -181,7 +194,7 @@ endwhile;
             <div class="col-md-12">
                 <div class="card shadow">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Consulta de agendamentos</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Consulta de Agendamentos</h6>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -261,7 +274,6 @@ endwhile;
 
         calendar.render();
 
-
         /* -- Eventos cliques -- */
 
         $('.fc-prev-button').click(function () {
@@ -307,27 +319,6 @@ endwhile;
             });
         });
 
-        $('.teste').click(function (e) {
-            e.preventDefault();
-
-            var source = [
-                {
-                    title: 'Click for Google',
-                    start: new Date(2022, 1, 28),
-                    end: new Date(2022, 2, 29),
-                    url: 'http://google.com/'
-                },
-            ];
-
-            calendar.batchRendering(() => {
-                // remove all events
-                // calendar.getEvents().forEach(event => event.remove());
-                // add your new events source
-                calendar.addEventSource(source);
-            });
-
-        });
-
         /* -- Eventos cliques -- */
 
         function consulta_agenda(data, servico_tipo) {
@@ -343,10 +334,6 @@ endwhile;
                 }
             });
         }
-    });
-
-    $(function () {
-
     });
 
 </script>

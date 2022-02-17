@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'atualizar_situ
 
     $query = "UPDATE servicos SET situacao = '{$situacao}' WHERE codigo = '{$codigo}'";
     if (mysql_query($query)) {
-        echo json_encode(['status' => true, 'situacao' => $situacao]);
+        echo json_encode(['status' => true, 'situacao' => getSituacaoOptions($situacao)]);
     } else {
         echo json_encode(['status' => false]);
     }
@@ -85,7 +85,7 @@ $d = mysql_fetch_object($result);
                 <span class="font-weight-bold">Situação</span>
             </div>
             <div class="col-md-9">
-                <span text_situacao_<?= $codigo; ?>><?= ucfirst($d->situacao); ?></span>
+                <span text_situacao_<?= $codigo; ?>><?= getSituacaoOptions($d->situacao); ?></span>
 
                 <div class="btn-group">
                     <button
