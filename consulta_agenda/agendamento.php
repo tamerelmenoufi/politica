@@ -3,21 +3,24 @@ include "../lib/includes.php";
 
 $servico_tipo = $_POST['servico_tipo'];
 $senha = mysql_real_escape_string($_POST['senha']);
-$codigo = $_POST['local_fonte'];
+$local_fonte = $_POST['local_fonte'];
 
 $_SESSION['servico_tipo'] = $servico_tipo;
 
-$whereLocalFonte = $codigo ? "lf.codigo = '{$codigo}' AND" : "";
+$whereLocalFonte = $local_fonte ? "lf.codigo = '{$local_fonte}' AND" : "";
 $whereServicoTipo = $servico_tipo ? "lf.servico_tipo = '{$servico_tipo}' AND " : "";
 
 $_SESSION['whereServicoTipo'] = $whereServicoTipo;
 $_SESSION['whereLocalFonte'] = $whereLocalFonte;
 
-
-$query = "SELECT lf.*, st.tipo AS st_tipo FROM local_fontes lf "
-    . "INNER JOIN servico_tipo st ON st.codigo = lf.servico_tipo "
-    . "WHERE {$whereServicoTipo} {$whereLocalFonte} lf.senha = '{$senha}' AND lf.deletado = '0' ";
-#echo $query;
+if (!$servico_tipo) {
+    $senha = md5($senha);
+    $query = "SELECT codigo FROM usuarios WHERE senha = '{$senha}'";
+} else {
+    $query = "SELECT lf.*, st.tipo AS st_tipo FROM local_fontes lf "
+        . "INNER JOIN servico_tipo st ON st.codigo = lf.servico_tipo "
+        . "WHERE {$whereServicoTipo} {$whereLocalFonte} lf.senha = '{$senha}' AND lf.deletado = '0' ";
+}
 $result = mysql_query($query);
 
 if (!@mysql_num_rows($result)) {
@@ -25,26 +28,33 @@ if (!@mysql_num_rows($result)) {
     exit();
 }
 
-$d = mysql_fetch_object($result);
+#$d = mysql_fetch_object($result);
+$colunas = "s.*, b.nome AS b_nome, c.descricao AS c_descricao, st.tipo AS st_tipo, lf.descricao AS lf_descricao";
 
-$queryEventos = "SELECT s.*, b.nome AS b_nome, c.descricao AS c_descricao FROM servicos s "
+$queryEventos = "SELECT {$colunas} FROM servicos s "
+    . "LEFT JOIN servico_tipo st ON st.codigo = s.tipo "
     . "LEFT JOIN beneficiados b ON b.codigo = s.beneficiado "
     . "LEFT JOIN categorias c ON c.codigo = s.categoria "
     . "LEFT JOIN local_fontes lf ON lf.codigo = s.local_fonte "
     . "WHERE {$whereLocalFonte} {$whereServicoTipo} "
     . "s.data_agenda > 0 AND s.deletado = '0'";
 
-
 $resultEventos = mysql_query($queryEventos);
-#file_put_contents('debug.txt', $queryEventos);
-$eventos = [];
 
+$eventos = [];
+$titulo = "Geral";
+/*$d->st_tipo . ($whereLocalFonte ? " - {$d->descricao}" : " - Geral");*/
+$i = 0;
 while ($dadosEventos = mysql_fetch_object($resultEventos)):
+    if ($i === 0) $titulo = $dadosEventos->st_tipo . ($whereLocalFonte ? $dadosEventos->lf_descricao : " - Geral");
+
     $eventos[] = [
         'id' => $dadosEventos->codigo,
         'title' => formata_datahora($dadosEventos->data_agenda, HORA_MINUTO) . ' - ' . $dadosEventos->b_nome . " (" . ($dadosEventos->c_descricao ?: 'Outros') . ")",
         'start' => date('Y-m-d', strtotime($dadosEventos->data_agenda)),
     ];
+
+    $i++;
 endwhile;
 
 ?>
@@ -121,7 +131,7 @@ endwhile;
             </a>
         </div>
         <div class="text-gray-700 h4 font-weight-bold mb-0">
-            <?= $d->st_tipo . ($whereLocalFonte ? " - {$d->descricao}" : " - Geral"); ?>
+            <?php echo $titulo; ?>
         </div>
 
         <div>

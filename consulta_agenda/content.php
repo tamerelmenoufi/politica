@@ -18,7 +18,7 @@ include_once "../lib/includes.php";
                             </a>
                         </div>
                         <div style="flex: 1">
-                            <h1 class="h3 text-gray-800 text-center m-0">Consultar agendamentos</h1>
+                            <h1 class="h3 text-gray-800 text-center m-0 font-weight-bold">Consultar agendamentos</h1>
                         </div>
                     </div>
                     <hr class="mb-5">
@@ -45,7 +45,7 @@ include_once "../lib/includes.php";
                             </div>
                         </div>
 
-                        <div class="form-group row form-local-fonte" style="display: none">
+                        <div class="form-group row form-local-fonte">
                             <label for="local_fonte" class="col-lg-2 col-form-label">Local/Fonte</label>
                             <div class="col-lg-10">
                                 <select
@@ -53,7 +53,9 @@ include_once "../lib/includes.php";
                                         id="local_fonte"
                                         name="local_fonte"
                                 >
+                                    <option value="">Geral</option>
                                 </select>
+
                             </div>
                         </div>
 
@@ -65,12 +67,18 @@ include_once "../lib/includes.php";
                                         class="form-control"
                                         name="senha"
                                         id="senha"
+                                        placeholder="Digite a chave de acesso"
                                 >
                             </div>
                         </div>
 
                         <div class="form-group float-right mt-4">
-                            <button type="submit" class="btn btn-success">Consultar</button>
+                            <button
+                                    type="submit"
+                                    class="btn btn-success"
+                            >
+                                Consultar
+                            </button>
                         </div>
                     </form>
                 </div>
