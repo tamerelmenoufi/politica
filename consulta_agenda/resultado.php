@@ -1,5 +1,5 @@
 <?php
-include '../lib/includes.php';
+include 'conf.php';
 
 if ($_POST['data']) $_SESSION['data'] = $_POST['data'];
 

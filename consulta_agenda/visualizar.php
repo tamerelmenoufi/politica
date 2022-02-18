@@ -1,5 +1,5 @@
 <?php
-include '../lib/includes.php';
+include 'conf.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'atualizar_situacao') {
     $codigo = $_POST['codigo'];
