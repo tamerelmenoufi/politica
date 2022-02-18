@@ -1,6 +1,19 @@
 <?php
 include "config_usuarios.php";
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'acesso_agenda') {
+    $codigo = $_POST['codigo'];
+    $acesso_agenda = $_POST['acesso_agenda'];
+
+    $query = "UPDATE usuarios SET acesso_agenda = '{$acesso_agenda}' WHERE codigo = '{$codigo}'";
+
+    if (mysql_query($query)) {
+        echo json_encode(['status' => true, 'msg' => 'Acesso alterado com sucesso']);
+    } else {
+        echo json_encode(['status' => false, 'msg' => 'Error ao liberar acesso à agenda']);
+    }
+    exit;
+}
 $codigo = $_GET['codigo'];
 $query = "SELECT u.* FROM usuarios u "
     . "WHERE u.codigo = '{$codigo}'";
@@ -8,6 +21,12 @@ $result = mysql_query($query);
 $d = mysql_fetch_object($result);
 
 ?>
+
+<style>
+    .custom-control-input:checked ~ .custom-control-label::before {
+        background: #1cc88a;
+    }
+</style>
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb shadow bg-gray-custom">
@@ -28,52 +47,52 @@ $d = mysql_fetch_object($result);
         </h6>
         <div class="d-md-flex justify-content-xl-center">
             <?php
-            if( (in_array('Usuários - Editar', $ConfPermissoes) and $d->codigo != 1) or $_SESSION['usuario']['codigo'] == 1){
-            ?>
-            <button
-                    type="button"
-                    class="btn btn-info btn-sm float-left"
-                    url="<?= $urlUsuarios ?>/permissao.php?codigo=<?= $d->codigo; ?>"
-                    style="margin-right: 2px"
-            >
-                <i class="fa-solid fa-plus"></i> Permissão
-            </button>
-            <?php
+            if ((in_array('Usuários - Editar', $ConfPermissoes) and $d->codigo != 1) or $_SESSION['usuario']['codigo'] == 1) {
+                ?>
+                <button
+                        type="button"
+                        class="btn btn-info btn-sm float-left"
+                        url="<?= $urlUsuarios ?>/permissao.php?codigo=<?= $d->codigo; ?>"
+                        style="margin-right: 2px"
+                >
+                    <i class="fa-solid fa-plus"></i> Permissão
+                </button>
+                <?php
             }
-            if(in_array('Usuários - Cadastrar', $ConfPermissoes)){
-            ?>
-            <button
-                    type="button"
-                    class="btn btn-success btn-sm float-left"
-                    url="<?= $urlUsuarios ?>/form.php"
-                    style="margin-right: 2px"
-            >
-                <i class="fa-solid fa-plus"></i> Novo
-            </button>
-            <?php
+            if (in_array('Usuários - Cadastrar', $ConfPermissoes)) {
+                ?>
+                <button
+                        type="button"
+                        class="btn btn-success btn-sm float-left"
+                        url="<?= $urlUsuarios ?>/form.php"
+                        style="margin-right: 2px"
+                >
+                    <i class="fa-solid fa-plus"></i> Novo
+                </button>
+                <?php
             }
-            if(in_array('Usuários - Editar', $ConfPermissoes)){
-            ?>
-            <button
-                    type="button"
-                    class="btn btn-warning btn-sm float-left"
-                    url="<?= $urlUsuarios ?>/form.php?codigo=<?= $codigo; ?>"
-                    style="margin-right: 2px"
-            >
-                <i class="fa-solid fa-pencil"></i> Editar
-            </button>
-            <?php
+            if (in_array('Usuários - Editar', $ConfPermissoes)) {
+                ?>
+                <button
+                        type="button"
+                        class="btn btn-warning btn-sm float-left"
+                        url="<?= $urlUsuarios ?>/form.php?codigo=<?= $codigo; ?>"
+                        style="margin-right: 2px"
+                >
+                    <i class="fa-solid fa-pencil"></i> Editar
+                </button>
+                <?php
             }
-            if(in_array('Usuários - Excluir', $ConfPermissoes) and $d->codigo != 1){
-            ?>
-            <button
-                    type="button"
-                    class="btn btn-danger btn-excluir btn-sm float-left"
-                    data-codigo="<?= $codigo; ?>"
-            >
-                <i class="fa-regular fa-trash-can"></i> Excluir
-            </button>
-            <?php
+            if (in_array('Usuários - Excluir', $ConfPermissoes) and $d->codigo != 1) {
+                ?>
+                <button
+                        type="button"
+                        class="btn btn-danger btn-excluir btn-sm float-left"
+                        data-codigo="<?= $codigo; ?>"
+                >
+                    <i class="fa-regular fa-trash-can"></i> Excluir
+                </button>
+                <?php
             }
             ?>
         </div>
@@ -91,9 +110,32 @@ $d = mysql_fetch_object($result);
             <div class="col-md-4 font-weight-bold">Criado em</div>
             <div class="col-md-8"><?= formata_datahora($d->data_cadastro, DATA_HM); ?></div>
         </div>
+
         <div class="row">
             <div class="col-md-4 font-weight-bold">Status</div>
-            <div class="col-md-8"><?= getSituacaoOptions($d->status); ?></div>
+            <div class="col-md-8">
+                <?php
+                $status = $d->status == '1' ? 'success' : 'danger';
+                ?>
+                <span class="badge badge-<?= $status; ?>">
+                    <?= getSituacaoOptions($d->status); ?>
+                </span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 font-weight-bold">Acesso a agenda</div>
+            <div class="col-md-8">
+                <div class="custom-control custom-switch">
+                    <input
+                            type="checkbox"
+                            class="custom-control-input"
+                            id="acesso_agenda"
+                            data-codigo="<?= $codigo; ?>"
+                    >
+                    <label class="custom-control-label" for="acesso_agenda"></label>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -144,4 +186,27 @@ $d = mysql_fetch_object($result);
             }
         })
     });
+
+    $('#acesso_agenda').change(function () {
+        var codigo = $(this).data('codigo');
+        var acesso_agenda = Number($(this).is(':checked'));
+
+        $.ajax({
+            url: '<?= $urlUsuarios?>/visualizar.php',
+            method: 'POST',
+            dataType: 'JSON',
+            data: {
+                codigo,
+                acesso_agenda,
+                acao: 'acesso_agenda',
+            },
+            success: function (data) {
+                if (data.status) {
+                    tata.success('Sucesso', data.msg);
+                } else {
+                    tata.error('Error', data.msg);
+                }
+            }
+        })
+    })
 </script>

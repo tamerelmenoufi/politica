@@ -2,7 +2,7 @@
 include "../lib/includes.php";
 
 if (!isset($_SESSION['usuario'])) {
-    header("Location: ../index.php");
+    header("Location: ../admin/");
 }
 ?>
 <!DOCTYPE html>
@@ -99,7 +99,7 @@ if (!isset($_SESSION['usuario'])) {
             <div class="modal-body">Selecione "Sair" abaixo se estiver pronto para encerrar sua sessão atual.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                <a class="btn btn-primary" href="../index.php">Sair</a>
+                <a class="btn btn-primary" href="../admin">Sair</a>
             </div>
         </div>
     </div>
