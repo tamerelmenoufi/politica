@@ -96,13 +96,7 @@ include_once "../lib/includes.php";
                 url: 'select_local_fonte.php',
                 data: {servico_tipo: valor},
                 success: function (response) {
-                    if (response.length > 0) {
-                        $('#local_fonte').html(response);
-                        $('.form-local-fonte').fadeIn(400);
-                    } else {
-                        $('#local_fonte').html('');
-                        $('.form-local-fonte').fadeOut(400);
-                    }
+                    $('#local_fonte').html(response);
                 }
             })
         });

@@ -19,8 +19,10 @@ if (!$servico_tipo) {
 } else {
     $query = "SELECT lf.*, st.tipo AS st_tipo FROM local_fontes lf "
         . "INNER JOIN servico_tipo st ON st.codigo = lf.servico_tipo "
-        . "WHERE {$whereServicoTipo} {$whereLocalFonte} lf.senha = '{$senha}' AND lf.deletado = '0' ";
+        . "WHERE {$whereServicoTipo} {$whereLocalFonte} "
+        ."lf.senha = '{$senha}' AND lf.deletado = '0' ";
 }
+
 $result = mysql_query($query);
 
 if (!@mysql_num_rows($result)) {
@@ -28,7 +30,7 @@ if (!@mysql_num_rows($result)) {
     exit();
 }
 
-#$d = mysql_fetch_object($result);
+$d = mysql_fetch_object($result);
 $colunas = "s.*, b.nome AS b_nome, c.descricao AS c_descricao, st.tipo AS st_tipo, lf.descricao AS lf_descricao";
 
 $queryEventos = "SELECT {$colunas} FROM servicos s "
@@ -42,12 +44,12 @@ $queryEventos = "SELECT {$colunas} FROM servicos s "
 $resultEventos = mysql_query($queryEventos);
 
 $eventos = [];
-$titulo = "Geral";
-/*$d->st_tipo . ($whereLocalFonte ? " - {$d->descricao}" : " - Geral");*/
-$i = 0;
-while ($dadosEventos = mysql_fetch_object($resultEventos)):
-    if ($i === 0) $titulo = $dadosEventos->st_tipo . ($whereLocalFonte ? $dadosEventos->lf_descricao : " - Geral");
+$titulo = "";
 
+$i = 0;
+
+
+while ($dadosEventos = mysql_fetch_object($resultEventos)):
     $eventos[] = [
         'id' => $dadosEventos->codigo,
         'title' => formata_datahora($dadosEventos->data_agenda, HORA_MINUTO) . ' - ' . $dadosEventos->b_nome . " (" . ($dadosEventos->c_descricao ?: 'Outros') . ")",
@@ -131,7 +133,7 @@ endwhile;
             </a>
         </div>
         <div class="text-gray-700 h4 font-weight-bold mb-0">
-            <?php echo $titulo; ?>
+            <?= $d->st_tipo . ($whereLocalFonte ? " - {$d->descricao}" : " - Geral"); ?>
         </div>
 
         <div>
@@ -141,12 +143,12 @@ endwhile;
                     . "INNER JOIN servico_tipo st ON st.codigo = lf.servico_tipo "
                     . "INNER JOIN servicos s ON s.local_fonte = lf.codigo "
                     . "INNER JOIN beneficiados b ON b.codigo = s.beneficiado "
-                    . "WHERE {$whereServicoTipo} {$whereLocalFonte} lf.senha = '{$senha}' "
-                    . "AND s.data_agenda = 0 AND lf.deletado = '0' ";
+                    . "WHERE {$whereServicoTipo} {$whereLocalFonte} "
+                    . "s.data_agenda = 0 AND lf.deletado = '0'";
                 #echo $querySemAgenda;
                 $resultSemAgenda = mysql_query($querySemAgenda);
 
-                $numSemAgenda = mysql_num_rows($resultSemAgenda);
+                $numSemAgenda = @mysql_num_rows($resultSemAgenda);
                 ?>
                 <li class="nav-item dropdown no-arrow mx-1">
                     <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
@@ -277,7 +279,7 @@ endwhile;
             dateClick: function (info) {
                 $(".day-highlight").removeClass("day-highlight");
                 $(info.dayEl).addClass("day-highlight");
-                calendar.gotoDate(date)
+                //calendar.gotoDate(date)
                 consulta_agenda(info.dateStr, servico_tipo);
             },
         });
