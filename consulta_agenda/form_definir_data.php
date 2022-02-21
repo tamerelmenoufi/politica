@@ -8,8 +8,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $query = "UPDATE servicos SET data_agenda = '{$data_agenda}' WHERE codigo = '{$cod_servico}'";
     if (mysql_query($query)) {
 
-        $query = "SELECT s.*, b.nome AS b_nome, c.descricao AS c_descricao FROM servicos s "
+        $query = "SELECT s.*, b.nome AS b_nome, c.descricao AS c_descricao, st.tipo AS st_tipo, lf.descricao AS lf_descricao FROM servicos s "
+            . "LEFT JOIN servico_tipo st ON st.codigo = s.tipo "
             . "LEFT JOIN beneficiados b ON b.codigo = s.beneficiado "
+            . "LEFT JOIN local_fontes lf ON lf.codigo = s.local_fonte "
             . "LEFT JOIN categorias c ON c.codigo = s.categoria "
             . " WHERE s.codigo = '{$cod_servico}'";
 
@@ -21,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'msg' => 'Data de agendamento cadastrado com sucesso',
             'data' => [
                 'id' => $d->codigo,
-                'title' => formata_datahora($d->data_agenda, HORA_MINUTO) . ' - ' . $d->b_nome . " (" . ($d->c_descricao ?: 'Outros') . ")",
+                'title' => formata_datahora($d->data_agenda, HORA_MINUTO) . ' - ' . $d->b_nome ." - ". $d->st_tipo." (" . ($d->lf_descricao ?: 'Outros') . ")",
                 'start' => date('Y-m-d', strtotime($d->data_agenda))
             ],
         ]);

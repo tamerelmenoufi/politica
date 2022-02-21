@@ -61,11 +61,11 @@ $mesArray = [
                 $data = formata_datahora($d->data_agenda, DATA_HM);
                 ?>
                 <tr>
-                    <td class="text-center"><?= $data; ?></td>
+                    <td class="text-center text-nowrap"><?= $data; ?></td>
                     <td class="text-center text-nowrap"><?= $d->b_nome; ?></td>
                     <td class="text-center text-nowrap"><?= $d->lf_descricao; ?></td>
                     <td class="text-center text-nowrap"><?= $d->st_descricao; ?></td>
-                    <td class="text-center">
+                    <td class="text-center text-nowrap">
                         <span text_situacao_<?= $d->codigo; ?>><?= getSituacaoOptions($d->situacao); ?></span>
                     </td>
                     <td>
@@ -109,11 +109,11 @@ $mesArray = [
                 $data = formata_datahora($d->data_agenda, DATA_HM);
                 ?>
                 <tr>
-                    <td class="text-center"><?= $data; ?></td>
+                    <td class="text-center text-nowrap"><?= $data; ?></td>
                     <td class="text-center text-nowrap"><?= $d->b_nome; ?></td>
                     <td class="text-center text-nowrap"><?= $d->lf_descricao; ?></td>
                     <td class="text-center text-nowrap"><?= $d->st_descricao; ?></td>
-                    <td class="text-center">
+                    <td class="text-center text-nowrap">
                         <span text_situacao_<?= $d->codigo; ?>><?= getSituacaoOptions($d->situacao); ?></span>
                     </td>
                     <td class="text-center">
