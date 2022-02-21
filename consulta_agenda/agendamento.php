@@ -15,12 +15,12 @@ $_SESSION['whereLocalFonte'] = $whereLocalFonte;
 
 if (!$servico_tipo) {
     $senha = md5($senha);
-    $query = "SELECT codigo FROM usuarios WHERE senha = '{$senha}'";
+    $query = "SELECT codigo FROM usuarios WHERE senha = '{$senha}' AND acesso_agenda = '1'";
 } else {
     $query = "SELECT lf.*, st.tipo AS st_tipo FROM local_fontes lf "
         . "INNER JOIN servico_tipo st ON st.codigo = lf.servico_tipo "
         . "WHERE {$whereServicoTipo} {$whereLocalFonte} "
-        . "lf.senha = '{$senha}' AND lf.deletado = '0' ";
+        . "lf.senha = '{$senha}' AND lf.deletado = '0'";
 }
 
 $result = mysql_query($query);

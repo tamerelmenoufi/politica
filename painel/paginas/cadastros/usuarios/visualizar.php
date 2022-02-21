@@ -132,6 +132,7 @@ $d = mysql_fetch_object($result);
                             class="custom-control-input"
                             id="acesso_agenda"
                             data-codigo="<?= $codigo; ?>"
+                        <?= $d->acesso_agenda === '1' ? ' checked' : ''; ?>
                     >
                     <label class="custom-control-label" for="acesso_agenda"></label>
                 </div>
