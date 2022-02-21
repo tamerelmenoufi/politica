@@ -20,7 +20,7 @@ if (!$servico_tipo) {
     $query = "SELECT lf.*, st.tipo AS st_tipo FROM local_fontes lf "
         . "INNER JOIN servico_tipo st ON st.codigo = lf.servico_tipo "
         . "WHERE {$whereServicoTipo} {$whereLocalFonte} "
-        ."lf.senha = '{$senha}' AND lf.deletado = '0' ";
+        . "lf.senha = '{$senha}' AND lf.deletado = '0' ";
 }
 
 $result = mysql_query($query);
@@ -228,6 +228,7 @@ endwhile;
             id="servico_tipo"
             value="<?= $servico_tipo ?>"
     >
+
 </div>
 
 <script>
@@ -302,7 +303,7 @@ endwhile;
             e.preventDefault();
 
             $.ajax({
-                url: 'content.php',
+                url: 'form_acesso.php',
                 success: function (response) {
                     $('#palco-agenda').html(response);
                 }
@@ -314,7 +315,7 @@ endwhile;
 
             $.dialog({
                 title: false,
-                content: `url: visualizar.php?codigo=${codigo}`,
+                content: `url: modal_visualizar.php?codigo=${codigo}`,
                 theme: 'bootstrap',
                 columnClass: 'large'
             });
@@ -335,7 +336,7 @@ endwhile;
 
         function consulta_agenda(data, servico_tipo) {
             $.ajax({
-                url: 'resultado.php',
+                url: 'tabela_agendamentos.php',
                 method: 'POST',
                 data: {
                     data,

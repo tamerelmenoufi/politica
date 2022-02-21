@@ -6,11 +6,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' and $_POST['acao'] === 'atualizar_situ
     $situacao = $_POST['situacao'];
 
     $query = "UPDATE servicos SET situacao = '{$situacao}' WHERE codigo = '{$codigo}'";
+
     if (mysql_query($query)) {
         echo json_encode(['status' => true, 'situacao' => getSituacaoOptions($situacao)]);
     } else {
         echo json_encode(['status' => false]);
     }
+
     exit();
 }
 $codigo = $_GET['codigo'];
@@ -168,7 +170,7 @@ $d = mysql_fetch_object($result);
             var rotulo = $(this).text();
 
             $.ajax({
-                url: 'visualizar.php',
+                url: 'modal_visualizar.php',
                 method: 'POST',
                 data: {
                     codigo,

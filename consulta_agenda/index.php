@@ -29,7 +29,7 @@ include "../lib/includes.php";
 <body>
 
 <div id="palco-agenda">
-    <?php include 'content.php'; ?>
+    <?php include 'form_acesso.php'; ?>
 </div>
 
 </body>

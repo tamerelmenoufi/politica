@@ -157,7 +157,7 @@ $d = mysql_fetch_object($result);
 
                     if (response.status) {
                         $.ajax({
-                            url: 'resultado.php',
+                            url: 'tabela_agendamentos.php',
                             success: function (html) {
                                 $('#resultado').html(html);
                             }
