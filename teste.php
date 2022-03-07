@@ -2,6 +2,7 @@
     include "lib/includes.php";
     exit();
     //Aqui seriam as atualizações de teste
+    //Acrescendo mais uma linha de teste
 
     for($i=0;$i<100;$i++){
 
