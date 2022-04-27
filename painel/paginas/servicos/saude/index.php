@@ -108,8 +108,8 @@ $result = mysql_query($query);
                     </th>
                 </tr>
                 <tr>
-                    <th>Beneficiado</th>
-                    <th>Especialidade</th>
+                    <th>BeneficiadoX</th>
+                    <th>EspecialidadeX</th>
                     <th>Assessor</th>
                     <th>Data da Agenda</th>
                     <th>Situação</th>
