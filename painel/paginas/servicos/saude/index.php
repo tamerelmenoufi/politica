@@ -108,8 +108,8 @@ $result = mysql_query($query);
                     </th>
                 </tr>
                 <tr>
-                    <th>BeneficiadoX</th>
-                    <th>EspecialidadeX</th>
+                    <th>Beneficiado</th>
+                    <th>Especialidade</th>
                     <th>Assessor</th>
                     <th>Data da Agenda</th>
                     <th>Situação</th>
@@ -121,7 +121,7 @@ $result = mysql_query($query);
                 <?php while ($d = mysql_fetch_object($result)): ?>
                     <tr id="linha-<?= $d->codigo; ?>">
                         <td><?= $d->beneficiado; ?></td>
-                        <td><?= $d->especialidade; ?></td>
+                        <td><?= $d->especialista; ?></td>
                         <td><?= $d->assessor; ?></td>
                         <td><?= formata_datahora($d->data_agenda, DATA_HM); ?></td>
                         <td><?= getSituacaoOptions($d->situacao); ?></td>
