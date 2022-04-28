@@ -17,6 +17,7 @@ if (isset($_POST["search"]["value"])) {
     $valor = trim($_POST["search"]["value"]);
 
     $query .= "AND (b.nome LIKE '%{$valor}%' "
+        . "OR b.cpf LIKE '%{$valor}%' "
         . "OR m.municipio LIKE '%{$valor}%') ";
 }
 
