@@ -16,16 +16,16 @@ $colunaAtendimento = "(CASE WHEN s.data_agenda <= NOW() AND s.situacao = 'conclu
     . "WHEN s.data_agenda < NOW() AND s.situacao != 'concluido' AND s.data_agenda > 0 THEN 'Não atendido' "
     . "WHEN s.data_agenda > NOW() AND s.data_agenda > 0 THEN 'agendado' "
     . "ELSE 'Aguardando' "
-    . "END) AS atendimento";
+    . "END) AS atendimento, lf.descricao AS lf_descricao ";
 
 $query = "SELECT s.*, a.nome AS assessor, b.nome AS beneficiado, {$colunaAtendimento} FROM servicos s "
     . "LEFT JOIN assessores a ON a.codigo = s.assessor "
     . "LEFT JOIN beneficiados b ON b.codigo = s.beneficiado "
-    . "WHERE s.tipo = '7' AND s.deletado = '0' AND categoria = '{$categoria}'"
+    . "LEFT JOIN local_fontes lf ON lf.codigo = s.local_fonte "
+    . "WHERE s.tipo = '7' AND s.deletado = '0' AND s.categoria = '{$categoria}'"
     . "ORDER BY s.codigo DESC";
 
 $result = mysql_query($query);
-
 ?>
 
 <style>
@@ -113,7 +113,7 @@ $result = mysql_query($query);
                     <th>Assessor</th>
                     <th>Data da Agenda</th>
                     <th>Situação</th>
-                    <th>Atendimento</th>
+                    <th>Local</th>
                     <th class="mw-20">Ações</th>
                 </tr>
                 </thead>
@@ -125,7 +125,7 @@ $result = mysql_query($query);
                         <td><?= $d->assessor; ?></td>
                         <td><?= formata_datahora($d->data_agenda, DATA_HM); ?></td>
                         <td><?= getSituacaoOptions($d->situacao); ?></td>
-                        <td><?= $d->atendimento; ?></td>
+                        <td><?= $d->lf_descricao; ?></td>
                         <td>
                             <button
                                     class="btn btn-sm btn-link"
