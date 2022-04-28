@@ -16,7 +16,7 @@ function getUrl()
     if ($_SERVER['HTTP_HOST'] === 'localhost') return $protocol . "://localhost/dsv/politica/";
 
     #return $protocol . "://" . $_SERVER['HTTP_HOST'];
-    return 'http://http://3.93.20.163:8080/';
+    return 'http://politica.mohatron.com/';
 }
 
 $caminho_vendor = getUrl() . "lib/vendor";
