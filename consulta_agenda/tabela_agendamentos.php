@@ -41,9 +41,9 @@ $mesArray = [
     <?= 'Dia ' . date('d', strtotime($data)); ?>
 </h1>
 
-<div class="table-responsive mb-2" style="min-height: 120px;">
+<div class="table-responsive mb-2" style="max-height: 350px; border: 1px solid #36b9cc">
 
-    <table class="table table-sm table-bordered" style="font-size: .9rem;">
+    <table class="table table-sm table-bordered table-hover table-striped" style="font-size: .9rem;">
         <thead>
         <tr>
             <th class="text-center">Data</th>
@@ -61,8 +61,8 @@ $mesArray = [
                 $data = formata_datahora($d->data_agenda, DATA_HM);
                 ?>
                 <tr>
-                    <td class="text-center text-nowrap"><?= $data; ?></td>
-                    <td class="text-center text-nowrap"><?= $d->b_nome; ?></td>
+                    <td class="text-center"><?= $data; ?></td>
+                    <td class="text-center"><?= $d->b_nome; ?></td>
                     <td class="text-center text-nowrap"><?= $d->lf_descricao; ?></td>
                     <td class="text-center text-nowrap"><?= $d->st_descricao; ?></td>
                     <td class="text-center text-nowrap">
@@ -90,8 +90,8 @@ $mesArray = [
 <br>
 <h1 class="h5 text-gray-600 font-weight-bold">Mês de <?= $mesArray[date('m', strtotime($data))]; ?></h1>
 
-<div class="table-responsive" style="min-height: 120px;">
-    <table class="table table-sm table-bordered" style="font-size: .9rem;">
+<div class="table-responsive" style="max-height: 350px; border: 1px solid #36b9cc">
+    <table class="table table-sm table-bordered table-hover table-striped" style="font-size: .9rem;">
         <thead>
         <tr>
             <th class="text-center">Data</th>
@@ -109,8 +109,8 @@ $mesArray = [
                 $data = formata_datahora($d->data_agenda, DATA_HM);
                 ?>
                 <tr>
-                    <td class="text-center text-nowrap"><?= $data; ?></td>
-                    <td class="text-center text-nowrap"><?= $d->b_nome; ?></td>
+                    <td class="text-center"><?= $data; ?></td>
+                    <td class="text-center"><?= $d->b_nome; ?></td>
                     <td class="text-center text-nowrap"><?= $d->lf_descricao; ?></td>
                     <td class="text-center text-nowrap"><?= $d->st_descricao; ?></td>
                     <td class="text-center text-nowrap">

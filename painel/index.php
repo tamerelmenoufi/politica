@@ -1,9 +1,15 @@
 <?php
 include "../lib/includes.php";
 
+if ($_POST['acao'] === 'verifica_sessao') {
+    echo json_encode(["sessao" => isset($_SESSION['usuario'])]);
+    exit();
+}
+
 if (!isset($_SESSION['usuario'])) {
     header("Location: ../admin/");
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -172,7 +178,20 @@ if (!isset($_SESSION['usuario'])) {
             e.preventDefault();
             var url = $(this).attr('url');
 
+            console.log(url);
             $('.loading').fadeIn(200);
+
+            $.ajax({
+                url: "index.php",
+                type: "POST",
+                dataType: "JSON",
+                data: {acao: "verifica_sessao"},
+                success: function (response) {
+                    if (!response.sessao) {
+                        window.location = '../admin';
+                    }
+                }
+            });
 
             $.ajax({
                 url,

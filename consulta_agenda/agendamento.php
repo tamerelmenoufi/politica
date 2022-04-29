@@ -47,9 +47,9 @@ $resultEventos = mysql_query($queryEventos);
 $eventos = [];
 $titulo = "";
 
-if(!$servico_tipo) {
+if (!$servico_tipo) {
     $titulo = "Geral";
-}else{
+} else {
     $titulo = $d->st_tipo . ($whereLocalFonte ? " - {$d->descricao}" : " - Geral");
 };
 
@@ -58,7 +58,7 @@ $i = 0;
 while ($dadosEventos = mysql_fetch_object($resultEventos)) :
     $eventos[] = [
         'id' => $dadosEventos->codigo,
-        'title' => formata_datahora($dadosEventos->data_agenda, HORA_MINUTO) . ' - ' . $dadosEventos->b_nome . " - ".$dadosEventos->st_tipo." (" . ($dadosEventos->lf_descricao ?: 'Outros') . ")",
+        'title' => formata_datahora($dadosEventos->data_agenda, HORA_MINUTO) . ' - ' . $dadosEventos->b_nome . " - " . $dadosEventos->st_tipo . " (" . ($dadosEventos->lf_descricao ?: 'Outros') . ")",
         'start' => date('Y-m-d', strtotime($dadosEventos->data_agenda)),
     ];
 
@@ -158,7 +158,8 @@ endwhile;
                 $numSemAgenda = @mysql_num_rows($resultSemAgenda);
                 ?>
                 <li class="nav-item dropdown no-arrow mx-1">
-                    <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-bell fa-fw"></i>
                         <!-- Counter - Alerts -->
                         <span class="badge badge-danger badge-counter" text_count_sem_agenda>
@@ -167,13 +168,19 @@ endwhile;
                     </a>
 
                     <!-- Dropdown - Alerts -->
-                    <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                    <div
+                            class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                            aria-labelledby="alertsDropdown"
+                            style="max-height: 520px;overflow-y: auto"
+                    >
                         <h6 class="dropdown-header">
                             Agendamento sem data
                         </h6>
                         <?php if ($numSemAgenda) : ?>
                             <?php while ($dadosSemAgenda = mysql_fetch_object($resultSemAgenda)) : ?>
-                                <a class="dropdown-item d-flex align-items-center sem-agenda" href="#" id="sem_agenda_<?= $dadosSemAgenda->s_codigo; ?>" data-cod_servico="<?= $dadosSemAgenda->s_codigo; ?>">
+                                <a class="dropdown-item d-flex align-items-center sem-agenda" href="#"
+                                   id="sem_agenda_<?= $dadosSemAgenda->s_codigo; ?>"
+                                   data-cod_servico="<?= $dadosSemAgenda->s_codigo; ?>">
                                     <div class="mr-3">
                                         <div class="icon-circle bg-primary">
                                             <i class="fas fa-file-alt text-white"></i>
@@ -221,18 +228,18 @@ endwhile;
         </div>
     </div>
 
-    <input 
-        type="hidden" 
-        id="servico_tipo" 
-        value="<?= $servico_tipo ?>"
+    <input
+            type="hidden"
+            id="servico_tipo"
+            value="<?= $servico_tipo ?>"
     >
 
 </div>
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         let time = null;
-        let sleep = 100; 
+        let sleep = 100;
         var servico_tipo = $('#servico_tipo').val();
 
         var date = new Date();
@@ -256,7 +263,7 @@ endwhile;
             headerToolbar: {
                 right: 'prev,next today',
             },
-            moreLinkContent: function(arg) {
+            moreLinkContent: function (arg) {
                 let italicEl = document.createElement('i')
 
                 let html = `<span class="badge badge-info text-right float-right">${arg.shortText}</span>`;
@@ -268,7 +275,7 @@ endwhile;
                     domNodes: arrayOfDomNodes
                 }
             },
-            eventContent: function(arg) {
+            eventContent: function (arg) {
                 let italicEl = document.createElement('i')
                 let dados = arg.event._def;
                 let html = `<span class="btn-visualizar" data-codigo="${dados.publicId}" style="font-style: normal;">${dados.title}</span>`;
@@ -280,7 +287,7 @@ endwhile;
                     domNodes: arrayOfDomNodes
                 }
             },
-            dateClick: function(info) {
+            dateClick: function (info) {
                 $(".day-highlight").removeClass("day-highlight");
                 $(info.dayEl).addClass("day-highlight");
                 //calendar.gotoDate(date)
@@ -292,7 +299,7 @@ endwhile;
 
         /* -- Eventos cliques -- */
 
-        $('.fc-prev-button').click(function() {
+        $('.fc-prev-button').click(function () {
             clearInterval(time);
 
             var date = calendar.getDate();
@@ -302,27 +309,27 @@ endwhile;
             }, sleep);
         });
 
-        $('.fc-next-button').click(function() {
+        $('.fc-next-button').click(function () {
             clearInterval(time);
             var date = calendar.getDate();
-            
+
             time = setTimeout(() => {
-                 consulta_agenda(date.toISOString().slice(0, 10));
+                consulta_agenda(date.toISOString().slice(0, 10));
             }, sleep);
         });
 
-        $('.voltar').click(function(e) {
+        $('.voltar').click(function (e) {
             e.preventDefault();
 
             $.ajax({
                 url: 'form_acesso.php',
-                success: function(response) {
+                success: function (response) {
                     $('#palco-agenda').html(response);
                 }
             })
         });
 
-        $('#agendamento').on('click', '.btn-visualizar', function() {
+        $('#agendamento').on('click', '.btn-visualizar', function () {
             var codigo = $(this).data('codigo');
 
             $.dialog({
@@ -333,7 +340,7 @@ endwhile;
             });
         });
 
-        $('.sem-agenda').click(function() {
+        $('.sem-agenda').click(function () {
             var cod_servico = $(this).data('cod_servico');
 
             dialogDefineData = $.dialog({
@@ -346,18 +353,21 @@ endwhile;
 
         /* -- Eventos cliques -- */
 
-        function consulta_agenda(data, servico_tipo) {        
-                $.ajax({
-                    url: 'tabela_agendamentos.php',
-                    method: 'POST',
-                    data: {
-                        data,
-                        servico_tipo
-                    },
-                    success: function(response) {
-                        $('#resultado').html(response);
-                    }
-                });
+        function consulta_agenda(data, servico_tipo) {
+            $('.loading').fadeIn(200);
+
+            $.ajax({
+                url: 'tabela_agendamentos.php',
+                method: 'POST',
+                data: {
+                    data,
+                    servico_tipo
+                },
+                success: function (response) {
+                    $('.loading').fadeOut(200);
+                    $('#resultado').html(response);
+                }
+            });
         }
     });
 </script>

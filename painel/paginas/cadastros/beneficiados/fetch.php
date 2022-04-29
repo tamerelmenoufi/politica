@@ -4,7 +4,7 @@ include "config_beneficiados.php";
 $column = [
     'nome',
     'cpf',
-    'municipio'
+    'm.municipio'
 ];
 
 $query = "SELECT b.*, m.municipio AS municipio FROM beneficiados b "
