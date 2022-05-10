@@ -27,13 +27,13 @@ $ano_atual = date('Y');
 $query = "SELECT SUM(IF((YEAR(CURRENT_DATE) - DATE_FORMAT(b.data_nascimento, '%Y')) < 18,1,0)) AS qt, 'Menor 18' AS descricao FROM
 beneficiados b INNER JOIN servicos s ON s.beneficiado = b.codigo
 UNION
-SELECT SUM(IF((YEAR(CURRENT_DATE) - DATE_FORMAT(b.data_nascimento, '%Y')) BETWEEN 18 AND 25,1,0)) AS qt, 'Entre 18 e 25' AS descricao 
+SELECT SUM(IF((YEAR(CURRENT_DATE) - DATE_FORMAT(b.data_nascimento, '%Y')) BETWEEN 18 AND 25,1,0)) AS qt, 'Entre 18 e 25' AS descricao
 FROM beneficiados b INNER JOIN servicos s ON s.beneficiado = b.codigo
 UNION
-SELECT SUM(IF((YEAR(CURRENT_DATE) - DATE_FORMAT(b.data_nascimento, '%Y')) BETWEEN 26 AND 35,1,0)) AS qt,  'Entre 26 e 35' AS descricao 
+SELECT SUM(IF((YEAR(CURRENT_DATE) - DATE_FORMAT(b.data_nascimento, '%Y')) BETWEEN 26 AND 35,1,0)) AS qt,  'Entre 26 e 35' AS descricao
 FROM beneficiados b INNER JOIN servicos s ON s.beneficiado = b.codigo
 UNION
-SELECT SUM(IF((YEAR(CURRENT_DATE) - DATE_FORMAT(b.data_nascimento, '%Y')) BETWEEN 36 AND 45,1,0)) AS qt,  'Entre 36 e 45' AS descricao 
+SELECT SUM(IF((YEAR(CURRENT_DATE) - DATE_FORMAT(b.data_nascimento, '%Y')) BETWEEN 36 AND 45,1,0)) AS qt,  'Entre 36 e 45' AS descricao
 FROM beneficiados b INNER JOIN servicos s ON s.beneficiado = b.codigo
 UNION
 SELECT SUM(IF((YEAR(CURRENT_DATE) - DATE_FORMAT(data_nascimento, '%Y')) >= 46,1,0)) AS qt, 'Maior 46' AS descricao
@@ -48,7 +48,7 @@ $i = 0;
 while ($d = mysql_fetch_object($result)) {
     $rotulo[] = $d->descricao;
     $qt[] = $d->qt;
-    $lg[] = $Legenda[$i];
+    $lg[] = $d->descricao; //$Legenda[$i];
     $bg[] = $Bg[$i];
     $bd[] = $Bd[$i];
     $i++;
@@ -57,13 +57,12 @@ while ($d = mysql_fetch_object($result)) {
 
 
 <h5>Relatório Por Idade</h5>
-<canvas id="myChart<?= $md5 ?>" width="400" height="400"></canvas>
+<canvas id="myChart<?= $md5 ?>" style="width:100%; height:300px"></canvas>
 
 <table class="table table-striped table-hover">
     <thead>
     <tr>
-        <th scope="col">Legenda</th>
-        <th scope="col">Descrição</th>
+        <th scope="col">Idade</th>
         <th scope="col">Quantidade</th>
     </tr>
     </thead>
@@ -72,7 +71,6 @@ while ($d = mysql_fetch_object($result)) {
     for ($i = 0; $i < count($lg); $i++) {
         ?>
         <tr>
-            <td><?= $lg[$i] ?></td>
             <td><?= $rotulo[$i] ?></td>
             <td><?= $qt[$i] ?></td>
         </tr>
