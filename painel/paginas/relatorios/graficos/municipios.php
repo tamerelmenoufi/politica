@@ -42,7 +42,7 @@ while ($d = mysql_fetch_object($result)) {
 
 
 <h5>Relatório Por Municípios</h5>
-<canvas id="myChart<?= $md5 ?>" style="width:100%; height:auto"></canvas>
+<canvas id="myChart<?= $md5 ?>" style="width:100%"></canvas>
 
 <table class="table table-striped table-hover">
     <thead>
