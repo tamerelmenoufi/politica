@@ -38,7 +38,7 @@
 
 
 <h5>Relatório Por Serviços</h5>
-<canvas id="myChart<?=$md5?>" width="100%" height="400"></canvas>
+<canvas id="myChart<?=$md5?>" style="width:100%; height:400px"></canvas>
 
 <table class="table table-striped table-hover">
   <thead>
