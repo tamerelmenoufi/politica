@@ -28,6 +28,8 @@
 
     #$query = "select b.tipo, count(*) as qt from servicos a left join servico_tipo b on a.tipo = b.codigo group by a.tipo";
     $result = mysql_query($query);
+    $n = mysql_num_rows($result);
+
     $i=0;
     while($d = mysql_fetch_object($result)){
         $rotulo[] = $d->descricao;
@@ -41,7 +43,7 @@
 
 
 <h5>Relatório Por Assessores</h5>
-<canvas id="myChart<?=$md5?>" width="400" height="400"></canvas>
+<canvas id="myChart<?=$md5?>" style="width:100%; height:<?=30*$n?>px"></canvas>
 
 <table class="table table-striped table-hover">
   <thead>
@@ -108,7 +110,7 @@ const myChart<?=$md5?> = new Chart(ctx<?=$md5?>,
         borderWidth: 2,
       }
     },
-    responsive: true,
+    responsive: false,
     plugins: {
       legend: false/*{
         position: 'right',
