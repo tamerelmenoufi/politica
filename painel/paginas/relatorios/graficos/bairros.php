@@ -26,7 +26,7 @@ $Bd = [
 $query = "SELECT bai.descricao AS descricao, COUNT(*) AS qt FROM bairros bai "
     . "INNER JOIN beneficiados b ON b.bairro = bai.codigo "
     . "INNER JOIN servicos s ON s.beneficiado = b.codigo "
-    . "GROUP BY b.bairro";
+    . "GROUP BY bai.descricao";
 
 /*$query = "SELECT b.tipo, COUNT(*) AS qt FROM servicos a "
     . "LEFT JOIN servico_tipo b ON a.tipo = b.codigo GROUP BY a.tipo"
