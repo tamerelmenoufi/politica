@@ -24,7 +24,7 @@
 
     $query = "SELECT a.nome AS descricao, COUNT(*) AS qt FROM servicos s "
     ."INNER JOIN assessores a ON a.codigo = s.assessor "
-    ."GROUP BY s.assessor";
+    ."GROUP BY a.nome";
 
     #$query = "select b.tipo, count(*) as qt from servicos a left join servico_tipo b on a.tipo = b.codigo group by a.tipo";
     $result = mysql_query($query);
