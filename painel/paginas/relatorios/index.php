@@ -16,7 +16,7 @@
 
     function grafico(obj,opc){
         $.ajax({
-            url:"paginas/relatorios/graficos/"+opc+".php",
+            url:"paginas/relatorios/graficos/"+opc+".php?<?=md5(date("YmdHis"))?>",
             success:function(dados){
                     obj.html(dados);
             },
