@@ -51,8 +51,7 @@ while ($d = mysql_fetch_object($result)) {
 <table class="table table-striped table-hover">
     <thead>
     <tr>
-        <th scope="col">Legenda</th>
-        <th scope="col">Descrição</th>
+        <th scope="col">Bairro</th>
         <th scope="col">Quantidade</th>
     </tr>
     </thead>
@@ -61,9 +60,8 @@ while ($d = mysql_fetch_object($result)) {
     for ($i = 0; $i < count($lg); $i++) {
         ?>
         <tr>
-            <td>X <?= $lg[$i] ?></td>
-            <td>Y <?= $rotulo[$i] ?></td>
-            <td>Z <?= $qt[$i] ?></td>
+            <td><?= $rotulo[$i] ?></td>
+            <td><?= $qt[$i] ?></td>
         </tr>
         <?php
     }
