@@ -37,7 +37,7 @@ $i = 0;
 while ($d = mysql_fetch_object($result)) {
     $rotulo[] = $d->descricao;
     $qt[] = $d->qt;
-    $lg[] = $Legenda[$i];
+    $lg[] = $d->descricao; //$Legenda[$i];
     $bg[] = $Bg[$i];
     $bd[] = $Bd[$i];
     $i++;
