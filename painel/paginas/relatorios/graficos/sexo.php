@@ -34,7 +34,7 @@ $i = 0;
 while ($d = mysql_fetch_object($result)) {
     $rotulo[] = $d->descricao;
     $qt[] = $d->qt;
-    $lg[] = $Legenda[$i];
+    $lg[] = $d->descricao; //$Legenda[$i];
     $bg[] = $Bg[$i];
     $bd[] = $Bd[$i];
     $i++;
@@ -43,13 +43,12 @@ while ($d = mysql_fetch_object($result)) {
 
 
 <h5>Relatório Por Sexo</h5>
-<canvas id="myChart<?= $md5 ?>" width="400" height="400"></canvas>
+<canvas id="myChart<?= $md5 ?>" style="width:100%; height:200px"></canvas>
 
 <table class="table table-striped table-hover">
     <thead>
     <tr>
-        <th scope="col">Legenda</th>
-        <th scope="col">Descrição</th>
+        <th scope="col">Sexo</th>
         <th scope="col">Quantidade</th>
     </tr>
     </thead>
@@ -58,7 +57,6 @@ while ($d = mysql_fetch_object($result)) {
     for ($i = 0; $i < count($lg); $i++) {
         ?>
         <tr>
-            <td><?= $lg[$i] ?></td>
             <td><?= $rotulo[$i] ?></td>
             <td><?= $qt[$i] ?></td>
         </tr>
