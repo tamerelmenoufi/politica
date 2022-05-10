@@ -29,7 +29,7 @@
     while($d = mysql_fetch_object($result)){
         $rotulo[] = $d->tipo;
         $qt[] =  $d->qt;
-        $lg[] = $Legenda[$i];
+        $lg[] = $d->tipo; //$Legenda[$i];
         $bg[] = $Bg[$i];
         $bd[] = $Bd[$i];
     $i++;
@@ -38,13 +38,12 @@
 
 
 <h5>Relatório Por Serviços</h5>
-<canvas id="myChart<?=$md5?>" width="400" height="400"></canvas>
+<canvas id="myChart<?=$md5?>" width="100%" height="400"></canvas>
 
 <table class="table table-striped table-hover">
   <thead>
     <tr>
-      <th scope="col">Legenda</th>
-      <th scope="col">Descrição</th>
+      <th scope="col">Serviços</th>
       <th scope="col">Quantidade</th>
     </tr>
   </thead>
@@ -53,7 +52,6 @@
       for($i = 0; $i < count($lg); $i++){
     ?>
     <tr>
-      <td><?=$lg[$i]?></td>
       <td><?=$rotulo[$i]?></td>
       <td><?=$qt[$i]?></td>
     </tr>
@@ -107,7 +105,7 @@ const myChart<?=$md5?> = new Chart(ctx<?=$md5?>,
         borderWidth: 2,
       }
     },
-    responsive: true,
+    responsive: false,
     plugins: {
       legend: false/*{
         position: 'right',
