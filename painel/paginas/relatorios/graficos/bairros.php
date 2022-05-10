@@ -61,9 +61,9 @@ while ($d = mysql_fetch_object($result)) {
     for ($i = 0; $i < count($lg); $i++) {
         ?>
         <tr>
-            <td><?= $lg[$i] ?></td>
-            <td><?= $rotulo[$i] ?></td>
-            <td><?= $qt[$i] ?></td>
+            <td>X <?= $lg[$i] ?></td>
+            <td>Y <?= $rotulo[$i] ?></td>
+            <td>Z <?= $qt[$i] ?></td>
         </tr>
         <?php
     }
