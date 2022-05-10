@@ -15,6 +15,7 @@ include "../lib/includes.php";
     <?php include "../lib/header.php"; ?>
     <link rel="stylesheet" href="<?= $caminho_vendor; ?>/fullcalendar/lib/main.min.css">
     <link rel="stylesheet" href="<?= $caminho_vendor ?>/jquery-confirm/css/jquery-confirm.min.css">
+    <link rel="stylesheet" href="<?= $caminho_vendor ?>/css/loading.css">
 
     <script src="<?= $caminho_vendor; ?>/jquery/jquery.min.js"></script>
     <script src="<?= $caminho_vendor; ?>/bootstrap4/js/bootstrap.bundle.min.js"></script>
@@ -27,10 +28,15 @@ include "../lib/includes.php";
 
 </head>
 <body>
-
-<div id="palco-agenda">
-    <?php include 'form_acesso.php'; ?>
+<div>
+    <div class="loading">
+        <div class="loader"></div>
+    </div>
+    <div id="palco-agenda">
+        <?php include 'form_acesso.php'; ?>
+    </div>
 </div>
+
 
 </body>
 </html>

@@ -55,7 +55,43 @@ $result = mysql_query($query);
                 </tr>
                 </thead>
                 <tbody>
-
+                <?php while ($d = mysql_fetch_object($result)): ?>
+                    <tr id="linha-<?= $d->codigo; ?>">
+                        <td><?= $d->nome ?></td>
+                        <td><?= $d->cpf; ?></td>
+                        <td><?= $d->municipio; ?></td>
+                        <td>
+                            <button
+                                    class="btn btn-sm btn-link"
+                                    url="<?= $urlBeneficiados ?>/visualizar.php?codigo=<?= $d->codigo ?>"
+                            >
+                                <i class="fa-regular fa-eye text-info"></i>
+                            </button>
+                            <?php
+                            if (in_array('Beneficiados - Editar', $ConfPermissoes)) {
+                                ?>
+                                <button
+                                        class="btn btn-sm btn-link"
+                                        url="<?= $urlBeneficiados ?>/form.php?codigo=<?= $d->codigo; ?>"
+                                >
+                                    <i class="fa-solid fa-pencil text-warning"></i>
+                                </button>
+                                <?php
+                            }
+                            if (in_array('Beneficiados - Excluir', $ConfPermissoes)) {
+                                ?>
+                                <button
+                                        class="btn btn-sm btn-link btn-excluir"
+                                        data-codigo="<?= $d->codigo ?>"
+                                >
+                                    <i class="fa-regular fa-trash-can text-danger"></i>
+                                </button>
+                                <?php
+                            }
+                            ?>
+                        </td>
+                    </tr>
+                <?php endwhile; ?>
                 </tbody>
 
             </table>
@@ -65,26 +101,9 @@ $result = mysql_query($query);
 
 <script>
     $(function () {
-        dataTable = $('#datatable').DataTable({
-            "processing": true,
-            "serverSide": true,
-            "order": [],
-            "retrieve": true,
-            "paging": true,
-            "stateSave": true,
-            "ajax": {
-                url: "<?= $urlBeneficiados; ?>/fetch.php",
-                method: "POST",
-            },
-            "columnDefs": [
-                {
-                    "targets": 3,
-                    "orderable": false,
-                },
-            ],
-        });
+        $("#datatable").DataTable();
 
-        $("#datatable").on("click", "tbody tr td .btn-excluir", function () {
+        $('.btn-excluir').click(function () {
             var codigo = $(this).data('codigo');
 
             $.confirm({
@@ -109,12 +128,11 @@ $result = mysql_query($query);
 
                                     if (retorno.status) {
                                         tata.success('Sucesso', retorno.msg);
-                                        //$(`#linha-${codigo}`).remove();
-                                        $(this).parent().parent().remove();
                                     } else {
                                         tata.error('Error', retorno.msg);
                                     }
 
+                                    $(`#linha-${codigo}`).remove();
                                 }
                             })
                         }
