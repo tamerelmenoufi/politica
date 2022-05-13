@@ -89,7 +89,7 @@ $eventos[] = [
             moreLinkContent: function (arg) {
                 let italicEl = document.createElement('i')
 
-                let html = `<span class="badge badge-info text-right float-right">${arg.shortText}</span>`;
+                let html = `<span class="badge badge-info text-right float-right">XXXX${arg.shortText}</span>`;
                 italicEl.innerHTML = html;
 
                 let arrayOfDomNodes = [italicEl];
@@ -101,7 +101,7 @@ $eventos[] = [
             eventContent: function (arg) {
                 let italicEl = document.createElement('i')
                 let dados = arg.event._def;
-                let html = `<span class="btn-visualizar" data-codigo="${dados.publicId}" style="font-style: normal;">${dados.title}</span>`;
+                let html = `<span class="btn-visualizar" data-codigo="${dados.publicId}" style="font-style: normal;">YYYY${dados.title}</span>`;
 
                 italicEl.innerHTML = html;
 
