@@ -42,7 +42,7 @@
 
         let dateString = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
 
-        consulta_agenda(dateString, servico_tipo);
+        // consulta_agenda(dateString, servico_tipo);
 
         var calendarEl = document.getElementById('calendar');
 
@@ -87,7 +87,7 @@
                 $(".day-highlight").removeClass("day-highlight");
                 $(info.dayEl).addClass("day-highlight");
                 //calendar.gotoDate(date)
-                consulta_agenda(info.dateStr, servico_tipo);
+                // consulta_agenda(info.dateStr, servico_tipo);
             },
         });
 
