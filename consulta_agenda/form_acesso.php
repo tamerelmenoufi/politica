@@ -41,6 +41,7 @@ include_once "../lib/includes.php";
                                     while ($d = mysql_fetch_object($result)): ?>
                                         <option value="<?= $d->codigo ?>"><?= $d->tipo; ?></option>
                                     <?php endwhile; ?>
+                                        <option value="acao_social">Ação Social</option>
                                 </select>
                             </div>
                         </div>
@@ -113,22 +114,33 @@ include_once "../lib/includes.php";
             var servico_tipo = $('#servico_tipo').val();
             var senha = $('#senha').val();
 
-            $.ajax({
-                url: 'agendamento.php',
-                method: 'POST',
-                data: {
-                    local_fonte,
-                    servico_tipo,
-                    senha
-                },
-                success: function (response) {
-                    if (response == '0') {
-                        tata.error('Error', 'Consulta não encontrada')
-                    } else {
+            if(local_fonte == 'acao_social'){
+                $.ajax({
+                    url: 'acao_social.php',
+                    method: 'POST',
+                    success: function (response) {
                         $('#palco-agenda').html(response);
                     }
-                }
-            })
+                })
+            }else{
+                $.ajax({
+                    url: 'agendamento.php',
+                    method: 'POST',
+                    data: {
+                        local_fonte,
+                        servico_tipo,
+                        senha
+                    },
+                    success: function (response) {
+                        if (response == '0') {
+                            tata.error('Error', 'Consulta não encontrada')
+                        } else {
+                            $('#palco-agenda').html(response);
+                        }
+                    }
+                })
+            }
+
         });
     });
 </script>
