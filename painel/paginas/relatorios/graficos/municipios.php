@@ -26,7 +26,7 @@ $Bd = [
 $query = "SELECT m.municipio AS descricao, COUNT(*) AS qt FROM municipios m "
     . "INNER JOIN beneficiados b ON b.municipio = m.codigo "
     . "INNER JOIN servicos s ON s.beneficiado = b.codigo "
-    . "GROUP BY b.municipio";
+    . "GROUP BY b.municipio ORDER BY qt DESC";
 
 $result = mysql_query($query);
 $i = 0;

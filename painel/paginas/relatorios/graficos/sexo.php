@@ -25,7 +25,7 @@ $Bd = [
 $colunaDescricao = "(CASE WHEN b.sexo = 'm' THEN 'Masculino' WHEN b.sexo = 'f' THEN 'Feminino' END) AS descricao";
 $query = "SELECT {$colunaDescricao}, count(*) as qt from beneficiados b "
     . "INNER JOIN  servicos s on s.beneficiado = b.codigo "
-    . "group by b.sexo";
+    . "group by b.sexo ORDER BY qt DESC";
 
 $result = mysql_query($query);
 

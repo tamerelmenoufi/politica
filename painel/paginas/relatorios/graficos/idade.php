@@ -37,7 +37,7 @@ SELECT SUM(IF((YEAR(CURRENT_DATE) - DATE_FORMAT(b.data_nascimento, '%Y')) BETWEE
 FROM beneficiados b INNER JOIN servicos s ON s.beneficiado = b.codigo
 UNION
 SELECT SUM(IF((YEAR(CURRENT_DATE) - DATE_FORMAT(data_nascimento, '%Y')) >= 46,1,0)) AS qt, 'Maior 46' AS descricao
-FROM beneficiados b INNER JOIN servicos s ON s.beneficiado = b.codigo
+FROM beneficiados b INNER JOIN servicos s ON s.beneficiado = b.codigo  ORDER BY qt DESC
 
 ";
 //"LEFT JOIN servicos s ON s.beneficiado = b.codigo";
