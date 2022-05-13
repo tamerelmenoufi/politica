@@ -1,3 +1,25 @@
+<?php
+
+$eventos[] = [
+    'id' => 1,
+    'title' => 'Ação do Evento 1',
+    'start' => '2022-05-01',
+];
+
+$eventos[] = [
+    'id' => 2,
+    'title' => 'Ação do Evento 2',
+    'start' => '2022-05-15',
+];
+
+$eventos[] = [
+    'id' => 3,
+    'title' => 'Ação do Evento 3',
+    'start' => '2022-05-29',
+];
+
+
+?>
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow flex-row justify-content-between align-items-center">
     <div>
         <a class="navbar-brand mr-4 voltar text-gray-700" href="#" style="font-size: 1.2em">
