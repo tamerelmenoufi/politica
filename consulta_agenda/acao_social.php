@@ -5,6 +5,11 @@ $eventos[] = [
     'title' => 'Ação do Evento 1',
     'start' => '2022-05-01',
 ];
+$eventos[] = [
+    'id' => 4,
+    'title' => 'Ação do Evento 1.1',
+    'start' => '2022-05-01',
+];
 
 $eventos[] = [
     'id' => 2,
