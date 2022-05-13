@@ -11,10 +11,95 @@
 </nav>
 
 
+<div class="col-md-12">
+    <div class="row">
 
+        <div class="col-md-12">
+            <div class="card shadow">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Consulta de Agendamentos</h6>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-5">
+                            <div id="calendar"></div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-7">
+                            <div id="resultado"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
     $(function(){
+
+
+        var date = new Date();
+
+        let dateString = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
+
+        consulta_agenda(dateString, servico_tipo);
+
+        var calendarEl = document.getElementById('calendar');
+
+        calendar = new FullCalendar.Calendar(calendarEl, {
+            height: 'auto',
+            contentHeight: 'auto',
+            locale: 'pt-br',
+            timeZone: 'America/Manaus',
+            initialView: 'dayGridMonth',
+            fixedWeekCount: false,
+            showNonCurrentDates: false,
+            dayMaxEvents: 0,
+            events: <?= json_encode($eventos); ?>,
+            headerToolbar: {
+                right: 'prev,next today',
+            },
+            moreLinkContent: function (arg) {
+                let italicEl = document.createElement('i')
+
+                let html = `<span class="badge badge-info text-right float-right">${arg.shortText}</span>`;
+                italicEl.innerHTML = html;
+
+                let arrayOfDomNodes = [italicEl];
+
+                return {
+                    domNodes: arrayOfDomNodes
+                }
+            },
+            eventContent: function (arg) {
+                let italicEl = document.createElement('i')
+                let dados = arg.event._def;
+                let html = `<span class="btn-visualizar" data-codigo="${dados.publicId}" style="font-style: normal;">${dados.title}</span>`;
+
+                italicEl.innerHTML = html;
+
+                let arrayOfDomNodes = [italicEl]
+                return {
+                    domNodes: arrayOfDomNodes
+                }
+            },
+            dateClick: function (info) {
+                $(".day-highlight").removeClass("day-highlight");
+                $(info.dayEl).addClass("day-highlight");
+                //calendar.gotoDate(date)
+                consulta_agenda(info.dateStr, servico_tipo);
+            },
+        });
+
+        calendar.render();
+
+
+
+
+
+
+
+
         $(".voltar").click(function(){
 
             $.ajax({
