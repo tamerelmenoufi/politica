@@ -23,7 +23,7 @@ $Bd = [
 ];
 
 
-$query = "SELECT bai.descricao AS descricao, COUNT(*) AS qt FROM bairros bai "
+echo $query = "SELECT bai.descricao AS descricao, COUNT(*) AS qt FROM bairros bai "
     . "INNER JOIN beneficiados b ON b.bairro = bai.codigo "
     . "INNER JOIN servicos s ON s.beneficiado = b.codigo "
     . "GROUP BY bai.descricao ORDER BY qt DESC";
