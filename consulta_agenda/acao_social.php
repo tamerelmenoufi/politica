@@ -84,6 +84,9 @@
                 }
             },
             dateClick: function (info) {
+                $(".day-highlight").removeClass("day-highlight");
+                $(info.dayEl).addClass("day-highlight");
+                //calendar.gotoDate(date)
                 alert(info.dateStr);
                 // consulta_agenda(info.dateStr, servico_tipo);
             },
