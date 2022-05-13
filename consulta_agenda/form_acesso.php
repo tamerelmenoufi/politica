@@ -114,7 +114,7 @@ include_once "../lib/includes.php";
             var servico_tipo = $('#servico_tipo').val();
             var senha = $('#senha').val();
 
-            if(local_fonte == 'acao_social'){
+            if(servico_tipo == 'acao_social'){
                 $.ajax({
                     url: 'acao_social.php',
                     method: 'POST',
