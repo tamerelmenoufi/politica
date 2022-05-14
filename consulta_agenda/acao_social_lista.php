@@ -19,8 +19,8 @@ include_once "../lib/includes.php";
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                        <th>Local</th>
-                            <th>Data</th>
+                            <th>Local</th>
+                            <th>Serviços</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -30,17 +30,18 @@ include_once "../lib/includes.php";
                     $result = mysql_query($query);
                     while($d = mysql_fetch_object($result)){
 
-                        $eventos[] = [
-                            'id' => $d->codigo,
-                            'title' => $d->local,
-                            'start' => substr($d->data, 0, 10),
-                        ];
+                        $q = "select * from acao_social_tipo where codigo in(".($d->servicos?:'0').")";
+                        $r = mysql_query($q);
+                        $S = [];
+                        while($s = mysql_fetch_object($r)){
+                            $S[] = $d->tipo;
+                        }
 
             ?>
 
                         <tr>
                             <td><?=$d->local?></td>
-                            <td><?=substr($d->data, 8,2)?>/<?=substr($d->data, 5,2)?>/<?=substr($d->data, 0,4)?></td>
+                            <td><?=implode(', ',$S)?></td>
                         </tr>
             <?php
                     }
