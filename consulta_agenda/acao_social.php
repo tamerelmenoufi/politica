@@ -25,34 +25,36 @@ $eventos[] = [
 
 
 ?>
-<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow flex-row justify-content-between align-items-center">
-    <div>
-        <a class="navbar-brand mr-4 voltar text-gray-700" href="#" style="font-size: 1.2em">
-            <i class="fa-solid fa-arrow-left"></i>
-        </a>
-    </div>
-    <div class="text-gray-700 h4 font-weight-bold mb-0">
-        Ação Social
-    </div>
-    <div></div>
-</nav>
+<div id="acao_social">
+    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow flex-row justify-content-between align-items-center">
+        <div>
+            <a class="navbar-brand mr-4 voltar text-gray-700" href="#" style="font-size: 1.2em">
+                <i class="fa-solid fa-arrow-left"></i>
+            </a>
+        </div>
+        <div class="text-gray-700 h4 font-weight-bold mb-0">
+            Ação Social
+        </div>
+        <div></div>
+    </nav>
 
 
-<div class="col-md-12">
-    <div class="row">
+    <div class="col-md-12">
+        <div class="row">
 
-        <div class="col-md-12">
-            <div class="card shadow">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Consulta de Agendamentos</h6>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-12 col-lg-5">
-                            <div id="calendar"></div>
-                        </div>
-                        <div class="col-sm-12 col-md-12 col-lg-7">
-                            <div id="resultado"></div>
+            <div class="col-md-12">
+                <div class="card shadow">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Consulta de Agendamentos</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-5">
+                                <div id="calendar"></div>
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-7">
+                                <div id="resultado"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -60,7 +62,6 @@ $eventos[] = [
         </div>
     </div>
 </div>
-
 <script>
     $(function(){
 
@@ -89,7 +90,7 @@ $eventos[] = [
             moreLinkContent: function (arg) {
                 let italicEl = document.createElement('i')
 
-                let html = `<span class="badge badge-info text-right float-right">XXXX${arg.shortText}</span>`;
+                let html = `<span class="badge badge-info text-right float-right">${arg.shortText}</span>`;
                 italicEl.innerHTML = html;
 
                 let arrayOfDomNodes = [italicEl];
@@ -101,7 +102,7 @@ $eventos[] = [
             eventContent: function (arg) {
                 let italicEl = document.createElement('i')
                 let dados = arg.event._def;
-                let html = `<span class="btn-visualizar" data-codigo="${dados.publicId}" style="font-style: normal;">YYYY${dados.title}</span>`;
+                let html = `<span class="btn-visualizar" data-codigo="${dados.publicId}" style="font-style: normal;">${dados.title}</span>`;
 
                 italicEl.innerHTML = html;
 
@@ -125,7 +126,12 @@ $eventos[] = [
 
 
 
+        $('#acao_social').on('click', '.btn-visualizar', function () {
+            var codigo = $(this).data('codigo');
 
+            alert(codigo);
+
+        });
 
 
         $(".voltar").click(function(){
