@@ -123,12 +123,23 @@ $eventos[] = [
                 }
             },
             dateClick: function (info) {
-                console.log(info);
                 $(".day-highlight").removeClass("day-highlight");
                 $(info.dayEl).addClass("day-highlight");
                 //calendar.gotoDate(date)
-                alert(info.dateStr);
+                // alert(info.dateStr);
                 // consulta_agenda(info.dateStr, servico_tipo);
+
+                $.ajax({
+                    url:"acao_social_lista.php",
+                    data:{
+                        data:info.dateStr
+                    },
+                    success:function(dados){
+                        $("#resultado").html(dados);
+                    }
+                });
+
+
             },
         });
 
@@ -141,7 +152,15 @@ $eventos[] = [
         $('#acao_social').on('click', '.btn-visualizar', function () {
             var codigo = $(this).data('codigo');
 
-            alert(codigo);
+            $.ajax({
+                    url:"acao_social_detalhes.php",
+                    data:{
+                        codigo
+                    },
+                    success:function(dados){
+                        $("#resultado").html(dados);
+                    }
+                });
 
         });
 
