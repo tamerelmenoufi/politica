@@ -1,6 +1,6 @@
 <?php
-include "../../../../lib/includes.php";
-$md5 = md5(date("YmdHis") . $_SERVER["PHP_SELF"]);
+    include "../../../../../lib/includes.php";
+    $md5 = md5(date("YmdHis") . $_SERVER["PHP_SELF"]);
 
 $Legenda = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
