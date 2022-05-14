@@ -44,7 +44,9 @@ while ($d = mysql_fetch_object($result)) {
 
 <h5>Relatório Por Sexo</h5>
 <canvas id="myChart<?= $md5 ?>" style="width:100%; height:200px"></canvas>
-
+<a class="btn btn-warning" href='./paginas/relatorios/graficos/download/<?=$_SERVER["PHP_SELF"]?>'>
+  <i class="fa fa-download"></i> Baixar
+</a>
 <table class="table table-striped table-hover">
     <thead>
     <tr>

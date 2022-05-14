@@ -39,7 +39,9 @@
 
 <h5>Relatório Geral</h5>
 <canvas id="myChart<?=$md5?>" width="400" height="400"></canvas>
-
+<a class="btn btn-warning" href='./paginas/relatorios/graficos/download/<?=$_SERVER["PHP_SELF"]?>'>
+  <i class="fa fa-download"></i> Baixar
+</a>
 <table class="table table-striped table-hover">
   <thead>
     <tr>
