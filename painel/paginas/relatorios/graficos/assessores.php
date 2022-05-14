@@ -45,7 +45,7 @@
 <h5>Relatório Por Assessores</h5>
 <canvas id="myChart<?=$md5?>" style="width:100%; height:<?=30*$n?>px"></canvas>
 
-<a class="btn btn-warning" href='./paginas/relatorios/graficos/download/<?=$_SERVER["PHP_SELF"]?>'>
+<a style="margin:10px;" class="btn btn-warning" href='./paginas/relatorios/graficos/download/assessores.php'>
   <i class="fa fa-download"></i> Baixar
 </a>
 
