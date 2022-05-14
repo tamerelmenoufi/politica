@@ -1,5 +1,5 @@
 <?php
-    include "../../../../../lib/includes.php";
+    include "../../../../lib/includes.php";
     $md5  = md5(date("YmdHis").$_SERVER["PHP_SELF"]);
 
     $Legenda = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
@@ -39,7 +39,7 @@
 
 <h5>Relatório Por Serviços</h5>
 <canvas id="myChart<?=$md5?>" style="width:100%; height:400px"></canvas>
-<a style="margin:10px;" class="btn btn-warning" href='./paginas/relatorios/graficos/download/servicos.php'>
+<a style="margin:10px;" class="btn btn-warning" href='./paginas/relatorios/graficos/download/servicos.php' target='_blank'>
   <i class="fa fa-download"></i> Baixar
 </a>
 <table class="table table-striped table-hover">

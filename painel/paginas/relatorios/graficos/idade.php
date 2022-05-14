@@ -1,6 +1,6 @@
 <?php
-    include "../../../../../lib/includes.php";
-    $md5 = md5(date("YmdHis") . $_SERVER["PHP_SELF"]);
+include "../../../../lib/includes.php";
+$md5 = md5(date("YmdHis") . $_SERVER["PHP_SELF"]);
 
 $Legenda = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
@@ -58,7 +58,7 @@ while ($d = mysql_fetch_object($result)) {
 
 <h5>Relatório Por Idade</h5>
 <canvas id="myChart<?= $md5 ?>" style="width:100%; height:300px"></canvas>
-<a style="margin:10px;" class="btn btn-warning" href='./paginas/relatorios/graficos/download/idade.php'>
+<a style="margin:10px;" class="btn btn-warning" href='./paginas/relatorios/graficos/download/idade.php' target='_blank'>
   <i class="fa fa-download"></i> Baixar
 </a>
 <table class="table table-striped table-hover">
