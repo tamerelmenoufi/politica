@@ -146,7 +146,7 @@ while($d = mysql_fetch_object($result)){
             var codigo = $(this).data('codigo');
 
             dialogDefineData = $.dialog({
-                title: 'Definir data do agendamento',
+                title: 'Ação Social',
                 content: `url: acao_social_detalhes.php?codigo=${codigo}`,
                 theme: 'bootstrap',
                 columnClass: 'medium'
