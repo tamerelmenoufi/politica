@@ -25,6 +25,17 @@ $eventos[] = [
 
 
 ?>
+
+<style>
+    .day-highlight {
+        background-color: #dcedc8 !important;
+    }
+    .btn-visualizar{
+        width:100%;
+        cursor:pointer;
+    }
+</style>
+
 <div id="acao_social">
     <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow flex-row justify-content-between align-items-center">
         <div>
