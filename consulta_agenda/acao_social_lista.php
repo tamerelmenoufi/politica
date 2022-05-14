@@ -58,7 +58,7 @@ include_once "../lib/includes.php";
 <script>
     $(function(){
 
-        $(".abrir_acao").click(function(){
+        $(".abrir_detalhes").click(function(){
             codigo = $(this).attr("codigo");
             dialogDefineData = $.dialog({
                     title: 'Ação Social',
