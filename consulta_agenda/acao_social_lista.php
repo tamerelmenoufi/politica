@@ -34,7 +34,7 @@ include_once "../lib/includes.php";
                         $r = mysql_query($q);
                         $S = [];
                         while($s = mysql_fetch_object($r)){
-                            $S[] = $d->tipo;
+                            $S[] = $s->tipo;
                         }
 
             ?>
