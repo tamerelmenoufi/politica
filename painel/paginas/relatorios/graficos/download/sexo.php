@@ -1,5 +1,5 @@
 <?php
-include "../../../../lib/includes.php";
+    include "../../../../../lib/includes.php";
 
 header('Content-Type: text/csv; charset=utf-8');
 header('Content-Disposition: attachment; filename=sexo.csv');
@@ -23,8 +23,7 @@ while ($d = mysql_fetch_object($result)) {
     $bd[] = $Bd[$i];
     $i++;
 }
-?>
-Sexo;Quantidade
+?>Sexo;Quantidade
 <?php
     for ($i = 0; $i < count($lg); $i++) {
         ?>

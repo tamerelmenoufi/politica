@@ -1,5 +1,5 @@
 <?php
-    include "../../../../lib/includes.php";
+    include "../../../../../lib/includes.php";
 
     header('Content-Type: text/csv; charset=utf-8');
     header('Content-Disposition: attachment; filename=servicos.csv');
@@ -16,12 +16,11 @@
         $bd[] = $Bd[$i];
     $i++;
     }
-?>
-Serviços;Quantidade
-    <?php
+?>Serviços;Quantidade
+<?php
       for($i = 0; $i < count($lg); $i++){
     ?>
 <?=$rotulo[$i]?>;<?=$qt[$i]?>
 <?php
       }
-    ?>
+?>

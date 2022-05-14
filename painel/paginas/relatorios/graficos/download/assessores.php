@@ -23,13 +23,11 @@
         $bd[] = $Bd[$i];
     $i++;
     }
-?>
-
-Assessores;Quantidade
-    <?php
+?>Assessores;Quantidade
+<?php
       for($i = 0; $i < count($lg); $i++){
-    ?>
+?>
 <?=$rotulo[$i]?>;<?=$qt[$i]?>
-    <?php
+<?php
       }
     ?>
