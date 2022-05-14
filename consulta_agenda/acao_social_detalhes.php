@@ -26,7 +26,6 @@
 
             <div class="col-md-12">
 
-                <h4>Detalhes da Ação Social</h4>
                 <table class="table table-hover">
                     <tbody>
                         <tr>
