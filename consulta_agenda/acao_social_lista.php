@@ -14,11 +14,12 @@ include_once "../lib/includes.php";
 
             <div class="col-md-12">
 
+                <h3>Eventos de Ação Social em <?=substr($_GET['data'], 8,2)?>/<?=substr($_GET['data'], 5,2)?>/<?=substr($_GET['data'], 0,4)?></h3>
 
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                        <th>Local <?=$_GET['data']?></th>
+                        <th>Local</th>
                             <th>Data</th>
                         </tr>
                     </thead>
