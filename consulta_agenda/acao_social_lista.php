@@ -39,7 +39,7 @@ include_once "../lib/includes.php";
 
                         <tr>
                             <td><?=$d->local?></td>
-                            <td><?=$d->data?>  === <?=substr($d->data, 5,2)?>/<?=substr($d->data, 8,2)?>/<?=substr($d->data, 0,4)?></td>
+                            <td><?=substr($d->data, 8,2)?>/<?=substr($d->data, 5,2)?>/<?=substr($d->data, 0,4)?></td>
                         </tr>
             <?php
                     }
