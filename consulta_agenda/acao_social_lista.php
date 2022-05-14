@@ -5,7 +5,9 @@ include_once "../lib/includes.php";
 ?>
 
 <style>
-
+    .abrir_detalhes{
+        cursor: pointer;
+    }
 </style>
 
 
