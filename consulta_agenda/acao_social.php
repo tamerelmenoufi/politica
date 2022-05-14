@@ -1,27 +1,20 @@
 <?php
 
-$eventos[] = [
-    'id' => 1,
-    'title' => 'Ação do Evento 1',
-    'start' => '2022-05-01',
-];
-$eventos[] = [
-    'id' => 4,
-    'title' => 'Ação do Evento 1.1',
-    'start' => '2022-05-01',
-];
+include_once "../lib/includes.php";
 
-$eventos[] = [
-    'id' => 2,
-    'title' => 'Ação do Evento 2',
-    'start' => '2022-05-15',
-];
+$eventos = [];
 
-$eventos[] = [
-    'id' => 3,
-    'title' => 'Ação do Evento 3',
-    'start' => '2022-05-29',
-];
+$query = "SELECT * FROM `acao_social`";
+$result = mysql_query($query);
+while($d = mysql_fetch_object($result)){
+
+    $eventos[] = [
+        'id' => $d->codigo,
+        'title' => $d->local,
+        'start' => substr($d->data, 0, 10),
+    ];
+
+}
 
 
 ?>

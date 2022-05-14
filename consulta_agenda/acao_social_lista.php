@@ -1,5 +1,7 @@
 <?php
 
+include_once "../lib/includes.php";
+
 
 ?>
 
@@ -17,7 +19,7 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>Local <?=$_GET['data']?></th>
+                        <th>Local <?=$_GET['data']?></th>
                             <th>Data</th>
                         </tr>
                     </thead>
