@@ -145,15 +145,13 @@ while($d = mysql_fetch_object($result)){
         $('#acao_social').on('click', '.btn-visualizar', function () {
             var codigo = $(this).data('codigo');
 
-            $.ajax({
-                    url:"acao_social_detalhes.php",
-                    data:{
-                        codigo
-                    },
-                    success:function(dados){
-                        $("#resultado").html(dados);
-                    }
-                });
+            dialogDefineData = $.dialog({
+                title: 'Definir data do agendamento',
+                content: `url: acao_social_detalhes.php?codigo=${codigo}`,
+                theme: 'bootstrap',
+                columnClass: 'medium'
+            });
+
 
         });
 
