@@ -1,7 +1,18 @@
 <?php
 
-include_once "../lib/includes.php";
+    include_once "../lib/includes.php";
 
+
+    $query = "SELECT * FROM `acao_social` where codigo = '{$_GET['codigo']}'";
+    $result = mysql_query($query);
+    $d = mysql_fetch_object($result);
+
+    $q = "select * from acao_social_tipo where codigo in(".($d->servicos?:'0').")";
+    $r = mysql_query($q);
+    $S = [];
+    while($s = mysql_fetch_object($r)){
+        $S[] = $s->tipo;
+    }
 
 ?>
 
@@ -15,41 +26,34 @@ include_once "../lib/includes.php";
 
             <div class="col-md-12">
 
-
+                <h4>Detalhes da Ação Social</h4>
                 <table class="table table-hover">
                     <tbody>
                         <tr>
-                            <th>Local  <?=$_GET['codigo']?></td>
-                       </tr>
-                        <tr>
-                            <td>Multirão</td>
+                            <td>
+                                <b class="small">Local</b><br>
+                                <?=$d->local?>
+                            </td>
                         </tr>
-
-                        <tr>
-                            <th>Data</td>
-                       </tr>
-                        <tr>
-                            <td>12/05/2022</td>
-                        </tr>
-
-                        <tr>
-                            <th>Serviços</td>
-                       </tr>
                         <tr>
                             <td>
-                                Médico <br>
-                                Advogado <br>
-                                Dentista <br>
-                                Cabeleireiro <br>
-                                Manicure <br>
+                                <b class="small">Data</b><br>
+                                <?=substr($d->data, 8,2)?>/<?=substr($d->data, 5,2)?>/<?=substr($d->data, 0,4)?>
                             </td>
                         </tr>
 
                         <tr>
-                            <th>Descrição</td>
-                       </tr>
+                            <td>
+                                <b class="small">Serviços</b><br>
+                                <?=implode(', ',$S)?>
+                            </td>
+                        </tr>
+
                         <tr>
-                            <td>Resumo sobre o eventos contento a programação e outros detalhes</td>
+                            <td>
+                                <b class="small">Descrição</b><br>
+                                <?=$d->descricao?>
+                            </td>
                         </tr>
 
                     </tbody>
