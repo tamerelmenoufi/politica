@@ -25,10 +25,9 @@ while ($d = mysql_fetch_object($result)) {
     $bd[] = $Bd[$i];
     $i++;
 }
-?>Bairro;Quantidade<?php
-    for ($i = 0; $i < count($lg); $i++) {
-?>
-<?= $rotulo[$i] ?>;<?= $qt[$i]?>
-<?php
+echo "Bairro;Quantidade\n";
+
+for ($i = 0; $i < count($lg); $i++) {
+        echo "{$rotulo[$i]};{$qt[$i]}\n";
     }
 ?>

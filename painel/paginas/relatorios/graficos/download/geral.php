@@ -17,12 +17,11 @@
         $bd[] = $Bd[$i];
     $i++;
     }
-?>Legenda;Descrição;Quantidade
-<?php
+    echo "Legenda;Descrição;Quantidade\n";
+
       for($i = 0; $i < count($lg); $i++){
-    ?>
-<?=$lg[$i]?>;<?=$rotulo[$i]?>;<?=$qt[$i]?>
-<?php
+        echo "{$lg[$i]};{$rotulo[$i]};{$qt[$i]}\n";
+
       }
 
 ?>

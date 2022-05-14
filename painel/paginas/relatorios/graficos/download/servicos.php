@@ -16,11 +16,9 @@
         $bd[] = $Bd[$i];
     $i++;
     }
-?>Serviços;Quantidade
-<?php
+    echo "Serviços;Quantidade\n";
+
       for($i = 0; $i < count($lg); $i++){
-    ?>
-<?=$rotulo[$i]?>;<?=$qt[$i]?>
-<?php
+        echo "{$rotulo[$i]};{$qt[$i]}\n";
       }
 ?>
