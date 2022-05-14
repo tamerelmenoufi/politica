@@ -39,7 +39,7 @@ include_once "../lib/includes.php";
 
             ?>
 
-                        <tr>
+                        <tr class="abrir_detalhes" codigo="<?=$d->codigo?>">
                             <td><?=$d->local?></td>
                             <td><?=implode(', ',$S)?></td>
                         </tr>
@@ -58,7 +58,15 @@ include_once "../lib/includes.php";
 <script>
     $(function(){
 
-
+        $(".abrir_acao").click(function(){
+            codigo = $(this).attr("codigo");
+            dialogDefineData = $.dialog({
+                    title: 'Ação Social',
+                    content: `url: acao_social_detalhes.php?codigo=${codigo}`,
+                    theme: 'bootstrap',
+                    columnClass: 'medium'
+                });
+        })
 
 
     })
