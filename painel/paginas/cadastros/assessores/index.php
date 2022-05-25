@@ -36,6 +36,9 @@ $result = mysql_query($query);
             <button type="button" class="btn btn-success btn-sm" url="paginas/cadastros/assessores/form.php">
                 <i class="fa-solid fa-plus"></i> Novo
             </button>
+            <a href='./paginas/cadastros/assessores/assessores_csv.php' target='_blank' class='btn btn-warning'>
+                <i class="fa-solid fa-file-excel"></i> Baixar Lista
+            </a>
             <?php
         }
         ?>
@@ -48,6 +51,7 @@ $result = mysql_query($query);
                 <tr>
                     <th>Nome</th>
                     <th>CPF</th>
+                    <th>Responsável</th>
                     <th class="mw-20">Ações</th>
                 </tr>
                 </thead>
@@ -56,6 +60,7 @@ $result = mysql_query($query);
                     <tr id="linha-<?= $d->codigo; ?>">
                         <td><?= $d->nome ?></td>
                         <td><?= $d->cpf; ?></td>
+                        <td><?= $d->responsavel; ?></td>
                         <td>
                             <button
                                     class="btn btn-sm btn-link"

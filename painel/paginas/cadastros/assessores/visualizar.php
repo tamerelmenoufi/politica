@@ -100,6 +100,10 @@ $d = mysql_fetch_object($result);
             <div class="col-md-4 font-weight-bold">Endereço</div>
             <div class="col-md-8"><?= $d->endereco; ?></div>
         </div>
+        <div class="row">
+            <div class="col-md-4 font-weight-bold">Responsável</div>
+            <div class="col-md-8"><?= $d->responsavel; ?></div>
+        </div>
     </div>
 </div>
 
