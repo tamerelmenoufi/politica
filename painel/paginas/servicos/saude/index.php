@@ -125,7 +125,7 @@ $result = mysql_query($query);
                         <td><?= $d->assessor; ?></td>
                         <td><?= formata_datahora($d->data_agenda, DATA_HM); ?></td>
                         <td><?= getSituacaoOptions($d->situacao); ?></td>
-                        <td><?= $d->lf_descricao; ?></td>
+                        <td><?= $d->lf_descricao . (($d->local_responsavel)?' ('.$d->local_responsavel.')':false); ?></td>
                         <td>
                             <button
                                     class="btn btn-sm btn-link"
