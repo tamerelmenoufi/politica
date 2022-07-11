@@ -19,6 +19,21 @@ $query = "SELECT s.*, a.nome AS assessor, b.nome AS beneficiado FROM servicos s 
     . "ORDER BY s.codigo DESC";
 $result = mysql_query($query);
 
+
+$colunaAtendimento = "(CASE WHEN s.data_agenda <= NOW() AND s.situacao = 'concluido' AND s.data_agenda > 0 THEN 'Atendido' "
+    . "WHEN s.data_agenda < NOW() AND s.situacao != 'concluido' AND s.data_agenda > 0 THEN 'Não atendido' "
+    . "WHEN s.data_agenda > NOW() AND s.data_agenda > 0 THEN 'agendado' "
+    . "ELSE 'Aguardando' "
+    . "END) AS atendimento, lf.descricao AS lf_descricao ";
+
+$query = "SELECT s.*, a.nome AS assessor, b.nome AS beneficiado, {$colunaAtendimento} FROM servicos s "
+    . "LEFT JOIN assessores a ON a.codigo = s.assessor "
+    . "LEFT JOIN beneficiados b ON b.codigo = s.beneficiado "
+    . "LEFT JOIN local_fontes lf ON lf.codigo = s.local_fonte "
+    . "WHERE s.tipo = '6' AND s.deletado = '0'"
+    . "ORDER BY s.codigo DESC";
+
+
 ?>
 
 <nav aria-label="breadcrumb">
