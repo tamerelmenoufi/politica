@@ -77,7 +77,7 @@ $result = mysql_query($query);
                     <th>Assessor</th>
                     <th>Data da Agenda</th>
                     <th>Situação</th>
-                    <td><?= $d->lf_descricao . (($d->local_responsavel)?' ('.$d->local_responsavel.')':false); ?></td>
+                    <td>Local</td>
                     <th class="mw-20">Ações</th>
                 </tr>
                 </thead>
