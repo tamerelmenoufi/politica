@@ -77,6 +77,7 @@ $result = mysql_query($query);
                     <th>Assessor</th>
                     <th>Data da Agenda</th>
                     <th>Situação</th>
+                    <td><?= $d->lf_descricao . (($d->local_responsavel)?' ('.$d->local_responsavel.')':false); ?></td>
                     <th class="mw-20">Ações</th>
                 </tr>
                 </thead>
@@ -87,6 +88,7 @@ $result = mysql_query($query);
                         <td><?= $d->assessor; ?></td>
                         <td><?= formata_datahora($d->data_agenda, DATA_HM); ?></td>
                         <td><?= getSituacaoOptions($d->situacao); ?></td>
+                        <td><?= $d->lf_descricao . (($d->local_responsavel)?' ('.$d->local_responsavel.')':false); ?></td>
                         <td>
                             <button
                                     class="btn btn-sm btn-link"
