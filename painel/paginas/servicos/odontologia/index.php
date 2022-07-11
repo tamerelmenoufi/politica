@@ -17,7 +17,7 @@ $query = "SELECT s.*, a.nome AS assessor, b.nome AS beneficiado FROM servicos s 
     . "LEFT JOIN beneficiados b ON b.codigo = s.beneficiado "
     . "WHERE s.tipo = '6' AND s.deletado = '0' "
     . "ORDER BY s.codigo DESC";
-$result = mysql_query($query);
+
 
 
 $colunaAtendimento = "(CASE WHEN s.data_agenda <= NOW() AND s.situacao = 'concluido' AND s.data_agenda > 0 THEN 'Atendido' "
@@ -33,7 +33,7 @@ $query = "SELECT s.*, a.nome AS assessor, b.nome AS beneficiado, {$colunaAtendim
     . "WHERE s.tipo = '6' AND s.deletado = '0'"
     . "ORDER BY s.codigo DESC";
 
-
+$result = mysql_query($query);
 ?>
 
 <nav aria-label="breadcrumb">
