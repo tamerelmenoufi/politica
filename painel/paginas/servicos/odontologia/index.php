@@ -99,7 +99,7 @@ $result = mysql_query($query);
                 <tbody>
                 <?php while ($d = mysql_fetch_object($result)): ?>
                     <tr id="linha-<?= $d->codigo; ?>">
-                        <td><?= $d->beneficiado; ?></td>
+                        <td><?= $d->codigo; ?> - <?= $d->beneficiado; ?></td>
                         <td><?= $d->assessor; ?></td>
                         <td><?= formata_datahora($d->data_agenda, DATA_HM); ?></td>
                         <td><?= getSituacaoOptions($d->situacao); ?></td>
