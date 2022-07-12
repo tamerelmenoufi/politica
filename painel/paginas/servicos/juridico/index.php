@@ -20,6 +20,22 @@ $query = "SELECT s.*, a.nome AS assessor, b.nome AS beneficiado FROM servicos s 
     . "LEFT JOIN beneficiados b ON b.codigo = s.beneficiado "
     . "WHERE s.tipo = '8' "
     . "ORDER BY s.codigo DESC";
+
+
+    $colunaAtendimento = "(CASE WHEN s.data_agenda <= NOW() AND s.situacao = 'concluido' AND s.data_agenda > 0 THEN 'Atendido' "
+    . "WHEN s.data_agenda < NOW() AND s.situacao != 'concluido' AND s.data_agenda > 0 THEN 'Não atendido' "
+    . "WHEN s.data_agenda > NOW() AND s.data_agenda > 0 THEN 'agendado' "
+    . "ELSE 'Aguardando' "
+    . "END) AS atendimento, lf.descricao AS lf_descricao ";
+
+$query = "SELECT s.*, a.nome AS assessor, b.nome AS beneficiado, t.descricao as especialidade, {$colunaAtendimento} FROM servicos s "
+    . "LEFT JOIN assessores a ON a.codigo = s.assessor "
+    . "LEFT JOIN beneficiados b ON b.codigo = s.beneficiado "
+    . "LEFT JOIN especialidades t ON t.codigo = s.especialidade "
+    . "LEFT JOIN local_fontes lf ON lf.codigo = s.local_fonte "
+    . "WHERE s.tipo = '8' AND s.deletado = '0'"
+    . "ORDER BY s.codigo DESC";
+
 $result = mysql_query($query);
 
 ?>
@@ -56,6 +72,7 @@ $result = mysql_query($query);
                     <th>Assessor</th>
                     <th>Data da Agenda</th>
                     <th>Situação</th>
+                    <th>Local</th>
                     <th class="mw-20">Ações</th>
                 </tr>
                 </thead>
