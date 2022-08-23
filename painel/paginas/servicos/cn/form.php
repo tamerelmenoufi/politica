@@ -158,11 +158,11 @@ if ($codigo) {
 
 
             <div class="form-group">
-                <label for="beneficiado" xxx>
+                <label for="beneficiado">
                     Beneficiado <i class="text-danger">*</i>
                 </label>
                 <select
-                        class="form-control"
+                        class="selectpicker"
                         id="beneficiado"
                         name="beneficiado"
                         data-live-search="true"
@@ -327,23 +327,23 @@ if ($codigo) {
     $(function () {
         //$('#contato').mask('(99) 99999-9999');
 
-        $("label[xxx]").click(function(){
-            $.ajax({
-                url:"paginas/servicos/beneficiado.php",
-                type:"POST",
-                data:{
-                    campo:'beneficiado',
-                    retorno:"paginas/servicos/cn/form.php"
-                },
-                success:function(dados){
-                    $.dialog({
-                        content:dados,
-                        title:"Identificar Beneficiado",
-                        columnClass:'col-md-offset-2 col-md-8'
-                    });
-                }
-            });
-        });
+        // $("label[xxx]").click(function(){
+        //     $.ajax({
+        //         url:"paginas/servicos/beneficiado.php",
+        //         type:"POST",
+        //         data:{
+        //             campo:'beneficiado',
+        //             retorno:"paginas/servicos/cn/form.php"
+        //         },
+        //         success:function(dados){
+        //             $.dialog({
+        //                 content:dados,
+        //                 title:"Identificar Beneficiado",
+        //                 columnClass:'col-md-offset-2 col-md-8'
+        //             });
+        //         }
+        //     });
+        // });
 
         $("#assessor").selectpicker();
 
