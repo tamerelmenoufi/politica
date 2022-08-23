@@ -158,7 +158,7 @@ if ($codigo) {
 
 
             <div class="form-group">
-                <label for="beneficiado">
+                <label for="beneficiado" xxx>
                     Beneficiado <i class="text-danger">*</i>
                 </label>
                 <select
@@ -326,6 +326,24 @@ if ($codigo) {
 <script>
     $(function () {
         //$('#contato').mask('(99) 99999-9999');
+
+        $("label[xxx]").click(function(){
+            $.ajax({
+                url:"paginas/beneficiado.php",
+                type:"POST",
+                data:{
+                    campo:'beneficiado',
+                    retorno:"paginas/servicos/cn/form.php"
+                },
+                success:function(dados){
+                    $.dialog({
+                        content:dados,
+                        title:"Identificar Beneficiado",
+                        columnClass:'col-md-offset-2 col-md-8'
+                    });
+                }
+            });
+        });
 
         $("#assessor").selectpicker();
 
