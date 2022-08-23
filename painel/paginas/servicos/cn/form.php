@@ -162,7 +162,7 @@ if ($codigo) {
                     Beneficiado <i class="text-danger">*</i>
                 </label>
                 <select
-                        class="selectpicker"
+                        class="form-control selectpicker"
                         id="beneficiado"
                         name="beneficiado"
                         data-live-search="true"
