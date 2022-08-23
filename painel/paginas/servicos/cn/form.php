@@ -329,7 +329,7 @@ if ($codigo) {
 
         $("label[xxx]").click(function(){
             $.ajax({
-                url:"paginas/beneficiado.php",
+                url:"paginas/servicos/beneficiado.php",
                 type:"POST",
                 data:{
                     campo:'beneficiado',
