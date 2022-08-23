@@ -165,9 +165,9 @@ if (!isset($_SESSION['usuario'])) {
         });
 
         // Bootstrap select
-        $.fn.selectpicker.Constructor.DEFAULTS.noneSelectedText = 'Selecione';
+        // $.fn.selectpicker.Constructor.DEFAULTS.noneSelectedText = 'Selecione';
 
-        $.fn.selectpicker.Constructor.DEFAULTS.mobile = true;
+        // $.fn.selectpicker.Constructor.DEFAULTS.mobile = true;
 
 
     });
