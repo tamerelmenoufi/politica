@@ -166,7 +166,7 @@ if ($codigo) {
                         id="beneficiado"
                         name="beneficiado"
                         data-live-search="true"
-                        data-none-selected-text="Selecione"
+                        XXXdata-none-selected-text="Selecione"
                         required
                 >
                     <option value=""></option>
