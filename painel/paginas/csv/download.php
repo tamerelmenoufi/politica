@@ -5,7 +5,7 @@
 <script>
     $(function(){
         $("button[xls]").click(function(){
-            alert('page ok');
+            busca = $('input[type="search"]').val();
         });
     })
 </script>
