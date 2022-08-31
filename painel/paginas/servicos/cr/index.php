@@ -35,7 +35,7 @@ $query = "SELECT s.*, a.nome AS assessor, b.nome AS beneficiado, t.descricao as 
 
 $result = mysql_query($query);
 
-$_SESSOIN['query_xls'] = $query;
+$_SESSION['query_xls'] = $query;
 $_SESSION['saude_xls'] = false;
 ?>
 
