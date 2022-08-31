@@ -8,7 +8,6 @@ $_SESSION['categoria'] = (($_GET['categoria']) ?: $_SESSION['categoria']);
 $categoria = (($_GET['categoria']) ?: $_SESSION['categoria']);
 list($cat_cod, $cat_desc) = mysql_fetch_row(mysql_query("select codigo, descricao from categorias where codigo = '{$categoria}'"));
 
-
 function getEsfera()
 {
     return [

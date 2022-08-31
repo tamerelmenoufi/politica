@@ -6,7 +6,7 @@
     $(function(){
         $("button[xls]").click(function(){
             busca = $('input[type="search"]').val();
-
+            window.open('paginas/csv/csv.php?busca='+busca);
         });
     })
 </script>
