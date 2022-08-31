@@ -54,12 +54,15 @@ $_SESSOIN['query_xls'] = $query;
         </h6>
         <?php
         if (in_array('CRAS - Cadastrar', $ConfPermissoes)) {
-
+        ?>
+        <span>
+        <?php
             include("../../csv/download.php");
             ?>
             <button type="button" class="btn btn-success btn-sm" url="<?= $urlServicos; ?>/form.php">
                 <i class="fa-solid fa-plus"></i> Novo
             </button>
+        </span>
             <?php
         }
         ?>

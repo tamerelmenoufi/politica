@@ -35,12 +35,14 @@ $_SESSOIN['query_xls'] = $query;
         <h6 class="m-0 font-weight-bold text-primary">
             Serviços
         </h6>
+        <span>
         <?php
         include("../../csv/download.php");
         ?>
         <button type="button" class="btn btn-success btn-sm" url="<?= $urlServicos; ?>/form.php">
             <i class="fa-solid fa-plus"></i> Novo
         </button>
+        </span>
     </div>
     <div class="card-body">
         <div class="table-responsive">
