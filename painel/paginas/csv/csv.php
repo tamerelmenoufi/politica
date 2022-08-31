@@ -27,7 +27,7 @@
                 $nivel_campo['data_agenda'] = false;
             }
             if(Sts($b)){
-            $nivel_campo['situacao'] = "s.situacao like '%{$b}%'";
+            $nivel_campo['situacao'] = "s.situacao = '{$b}'";
             }else{
                 $nivel_campo['situacao'] = false;
             }
@@ -59,15 +59,15 @@
 
     if($where) {$query_xls = str_replace("WHERE", "WHERE ".$where." AND ", $_SESSION['query_xls']);}else{$query_xls = $_SESSION['query_xls'];}
 
-    // echo "<pre>";
-    // print_r($_SESSION);
-    // echo "</pre>";
+    echo "<pre>";
+    print_r($_SESSION);
+    echo "</pre>";
     // echo "<hr>";
     // echo "<pre>";
     // print_r($_GET);
     // echo "</pre>";
-    echo $query_xls;
-    echo "\n\n";
+    // echo $query_xls;
+    // echo "\n\n";
     $result = mysql_query($query_xls);
 ?>
 Beneficiado;Assessor;Data da Agenda;Situação;Local
