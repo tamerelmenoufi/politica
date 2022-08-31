@@ -4,11 +4,11 @@
 
     echo "Acesso!";
 
-    // echo "<pre>";
-    // print_r($_SESSION);
-    // echo "</pre>";
-    // echo "<hr>";
-    // echo "<pre>";
-    // print_r($_GET);
-    // echo "</pre>";
+    echo "<pre>";
+    print_r($_SESSION);
+    echo "</pre>";
+    echo "<hr>";
+    echo "<pre>";
+    print_r($_GET);
+    echo "</pre>";
 
