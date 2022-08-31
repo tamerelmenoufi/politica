@@ -28,7 +28,7 @@
         }
         $nivel_where = [];
         foreach($nivel_campo as $ind => $val){
-            $nivel_where[] = "(".implode(" or ", $val).")";
+            $nivel_where[] = " AND (".implode(" or ", $val).")";
         }
         // $where = implode(" AND ", $nivel_where);
     }
