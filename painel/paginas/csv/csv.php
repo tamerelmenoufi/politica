@@ -1,5 +1,9 @@
 <?php
 
+    header('Content-Type: application/csv');
+    header('Content-Disposition: attachment; filename=example.csv');
+    header('Pragma: no-cache');
+
     include("./config_csv.php");
 
     // beneficido  b.nome
@@ -42,11 +46,21 @@
 
     if($Query) $_SESSION['query_xls'] = "(".implode(") UNION (", $Query).")";
 
-    echo "<pre>";
-    print_r($_SESSION);
-    echo "</pre>";
-    echo "<hr>";
-    echo "<pre>";
-    print_r($_GET);
-    echo "</pre>";
+    // echo "<pre>";
+    // print_r($_SESSION);
+    // echo "</pre>";
+    // echo "<hr>";
+    // echo "<pre>";
+    // print_r($_GET);
+    // echo "</pre>";
 
+    $result = mysql_query($_SESSION['query_xls']);
+?>
+Beneficiado;Assessor;Data da Agenda;Situação;Local
+<?php
+    while ($d = mysql_fetch_object($result)){
+?>
+<?= $d->beneficiado; ?>;<?= $d->assessor; ?>;<?= formata_datahora($d->data_agenda, DATA_HM); ?>;<?= getSituacaoOptions($d->situacao); ?>;<?= $d->lf_descricao . (($d->local_responsavel)?' ('.$d->local_responsavel.')':false); ?>
+<?php
+    }
+?>
