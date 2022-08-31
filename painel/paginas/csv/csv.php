@@ -56,7 +56,7 @@
 
     // if($Query) $query_xls = "(".implode(") UNION (", $Query).")";
 
-    if($where) {$query_xls = str_replace("WHERE", "WHERE ".$where);}else{$query_xls = $_SESSION['query_xls'];}
+    if($where) {$query_xls = str_replace("WHERE", "WHERE ".$where, $_SESSION['query_xls']);}else{$query_xls = $_SESSION['query_xls'];}
 
     // echo "<pre>";
     // print_r($_SESSION);
