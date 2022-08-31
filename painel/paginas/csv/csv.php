@@ -19,33 +19,44 @@
         $nivel_campo = [];
         for($i=0;$i<count($opc);$i++){
             $b = trim($opc[$i]);
-            $nivel_campo['beneficido'][] = "b.nome like '%{$b}%'";
-            $nivel_campo['assessor'][] = "a.nome like '%{$b}%'";
+            $nivel_campo['beneficido'] = "b.nome like '%{$b}%'";
+            $nivel_campo['assessor'] = "a.nome like '%{$b}%'";
             if(dataMysql($b)){
-            $nivel_campo['data_agenda'][] = "s.data_agenda like '%".dataMysql($b)."%'";
+            $nivel_campo['data_agenda'] = "s.data_agenda like '%".dataMysql($b)."%'";
+            }else{
+                $nivel_campo['data_agenda'] = false;
             }
             if(Sts($b)){
-            $nivel_campo['situacao'][] = "s.situacao like '%{$b}%'";
+            $nivel_campo['situacao'] = "s.situacao like '%{$b}%'";
+            }else{
+                $nivel_campo['situacao'] = false;
             }
-            $nivel_campo['local'][] = "lf.descricao like '%{$b}%'";
-            $nivel_campo['local_responsavel'][] = "s.local_responsavel like '%{$b}%'";
+            $nivel_campo['local'] = "lf.descricao like '%{$b}%'";
+            $nivel_campo['local_responsavel'] = "s.local_responsavel like '%{$b}%'";
+
+            foreach($nivel_campo as $ind => $val){
+                $nivel_where[] = "(".implode(" or ", $val).")";
+            }
+
         }
-        $nivel_where = [];
-        foreach($nivel_campo as $ind => $val){
-            $nivel_where[] = " AND (".implode(" or ", $val).")";
-        }
-        // $where = implode(" AND ", $nivel_where);
+        // $nivel_where = [];
+        // foreach($nivel_campo as $ind => $val){
+        //     $nivel_where[] = " AND (".implode(" or ", $val).")";
+        // }
+        $where = implode(" AND ", $nivel_where, $_SESSION['query_xls']);
     }
 
-    $Query = [];
-    $query_xls = [];
-    for($i=0;$i<count($nivel_where);$i++){
+    // $Query = [];
+    // $query_xls = [];
+    // for($i=0;$i<count($nivel_where);$i++){
 
-        $Query[] = str_replace("ORDER BY", $nivel_where[$i] . " ORDER BY ", $_SESSION['query_xls']);
+    //     $Query[] = str_replace("ORDER BY", $nivel_where[$i] . " ORDER BY ", $_SESSION['query_xls']);
 
-    }
+    // }
 
-    if($Query) $query_xls = "(".implode(") UNION (", $Query).")";
+    // if($Query) $query_xls = "(".implode(") UNION (", $Query).")";
+
+    if($where) {$query_xls = str_replace("WHERE", "WHERE ".$where);}else{$query_xls = $_SESSION['query_xls'];}
 
     // echo "<pre>";
     // print_r($_SESSION);
