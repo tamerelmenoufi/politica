@@ -17,5 +17,26 @@ function dataMysql($dt)
 {
     list($data, $hora) = explode(" ",$dt);
     list($d, $m, $a) = explode("/", $data);
-    return "{$a}-{$m}-{$d}".(($hora)?" ".$hora:false);
+    if($d*1 > 0 and $m*1 > 0 and $a*1 > 0){
+        return "{$a}-{$m}-{$d}".(($hora)?" ".$hora:false);
+    }
+    else{
+        return false;
+    }
+}
+
+function Sts($st)
+{
+    $opc = [
+        'Tramitação' => 'tramitacao',
+        'Retorno' => 'retorno',
+        'Concluído' => 'concluido',
+    ];
+
+    if($opc[$st]){
+        return $opc[$st];
+    }else{
+        return false;
+    }
+
 }

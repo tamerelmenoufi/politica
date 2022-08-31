@@ -17,8 +17,12 @@
             $b = trim($opc[$i]);
             $nivel_campo['beneficido'][] = "b.nome like '%{$b}%'";
             $nivel_campo['assessor'][] = "a.nome like '%{$b}%'";
+            if(dataMysql($b)){
             $nivel_campo['data_agenda'][] = "s.data_agenda like '%".dataMysql($b)."%'";
+            }
+            if(Sts($b)){
             $nivel_campo['situacao'][] = "s.situacao like '%{$b}%'";
+            }
             $nivel_campo['local'][] = "lf.descricao like '%{$b}%'";
             $nivel_campo['local_responsavel'][] = "s.local_responsavel like '%{$b}%'";
         }
