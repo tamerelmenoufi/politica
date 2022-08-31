@@ -18,7 +18,7 @@ function dataMysql($dt)
     list($data, $hora) = explode(" ",$dt);
     list($d, $m, $a) = explode("/", $data);
     if($d*1 > 0 and $m*1 > 0 and $a*1 > 0){
-        return ($a*1)."***{$a}-{$m}-{$d}".(($hora)?" ".$hora:false);
+        return "{$a}-{$m}-{$d}".(($hora)?" ".$hora:false);
     }
     else{
         return false;
