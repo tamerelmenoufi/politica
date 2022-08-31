@@ -12,6 +12,7 @@
     // situacao    s.situacao
     // local       lf.descricao
     // local_responsavel s.local_responsavel
+    // Especialidade s.especialista
 
     $where = false;
     if(trim($_GET['busca'])){
@@ -20,6 +21,11 @@
         for($i=0;$i<count($opc);$i++){
             $b = trim($opc[$i]);
             $nivel_campo['beneficido'] = "b.nome like '%{$b}%'";
+            if($_SESSION['saude_xls']){
+                $nivel_campo['especialista'] = "s.especialista like '%{$b}%'";
+            }else{
+                $nivel_campo['especialista'] = false;
+            }
             $nivel_campo['assessor'] = "a.nome like '%{$b}%'";
             if(dataMysql($b)){
             $nivel_campo['data_agenda'] = "s.data_agenda like '%".dataMysql($b)."%'";
@@ -70,11 +76,11 @@
     // echo "\n\n";
     $result = mysql_query($query_xls);
 ?>
-Beneficiado;Assessor;Data da Agenda;Situação;Local
+Beneficiado;Assessor;<?=(($_SESSION['saude_xls'])?'Especialidade;':false)?>Data da Agenda;Situação;Local
 <?php
     while ($d = mysql_fetch_object($result)){
 ?>
-<?= $d->beneficiado; ?>;<?= $d->assessor; ?>;<?= formata_datahora($d->data_agenda, DATA_HM); ?>;<?= getSituacaoOptions($d->situacao); ?>;<?= $d->lf_descricao . (($d->local_responsavel)?' ('.$d->local_responsavel.')':false); ?><?="\n"?>
+<?= $d->beneficiado; ?>;<?= $d->assessor; ?>;<?=(($_SESSION['saude_xls'])?$d->especialista.';':false)?><?= formata_datahora($d->data_agenda, DATA_HM); ?>;<?= getSituacaoOptions($d->situacao); ?>;<?= $d->lf_descricao . (($d->local_responsavel)?' ('.$d->local_responsavel.')':false); ?><?="\n"?>
 <?php
     }
 ?>
