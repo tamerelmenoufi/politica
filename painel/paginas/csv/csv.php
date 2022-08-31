@@ -35,7 +35,7 @@
             $nivel_campo['local_responsavel'] = "s.local_responsavel like '%{$b}%'";
 
             // foreach($nivel_campo as $ind => $val){
-            $nivel_campo = array_filter($nivel_campo);
+            $nivel_campo = array_filter($nivel_campo, 'strlen');
             $nivel_where[] = "(".implode(" or ", $nivel_campo).")";
             // }
 
