@@ -62,7 +62,7 @@ Beneficiado;Assessor;Data da Agenda;Situação;Local
 <?php
     while ($d = mysql_fetch_object($result)){
 ?>
-<?= $d->beneficiado; ?>;<?= $d->assessor; ?>;<?= formata_datahora($d->data_agenda, DATA_HM); ?>;<?= getSituacaoOptions($d->situacao); ?>;<?= $d->lf_descricao . (($d->local_responsavel)?' ('.$d->local_responsavel.')':false); ?>
+<?= $d->beneficiado; ?>;<?= $d->assessor; ?>;<?= formata_datahora($d->data_agenda, DATA_HM); ?>;<?= getSituacaoOptions($d->situacao); ?>;<?= $d->lf_descricao . (($d->local_responsavel)?' ('.$d->local_responsavel.')':false); ?><?="\n"?>
 <?php
     }
 ?>
