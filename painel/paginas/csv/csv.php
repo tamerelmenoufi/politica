@@ -54,7 +54,7 @@
     // echo "<pre>";
     // print_r($_GET);
     // echo "</pre>";
-    echo $query_xls;
+    // echo $query_xls;
 
     $result = mysql_query($query_xls);
 ?>
