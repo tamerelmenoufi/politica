@@ -44,7 +44,6 @@
         // foreach($nivel_campo as $ind => $val){
         //     $nivel_where[] = " AND (".implode(" or ", $val).")";
         // }
-        $exemploLimpo = array_filter($exemplo);
         $where = implode(" OR ", $nivel_where);
     }
 
