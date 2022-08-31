@@ -12,3 +12,10 @@ function formata_datahora($datahora, $formato = null)
 
     return date($formato, strtotime($datahora));
 }
+
+function dataMysql($dt)
+{
+    list($data, $hora) = explode(" ",$dt);
+    list($d, $m, $a) = explode("/", $data);
+    return "{$a}-{$m}-{$d}".(($hora)?" ".$hora:false);
+}
