@@ -34,9 +34,9 @@
             $nivel_campo['local'] = "lf.descricao like '%{$b}%'";
             $nivel_campo['local_responsavel'] = "s.local_responsavel like '%{$b}%'";
 
-            foreach($nivel_campo as $ind => $val){
-                $nivel_where[] = "(".implode(" or ", $val).")";
-            }
+            // foreach($nivel_campo as $ind => $val){
+            $nivel_where[] = "(".implode(" or ", $nivel_campo).")";
+            // }
 
         }
         // $nivel_where = [];
