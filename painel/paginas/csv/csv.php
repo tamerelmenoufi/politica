@@ -30,11 +30,17 @@
         foreach($nivel_campo as $ind => $val){
             $nivel_where[] = "(".implode(" or ", $val).")";
         }
-        $where = implode(" AND ", $nivel_where);
+        // $where = implode(" AND ", $nivel_where);
     }
 
+    $Query = [];
+    for($i=0;$i<count($nivel_where);$i++){
 
-    if($where) $_SESSION['query_xls'] = str_replace("WHERE", "WHERE {$where} AND ",$_SESSION['query_xls']);
+        $Query[] = str_replace("ORDER BY", $nivel_where[$i] . " ORDER BY ", $_SESSION['query_xls']);
+
+    }
+
+    if($Query) $_SESSION['query_xls'] = implode(" JOIN ". $Query);
 
     echo "<pre>";
     print_r($_SESSION);
