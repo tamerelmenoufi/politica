@@ -40,7 +40,7 @@
 
     }
 
-    if($Query) $_SESSION['query_xls'] = implode(" JOIN ". $Query);
+    if($Query) $_SESSION['query_xls'] = implode(" JOIN ", $Query);
 
     echo "<pre>";
     print_r($_SESSION);
