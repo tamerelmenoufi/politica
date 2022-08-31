@@ -43,7 +43,7 @@
         // foreach($nivel_campo as $ind => $val){
         //     $nivel_where[] = " AND (".implode(" or ", $val).")";
         // }
-        $where = implode(" AND ", $nivel_where, $_SESSION['query_xls']);
+        $where = implode(" AND ", $nivel_where);
     }
 
     // $Query = [];
