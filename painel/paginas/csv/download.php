@@ -1,5 +1,5 @@
 <button xls type="button" class="btn btn-primary btn-sm">
-    <i class="fa-download fa-plus"></i>
+    <i class="fa-solid fa-download"></i>
 </button>
 
 <script>
