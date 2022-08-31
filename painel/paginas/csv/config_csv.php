@@ -16,3 +16,9 @@ function getSituacao()
         'concluido' => 'Concluído',
     ];
 }
+
+function getSituacaoOptions($situacao)
+{
+    $list = getSituacao();
+    return $list[$situacao];
+}
