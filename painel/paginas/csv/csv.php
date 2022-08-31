@@ -38,13 +38,14 @@
     }
 
     $Query = [];
+    $query_xls = [];
     for($i=0;$i<count($nivel_where);$i++){
 
         $Query[] = str_replace("ORDER BY", $nivel_where[$i] . " ORDER BY ", $_SESSION['query_xls']);
 
     }
 
-    if($Query) $_SESSION['query_xls'] = "(".implode(") UNION (", $Query).")";
+    if($Query) $query_xls = "(".implode(") UNION (", $Query).")";
 
     // echo "<pre>";
     // print_r($_SESSION);
@@ -53,9 +54,9 @@
     // echo "<pre>";
     // print_r($_GET);
     // echo "</pre>";
-    echo $_SESSION['query_xls'];
+    echo $query_xls;
 
-    $result = mysql_query($_SESSION['query_xls']);
+    $result = mysql_query($query_xls);
 ?>
 Beneficiado;Assessor;Data da Agenda;Situação;Local
 <?php
