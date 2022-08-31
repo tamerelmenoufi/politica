@@ -54,8 +54,8 @@
     // echo "<pre>";
     // print_r($_GET);
     // echo "</pre>";
-    // echo $query_xls;
-
+    echo $query_xls;
+    echo "\n\n";
     $result = mysql_query($query_xls);
 ?>
 Beneficiado;Assessor;Data da Agenda;Situação;Local
