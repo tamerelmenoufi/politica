@@ -65,9 +65,9 @@
 
     if($where) {$query_xls = str_replace("WHERE", "WHERE ".$where." AND ", $_SESSION['query_xls']);}else{$query_xls = $_SESSION['query_xls'];}
 
-    echo "<pre>";
-    print_r($_SESSION);
-    echo "</pre>";
+    // echo "<pre>";
+    // print_r($_SESSION);
+    // echo "</pre>";
     // echo "<hr>";
     // echo "<pre>";
     // print_r($_GET);
