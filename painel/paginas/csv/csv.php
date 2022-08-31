@@ -1,8 +1,8 @@
 <?php
 
-    header('Content-Type: application/csv');
-    header('Content-Disposition: attachment; filename=example.csv');
-    header('Pragma: no-cache');
+    // header('Content-Type: application/csv');
+    // header('Content-Disposition: attachment; filename=example.csv');
+    // header('Pragma: no-cache');
 
     include("./config_csv.php");
 
@@ -53,6 +53,7 @@
     // echo "<pre>";
     // print_r($_GET);
     // echo "</pre>";
+    echo $_SESSION['query_xls'];
 
     $result = mysql_query($_SESSION['query_xls']);
 ?>
