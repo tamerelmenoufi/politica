@@ -34,6 +34,8 @@ $query = "SELECT s.*, a.nome AS assessor, b.nome AS beneficiado, t.descricao as 
 
 $result = mysql_query($query);
 
+$_SESSOIN['query_xls'] = $query;
+
 ?>
 
 <nav aria-label="breadcrumb">
@@ -50,6 +52,8 @@ $result = mysql_query($query);
         </h6>
         <?php
         if (in_array('Registro Geral - Cadastrar', $ConfPermissoes)) {
+
+            include("../../csv/download.php");
             ?>
             <button type="button" class="btn btn-success btn-sm" url="<?= $urlServicos; ?>/form.php">
                 <i class="fa-solid fa-plus"></i> Novo

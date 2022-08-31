@@ -19,6 +19,8 @@ $query = "SELECT s.*, a.nome AS assessor, b.nome AS beneficiado FROM servicos s 
     . "ORDER BY s.codigo DESC";
 $result = mysql_query($query);
 
+$_SESSOIN['query_xls'] = $query;
+
 ?>
 
 <nav aria-label="breadcrumb">
@@ -33,7 +35,9 @@ $result = mysql_query($query);
         <h6 class="m-0 font-weight-bold text-primary">
             Serviços
         </h6>
-
+        <?php
+        include("../../csv/download.php");
+        ?>
         <button type="button" class="btn btn-success btn-sm" url="<?= $urlServicos; ?>/form.php">
             <i class="fa-solid fa-plus"></i> Novo
         </button>

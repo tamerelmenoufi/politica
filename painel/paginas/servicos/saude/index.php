@@ -26,6 +26,9 @@ $query = "SELECT s.*, a.nome AS assessor, b.nome AS beneficiado, {$colunaAtendim
     . "ORDER BY s.codigo DESC";
 
 $result = mysql_query($query);
+
+$_SESSOIN['query_xls'] = $query;
+
 ?>
 
 <style>
@@ -52,6 +55,8 @@ $result = mysql_query($query);
         </h6>
         <?php
         if (in_array('Saúde - Cadastrar', $ConfPermissoes)) {
+
+            include("../../csv/download.php");
             ?>
             <button type="button" class="btn btn-success btn-sm" url="<?= $urlServicos; ?>/form.php">
                 <i class="fa-solid fa-plus"></i> Novo
