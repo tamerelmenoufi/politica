@@ -18,7 +18,7 @@ function getEsfera()
 function getSituacao()
 {
     return [
-        '' => 'Limpar Filtro',
+        ' ' => 'Limpar Filtro',
         'tramitacao' => 'Tramitação',
         'retorno' => 'Retorno',
         'concluido' => 'Concluído',
@@ -35,7 +35,7 @@ function getSituacaoOptions($situacao)
 function getAtendimento()
 {
     return [
-        '',
+        ' ',
         'Atendido',
         'Não atendido',
         'Agendado',
