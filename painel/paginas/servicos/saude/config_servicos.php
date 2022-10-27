@@ -18,7 +18,7 @@ function getEsfera()
 function getSituacao()
 {
     return [
-        '' => 'Limpar Filtro',
+        'o' => 'Limpar Filtro',
         'tramitacao' => 'Tramitação',
         'retorno' => 'Retorno',
         'concluido' => 'Concluído',
