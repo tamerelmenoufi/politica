@@ -182,7 +182,7 @@ $_SESSION['saude_xls'] = true;
         $('#filtro-situacao').change(function () {
             var val = $(this).val();
 
-            table.column(3)
+            table.column(4)
                 .search(val ? '^' + $(this).val() + '$' : val, true, false)
                 .draw();
         });
@@ -190,7 +190,7 @@ $_SESSION['saude_xls'] = true;
         $('#filtro-atendimento').change(function () {
             var val = $(this).val();
 
-            table.column(4)
+            table.column(5)
                 .search(val ? '^' + $(this).val() + '$' : val, true, false)
                 .draw();
         });
