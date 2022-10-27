@@ -34,6 +34,7 @@ function getSituacaoOptions($situacao)
 function getAtendimento()
 {
     return [
+        '',
         'Atendido',
         'Não atendido',
         'Agendado',
