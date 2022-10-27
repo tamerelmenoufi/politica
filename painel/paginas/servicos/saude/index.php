@@ -89,7 +89,7 @@ $_SESSION['saude_xls'] = true;
                                     >
                                         <?php
                                         foreach (getSituacao() as $key => $value):
-                                            echo "<option value=\"{$value}\">{$value}</option>";
+                                            echo "<option value=\"{$key}\">{$value}</option>";
                                         endforeach;
                                         ?>
                                     </select>
