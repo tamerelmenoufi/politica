@@ -18,7 +18,7 @@ $colunaAtendimento = "(CASE WHEN s.data_agenda <= NOW() AND s.situacao = 'conclu
     . "ELSE 'Aguardando' "
     . "END) AS atendimento, lf.descricao AS lf_descricao ";
 
-echo $query = "SELECT s.*, a.nome AS assessor, b.nome AS beneficiado, {$colunaAtendimento} FROM servicos s "
+$query = "SELECT s.*, a.nome AS assessor, b.nome AS beneficiado, {$colunaAtendimento} FROM servicos s "
     . "LEFT JOIN assessores a ON a.codigo = s.assessor "
     . "LEFT JOIN beneficiados b ON b.codigo = s.beneficiado "
     . "LEFT JOIN local_fontes lf ON lf.codigo = s.local_fonte "
