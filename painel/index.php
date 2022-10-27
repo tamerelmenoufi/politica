@@ -181,6 +181,8 @@ if (!isset($_SESSION['usuario'])) {
             console.log(url);
             $('.loading').fadeIn(200);
 
+            localStorage.clear();
+
             $.ajax({
                 url: "index.php",
                 type: "POST",
