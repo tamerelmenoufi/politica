@@ -96,7 +96,7 @@ $_SESSION['saude_xls'] = true;
                                 </div>
                             </div>
 
-                            <div class="col-md-3">
+                            <!-- <div class="col-md-3">
                                 <div class="form-group mb-2">
 
                                     <select
@@ -112,7 +112,7 @@ $_SESSION['saude_xls'] = true;
                                         ?>
                                     </select>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </th>
                 </tr>
@@ -187,13 +187,13 @@ $_SESSION['saude_xls'] = true;
                 .draw();
         });
 
-        $('#filtro-atendimento').change(function () {
-            var val = $(this).val();
+        // $('#filtro-atendimento').change(function () {
+        //     var val = $(this).val();
 
-            table.column(5)
-                .search(val ? '^' + $(this).val() + '$' : val, true, false)
-                .draw();
-        });
+        //     table.column(5)
+        //         .search(val ? '^' + $(this).val() + '$' : val, true, false)
+        //         .draw();
+        // });
 
         $('.btn-excluir').click(function () {
             var codigo = $(this).data('codigo');
